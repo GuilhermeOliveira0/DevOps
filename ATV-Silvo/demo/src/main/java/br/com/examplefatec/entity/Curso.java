@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import lombok.*;
 
 
@@ -16,35 +15,26 @@ import lombok.*;
 @NoArgsConstructor
 
 
-public class Aluno {
-
+public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO  )
     
-    private int idAluno;
+    private int idCurso;
 
     @Column(nullable = false, length = 40)
-    private String nomeAluno;
+    private String nomeCurso;
 
-    @Column( length = 100)
-    private String emailAluno;
+    @Column(nullable = false, length = 40)
+    private String periodoCurso;
 
+   
+
+   
+
+   
     @Column(nullable = false, length = 11)
-    private String telefoneAluno;
-
-    @Column(nullable = false, length = 50)
-    private String enderecoAluno;
-
-    @Column(nullable = false, length = 11)
-    private String cpfAluno;
+    private int cargaHorariaCurso;
     
-    @Column(nullable = false)
-    private String raAluno;
-
     
-
-
     
 }
-    
-

@@ -1,4 +1,4 @@
-package br.com.examplefatec.entity;
+package br.com.examplefatec.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
