@@ -30,8 +30,13 @@ public class AlunoController {
     @GetMapping("/listar")
     public String listar(Model model) {
         model.addAttribute("alunos", alunoService.findAll());
-        return "alunos/listar";
+        return "aluno/listar";
     }
-
+//metodo para guiar um novo aluno e abrir formulario
+    @GetMapping("/criar")
+    public String criar(Model model) {
+        model.addAttribute("aluno", new Aluno());
+        return "aluno/formularioAluno";
+    }
 
 }
