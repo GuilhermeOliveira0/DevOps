@@ -4,24 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Cursos</title>
+    <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <h1 th:text="${curso.idCurso != 0} ? 'Editar Curso' : 'Cadastro de Cursos'">Cadastro de Cursos</h1>
-    <form action="#" th:action="@{/cursos/salvar}" th:object="${curso}" method="post">
-        <input type="hidden" th:field="*{idCurso}">
+    <main class="page-shell layout-stack">
+        <section class="hero">
+            <div class="topbar">
+                <div class="brand">
+                    <span class="brand-mark"></span>
+                    <span>FatecADS</span>
+                </div>
+                <div class="topbar-links">
+                    <a class="nav-pill" href="/">Inicio</a>
+                    <a class="nav-pill" href="/alunos/listar">Alunos</a>
+                    <a class="nav-pill active" href="/cursos/listar">Cursos</a>
+                </div>
+            </div>
 
-        <label for="nome">Nome do curso:</label>
-        <input type="text" id="nome" th:field="*{nomeCurso}" required><br><br>
+            <div class="section-head">
+                <span class="eyebrow">Formulario</span>
+                <h1 th:text="${curso.idCurso != 0} ? 'Editar curso' : 'Cadastrar curso'">Cadastro de Cursos</h1>
+                <p>Cadastre os dados principais do curso em um formulario direto e com identidade visual consistente.</p>
+            </div>
+        </section>
 
-        <label for="periodo">Periodo:</label>
-        <input type="text" id="periodo" th:field="*{periodoCurso}" required><br><br>
+        <section class="form-panel">
+            <form th:action="@{/cursos/salvar}" th:object="${curso}" method="post">
+                <input type="hidden" th:field="*{idCurso}">
 
-        <label for="cargaHoraria">Carga horaria:</label>
-        <input type="number" id="cargaHoraria" th:field="*{cargaHorariaCurso}" min="1" required><br><br>
+                <div class="form-grid">
+                    <div class="field field-full">
+                        <label for="nome">Nome do curso</label>
+                        <input type="text" id="nome" th:field="*{nomeCurso}" required>
+                    </div>
 
-        <button type="submit">Salvar</button>
-    </form>
+                    <div class="field">
+                        <label for="periodo">Periodo</label>
+                        <input type="text" id="periodo" th:field="*{periodoCurso}" required>
+                    </div>
 
-    <p><a href="/cursos/listar">Voltar para lista</a></p>
+                    <div class="field">
+                        <label for="cargaHoraria">Carga horaria</label>
+                        <input type="number" id="cargaHoraria" th:field="*{cargaHorariaCurso}" min="1" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="button" type="submit">Salvar curso</button>
+                    <a class="button-ghost" href="/cursos/listar">Voltar para lista</a>
+                </div>
+            </form>
+
+            <p class="panel-note">A estrutura do curso permanece objetiva para facilitar manutencao e futuras expansoes do sistema.</p>
+        </section>
+    </main>
 </body>
 </html>

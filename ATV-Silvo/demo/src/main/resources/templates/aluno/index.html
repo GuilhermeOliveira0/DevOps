@@ -3,11 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FatecADS</title>
+    <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <h1 style="text-align: center;">Bem vindo ao Sistema FatecADS</h1>
-    <h3 style="text-align: center;"><a href="/alunos/listar">Gerenciar Alunos</a></h3>
-    <h3 style="text-align: center;"><a href="/cursos/listar">Gerenciar Cursos</a></h3>
+    <main class="page-shell">
+        <section class="hero">
+            <div class="topbar">
+                <div class="brand">
+                    <span class="brand-mark"></span>
+                    <span>FatecADS</span>
+                </div>
+                <div class="topbar-links">
+                    <a class="nav-pill active" href="/">Inicio</a>
+                    <a class="nav-pill" href="/alunos/listar">Alunos</a>
+                    <a class="nav-pill" href="/cursos/listar">Cursos</a>
+                </div>
+            </div>
+
+            <div class="hero-grid">
+                <div>
+                    <span class="eyebrow">Sistema academico</span>
+                    <h1>Gestao simples, limpa e eficiente.</h1>
+                    <p>Organize alunos e cursos em uma interface clara, moderna e objetiva. O projeto agora tem uma navegacao mais elegante, com foco em produtividade e leitura rapida.</p>
+                </div>
+
+                <div class="stats-card">
+                    <strong>2 modulos</strong>
+                    <span>Cadastros de alunos e cursos com edicao, exclusao e visual mais profissional.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-two">
+            <a class="card-link" href="/alunos/listar">
+                <h2>Gerenciar alunos</h2>
+                <p>Cadastre novos alunos, atualize informacoes rapidamente e mantenha a listagem organizada.</p>
+                <span class="link-cta">Abrir modulo</span>
+            </a>
+
+            <a class="card-link" href="/cursos/listar">
+                <h2>Gerenciar cursos</h2>
+                <p>Controle nome, periodo e carga horaria em uma area dedicada e com visual consistente.</p>
+                <span class="link-cta">Abrir modulo</span>
+            </a>
+        </section>
+    </main>
 </body>
 </html>

@@ -4,41 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Alunos</title>
+    <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <h1>Lista de Alunos</h1>
+    <main class="page-shell layout-stack">
+        <section class="hero">
+            <div class="topbar">
+                <div class="brand">
+                    <span class="brand-mark"></span>
+                    <span>FatecADS</span>
+                </div>
+                <div class="topbar-links">
+                    <a class="nav-pill" href="/">Inicio</a>
+                    <a class="nav-pill active" href="/alunos/listar">Alunos</a>
+                    <a class="nav-pill" href="/cursos/listar">Cursos</a>
+                </div>
+            </div>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>RA</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Acoes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="aluno : ${alunos}">
-                <td th:text="${aluno.idAluno}">1</td>
-                <td th:text="${aluno.nomeAluno}">Nome</td>
-                <td th:text="${aluno.raAluno}">RA</td>
-                <td th:text="${aluno.emailAluno}">email@dominio.com</td>
-                <td th:text="${aluno.telefoneAluno}">11999999999</td>
-                <td>
-                    <a th:href="@{/alunos/editar/{id}(id=${aluno.idAluno})}">Editar</a>
-                    <a th:href="@{/alunos/excluir/{id}(id=${aluno.idAluno})}"
-                       onclick="return confirm('Deseja excluir este aluno?');">Excluir</a>
-                </td>
-            </tr>
-            <tr th:if="${#lists.isEmpty(alunos)}">
-                <td colspan="6">Nenhum aluno cadastrado.</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="section-head">
+                <span class="eyebrow">Modulo de alunos</span>
+                <h1>Lista de alunos</h1>
+                <p>Visualize, edite e remova registros com uma tabela limpa e facil de navegar.</p>
+            </div>
 
-    <p><a href="/alunos/criar">Novo aluno</a></p>
-    <p><a href="/">Voltar para inicio</a></p>
+            <div class="toolbar">
+                <span class="toolbar-text">Gerencie os cadastros existentes ou adicione um novo aluno.</span>
+                <a class="button" href="/alunos/criar">Novo aluno</a>
+            </div>
+        </section>
+
+        <section class="table-panel">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>RA</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="aluno : ${alunos}">
+                        <td th:text="${aluno.idAluno}">1</td>
+                        <td class="cell-strong" th:text="${aluno.nomeAluno}">Nome</td>
+                        <td th:text="${aluno.raAluno}">RA</td>
+                        <td th:text="${aluno.emailAluno}">email@dominio.com</td>
+                        <td th:text="${aluno.telefoneAluno}">11999999999</td>
+                        <td>
+                            <div class="actions">
+                                <a class="button-secondary" th:href="@{/alunos/editar/{id}(id=${aluno.idAluno})}">Editar</a>
+                                <a class="button-ghost button-danger" th:href="@{/alunos/excluir/{id}(id=${aluno.idAluno})}"
+                                   onclick="return confirm('Deseja excluir este aluno?');">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(alunos)}">
+                        <td colspan="6" class="empty-state">Nenhum aluno cadastrado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
 </html>
