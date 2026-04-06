@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cursos</title>
+</head>
+<body>
+    <h1>Lista de Cursos</h1>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Periodo</th>
+                <th>Carga Horaria</th>
+                <th>Acoes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="curso : ${cursos}">
+                <td th:text="${curso.idCurso}">1</td>
+                <td th:text="${curso.nomeCurso}">ADS</td>
+                <td th:text="${curso.periodoCurso}">Noite</td>
+                <td th:text="${curso.cargaHorariaCurso}">2800</td>
+                <td>
+                    <a th:href="@{/cursos/editar/{id}(id=${curso.idCurso})}">Editar</a>
+                    <a th:href="@{/cursos/excluir/{id}(id=${curso.idCurso})}"
+                       onclick="return confirm('Deseja excluir este curso?');">Excluir</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(cursos)}">
+                <td colspan="5">Nenhum curso cadastrado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><a href="/cursos/criar">Novo curso</a></p>
+    <p><a href="/">Voltar para inicio</a></p>
+</body>
+</html>

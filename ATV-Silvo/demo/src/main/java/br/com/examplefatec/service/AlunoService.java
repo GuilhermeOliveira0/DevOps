@@ -21,4 +21,10 @@ public class AlunoService {
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
     }
+    public void deleteById(int id) {
+        alunoRepository.deleteById(id);
+    }
+    public Aluno findById(int id) {
+        return alunoRepository.findById(id).orElse(null);
+    }
 }

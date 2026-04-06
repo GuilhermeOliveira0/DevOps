@@ -6,8 +6,10 @@
     <title>Cadastro de Alunos</title>
 </head>
 <body>
-    <h1>Cadastro de Alunos</h1>
+    <h1 th:text="${aluno.idAluno != 0} ? 'Editar Aluno' : 'Cadastro de Alunos'">Cadastro de Alunos</h1>
     <form action="#" th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
+        <input type="hidden" th:field="*{idAluno}">
+
         <label for="nome">Nome:</label>
         <input type="text" id="nome" th:field="*{nomeAluno}" required><br><br>
 
@@ -27,7 +29,8 @@
         <input type="text" id="ra" th:field="*{raAluno}" required><br><br>
 
         <button type="submit">Salvar</button>
-
     </form>
+
+    <p><a href="/alunos/listar">Voltar para lista</a></p>
 </body>
 </html>

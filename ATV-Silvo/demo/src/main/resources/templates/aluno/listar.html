@@ -16,6 +16,7 @@
                 <th>RA</th>
                 <th>Email</th>
                 <th>Telefone</th>
+                <th>Acoes</th>
             </tr>
         </thead>
         <tbody>
@@ -25,13 +26,19 @@
                 <td th:text="${aluno.raAluno}">RA</td>
                 <td th:text="${aluno.emailAluno}">email@dominio.com</td>
                 <td th:text="${aluno.telefoneAluno}">11999999999</td>
+                <td>
+                    <a th:href="@{/alunos/editar/{id}(id=${aluno.idAluno})}">Editar</a>
+                    <a th:href="@{/alunos/excluir/{id}(id=${aluno.idAluno})}"
+                       onclick="return confirm('Deseja excluir este aluno?');">Excluir</a>
+                </td>
             </tr>
             <tr th:if="${#lists.isEmpty(alunos)}">
-                <td colspan="5">Nenhum aluno cadastrado.</td>
+                <td colspan="6">Nenhum aluno cadastrado.</td>
             </tr>
         </tbody>
     </table>
 
+    <p><a href="/alunos/criar">Novo aluno</a></p>
     <p><a href="/">Voltar para inicio</a></p>
 </body>
 </html>

@@ -9,44 +9,44 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.examplefatec.entity.Aluno;
-import br.com.examplefatec.service.AlunoService;
+import br.com.examplefatec.entity.Curso;
+import br.com.examplefatec.service.CursoService;
 
 @Controller
-@RequestMapping("/alunos")
-public class AlunoController {
+@RequestMapping("/cursos")
+public class CursoController {
 
     @Autowired
-    private AlunoService alunoService;
+    private CursoService cursoService;
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Aluno aluno) {
-        alunoService.save(aluno);
-        return "redirect:/alunos/listar";
+    public String salvar(@ModelAttribute Curso curso) {
+        cursoService.save(curso);
+        return "redirect:/cursos/listar";
     }
 
     @GetMapping("/listar")
     public String listar(Model model) {
-        model.addAttribute("alunos", alunoService.findAll());
-        return "aluno/listar";
+        model.addAttribute("cursos", cursoService.findAll());
+        return "curso/listar";
     }
 
     @GetMapping("/criar")
     public String criar(Model model) {
-        model.addAttribute("aluno", new Aluno());
-        return "aluno/formularioAluno";
-    }
-
-    @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable int id) {
-        alunoService.deleteById(id);
-        return "redirect:/alunos/listar";
+        model.addAttribute("curso", new Curso());
+        return "curso/formularioCurso";
     }
 
     @GetMapping("/editar/{id}")
     public String editarForm(@PathVariable int id, Model model) {
-        Aluno aluno = alunoService.findById(id);
-        model.addAttribute("aluno", aluno);
-        return "aluno/formularioAluno";
+        Curso curso = cursoService.findById(id);
+        model.addAttribute("curso", curso);
+        return "curso/formularioCurso";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable int id) {
+        cursoService.deleteById(id);
+        return "redirect:/cursos/listar";
     }
 }
