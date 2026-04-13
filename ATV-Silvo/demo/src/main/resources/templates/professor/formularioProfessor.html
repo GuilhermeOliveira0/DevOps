@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Professores</title>
+    <link rel="stylesheet" href="/css/app.css?v=20260413c">
+</head>
+<body class="form-page">
+    <div class="app-layout">
+        <aside class="sidebar">
+            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
+            <section class="sidebar-section">
+                <p class="sidebar-label">Navegacao</p>
+                <nav class="sidebar-nav">
+                    <a class="nav-item" href="/"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
+                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
+                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
+                    <a class="nav-item active" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
+                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
+                </nav>
+            </section>
+            <div class="sidebar-card">
+                <span>Formulario</span>
+                <strong>Cadastro de professores</strong>
+                <p>Dados docentes com preenchimento objetivo.</p>
+            </div>
+        </aside>
+
+        <main class="content-shell">
+            <header class="content-topbar">
+                <div class="topbar-copy">
+                    <p class="section-kicker">Formulario de professores</p>
+                    <h1 th:text="${professor.idProfessor != 0} ? 'Editar professor' : 'Cadastrar professor'">Cadastro de Professores</h1>
+                    <p class="section-copy">Cadastro docente com foco em clareza e produtividade.</p>
+                </div>
+                <div class="topbar-actions">
+                    <span class="status-chip">Fluxo preservado</span>
+                    <a class="button-ghost" href="/professores/listar">Voltar para lista</a>
+                </div>
+            </header>
+
+            <section class="content-grid form-layout">
+                <section class="panel form-panel">
+                    <div class="panel-header">
+                        <div class="panel-title-stack">
+                            <span class="panel-eyebrow">Dados principais</span>
+                            <h2>Informacoes do professor</h2>
+                            <p>Mesmo fluxo de cadastro com visual mais limpo.</p>
+                        </div>
+                    </div>
+
+                    <form th:action="@{/professores/salvar}" th:object="${professor}" method="post">
+                        <input type="hidden" th:field="*{idProfessor}">
+                        <div class="form-grid">
+                            <div class="field field-full"><label for="nome">Nome</label><input type="text" id="nome" th:field="*{nomeProfessor}" required><span class="field-hint">Nome completo exibido nas telas operacionais do sistema.</span></div>
+                            <div class="field"><label for="telefone">Telefone</label><input type="text" id="telefone" th:field="*{telefoneProfessor}" required><span class="field-hint">Contato principal do docente para comunicacoes institucionais.</span></div>
+                            <div class="field"><label for="graduacao">Graduacao</label><input type="text" id="graduacao" th:field="*{graduacaoProfessor}" required><span class="field-hint">Formacao ou titulacao academica do professor.</span></div>
+                            <div class="field field-full"><label for="rm">RM</label><input type="text" id="rm" th:field="*{rmProfessor}" required><span class="field-hint">Identificador interno usado para administracao do cadastro.</span></div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="button" type="submit">Salvar professor</button>
+                            <a class="button-secondary" href="/professores/listar">Cancelar</a>
+                        </div>
+                    </form>
+
+                    <p class="panel-note">Fluxo mantido. Apenas a interface foi refinada.</p>
+                </section>
+
+                <aside class="side-stack">
+                    <section class="info-card">
+                        <strong>Resumo do fluxo</strong>
+                        <div class="info-list">
+                            <div class="info-row"><span>Contexto</span><b>Cadastro docente</b></div>
+                            <div class="info-row"><span>Acao principal</span><b>Salvar dados do professor</b></div>
+                            <div class="info-row"><span>Retorno</span><b>Redirecionamento para listagem</b></div>
+                        </div>
+                    </section>
+                    <section class="info-card">
+                        <strong>Qualidade visual</strong>
+                        <p>Campos maiores, cards laterais e espacos melhor distribuidos criam uma aparencia de sistema corporativo mais confiavel.</p>
+                    </section>
+                </aside>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

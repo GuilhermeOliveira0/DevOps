@@ -4,49 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FatecADS</title>
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/app.css?v=20260413e">
 </head>
-<body>
-    <main class="page-shell">
-        <section class="hero">
-            <div class="topbar">
-                <div class="brand">
-                    <span class="brand-mark"></span>
-                    <span>FatecADS</span>
+<body class="landing-page">
+    <main class="landing-shell">
+        <section class="landing-card">
+            <div class="landing-head">
+                <div class="landing-topbar">
+                    <div class="landing-brand">
+                        <span class="landing-brand-mark"></span>
+                        <span class="landing-brand-copy">
+                            <strong>FatecADS</strong>
+                            <span>Sistema academico</span>
+                        </span>
+                    </div>
+                    <span class="landing-status">Ambiente ativo</span>
                 </div>
-                <div class="topbar-links">
-                    <a class="nav-pill active" href="/">Inicio</a>
-                    <a class="nav-pill" href="/alunos/listar">Alunos</a>
-                    <a class="nav-pill" href="/cursos/listar">Cursos</a>
+
+                <div class="landing-hero">
+                    <div class="landing-copy">
+                        <p class="landing-kicker">Gestao academica</p>
+                        <h1>Escolha um modulo e comece.</h1>
+                        <p>Navegacao direta para as areas principais do sistema com visual mais organizado e profissional.</p>
+
+                        <div class="landing-actions">
+                            <a class="button" href="/alunos/listar">Abrir sistema</a>
+                            <a class="button-secondary" href="/cursos/listar">Ver modulos</a>
+                        </div>
+                    </div>
+
+                    <div class="landing-spotlight">
+                        <span>Acesso rapido</span>
+                        <strong>4 modulos principais</strong>
+                        <p>Cadastros e consultas em uma entrada unica, limpa e objetiva.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="hero-grid">
-                <div>
-                    <span class="eyebrow">Sistema academico</span>
-                    <h1>Gestao simples, limpa e eficiente.</h1>
-                    <p>Organize alunos e cursos em uma interface clara, moderna e objetiva. O projeto agora tem uma navegacao mais elegante, com foco em produtividade e leitura rapida.</p>
-                </div>
+            <div class="landing-grid">
+                <a class="landing-button" href="/alunos/listar">
+                    <div class="landing-button-top">
+                        <span class="landing-badge">01</span>
+                        <span class="landing-arrow">></span>
+                    </div>
+                    <strong>Alunos</strong>
+                    <span>Cadastro e listagem</span>
+                </a>
 
-                <div class="stats-card">
-                    <strong>2 modulos</strong>
-                    <span>Cadastros de alunos e cursos com edicao, exclusao e visual mais profissional.</span>
-                </div>
+                <a class="landing-button" href="/cursos/listar">
+                    <div class="landing-button-top">
+                        <span class="landing-badge">02</span>
+                        <span class="landing-arrow">></span>
+                    </div>
+                    <strong>Cursos</strong>
+                    <span>Catalogo academico</span>
+                </a>
+
+                <a class="landing-button" href="/professores/listar">
+                    <div class="landing-button-top">
+                        <span class="landing-badge">03</span>
+                        <span class="landing-arrow">></span>
+                    </div>
+                    <strong>Professores</strong>
+                    <span>Equipe docente</span>
+                </a>
+
+                <a class="landing-button" href="/disciplinas/listar">
+                    <div class="landing-button-top">
+                        <span class="landing-badge">04</span>
+                        <span class="landing-arrow">></span>
+                    </div>
+                    <strong>Disciplinas</strong>
+                    <span>Grade curricular</span>
+                </a>
             </div>
-        </section>
-
-        <section class="grid-two">
-            <a class="card-link" href="/alunos/listar">
-                <h2>Gerenciar alunos</h2>
-                <p>Cadastre novos alunos, atualize informacoes rapidamente e mantenha a listagem organizada.</p>
-                <span class="link-cta">Abrir modulo</span>
-            </a>
-
-            <a class="card-link" href="/cursos/listar">
-                <h2>Gerenciar cursos</h2>
-                <p>Controle nome, periodo e carga horaria em uma area dedicada e com visual consistente.</p>
-                <span class="link-cta">Abrir modulo</span>
-            </a>
         </section>
     </main>
 </body>

@@ -4,66 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Cursos</title>
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/app.css?v=20260413c">
 </head>
-<body>
-    <main class="page-shell layout-stack">
-        <section class="hero">
-            <div class="topbar">
-                <div class="brand">
-                    <span class="brand-mark"></span>
-                    <span>FatecADS</span>
+<body class="list-page">
+    <div class="app-layout">
+        <aside class="sidebar">
+            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
+            <section class="sidebar-section">
+                <p class="sidebar-label">Navegacao</p>
+                <nav class="sidebar-nav">
+                    <a class="nav-item" href="/"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
+                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
+                    <a class="nav-item active" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
+                    <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
+                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
+                </nav>
+            </section>
+            <div class="sidebar-card">
+                <span>Modulo</span>
+                <strong>Cursos</strong>
+                <p>Estrutura curricular em um painel direto.</p>
+            </div>
+        </aside>
+
+        <main class="content-shell">
+            <header class="content-topbar">
+                <div class="topbar-copy">
+                    <p class="section-kicker">Painel de cursos</p>
+                    <h1>Lista de cursos</h1>
+                    <p class="section-copy">Controle de cursos com leitura rapida e acoes visiveis.</p>
                 </div>
-                <div class="topbar-links">
-                    <a class="nav-pill" href="/">Inicio</a>
-                    <a class="nav-pill" href="/alunos/listar">Alunos</a>
-                    <a class="nav-pill active" href="/cursos/listar">Cursos</a>
+                <div class="topbar-actions">
+                    <span class="status-chip">Modulo online</span>
+                    <a class="button" href="/cursos/criar">Novo curso</a>
                 </div>
-            </div>
+            </header>
 
-            <div class="section-head">
-                <span class="eyebrow">Modulo de cursos</span>
-                <h1>Lista de cursos</h1>
-                <p>Controle os cursos da aplicacao com uma tabela objetiva, responsiva e alinhada ao visual do sistema.</p>
-            </div>
+            <section class="metric-grid">
+                <article class="metric-card"><span class="metric-label">Registros</span><strong th:text="${#lists.size(cursos)}">0</strong><p>Total de cursos.</p></article>
+                <article class="metric-card"><span class="metric-label">Catalogo</span><strong>Periodo e carga</strong><p>Dados curriculares em foco.</p></article>
+                <article class="metric-card"><span class="metric-label">Acoes</span><strong>Gestao direta</strong><p>Editar e excluir sem sair da tela.</p></article>
+            </section>
 
-            <div class="toolbar">
-                <span class="toolbar-text">Cadastre cursos, ajuste informacoes e exclua registros quando necessario.</span>
-                <a class="button" href="/cursos/criar">Novo curso</a>
-            </div>
-        </section>
+            <section class="panel">
+                <div class="panel-header">
+                    <div class="panel-title-stack">
+                        <span class="panel-eyebrow">Listagem principal</span>
+                        <h2>Registros de cursos</h2>
+                        <p>Catalogo de cursos com leitura limpa e objetiva.</p>
+                    </div>
+                    <span class="soft-chip">Gestao curricular</span>
+                </div>
 
-        <section class="table-panel">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Periodo</th>
-                        <th>Carga Horaria</th>
-                        <th>Acoes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="curso : ${cursos}">
-                        <td th:text="${curso.idCurso}">1</td>
-                        <td class="cell-strong" th:text="${curso.nomeCurso}">ADS</td>
-                        <td th:text="${curso.periodoCurso}">Noite</td>
-                        <td th:text="${curso.cargaHorariaCurso}">2800</td>
-                        <td>
-                            <div class="actions">
-                                <a class="button-secondary" th:href="@{/cursos/editar/{id}(id=${curso.idCurso})}">Editar</a>
-                                <a class="button-ghost button-danger" th:href="@{/cursos/excluir/{id}(id=${curso.idCurso})}"
-                                   onclick="return confirm('Deseja excluir este curso?');">Excluir</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr th:if="${#lists.isEmpty(cursos)}">
-                        <td colspan="5" class="empty-state">Nenhum curso cadastrado.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>ID</th><th>Nome</th><th>Periodo</th><th>Carga Horaria</th><th>Acoes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="curso : ${cursos}">
+                                <td><span class="table-id" th:text="${curso.idCurso}">1</span></td>
+                                <td><div class="cell-strong" th:text="${curso.nomeCurso}">ADS</div><div class="table-note">Curso</div></td>
+                                <td th:text="${curso.periodoCurso}">Noite</td>
+                                <td th:text="${curso.cargaHorariaCurso}">2800</td>
+                                <td>
+                                    <div class="actions">
+                                        <a class="button-secondary" th:href="@{/cursos/editar/{id}(id=${curso.idCurso})}">Editar</a>
+                                        <a class="button-ghost button-danger" th:href="@{/cursos/excluir/{id}(id=${curso.idCurso})}" onclick="return confirm('Deseja excluir este curso?');">Excluir</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(cursos)}"><td colspan="5" class="empty-state">Nenhum curso cadastrado.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

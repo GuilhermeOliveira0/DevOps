@@ -9,7 +9,7 @@
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ demo ---
 [INFO] Copying 1 resource from src\main\resources to target\classes
-[INFO] Copying 6 resources from src\main\resources to target\classes
+[INFO] Copying 10 resources from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.14.1:compile (default-compile) @ demo ---
 [INFO] Nothing to compile - all classes are up to date.
@@ -35,32 +35,32 @@
 
  :: Spring Boot ::                (v4.0.3)
 
-2026-04-06T18:44:10.754-03:00  INFO 20680 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : Starting DemoApplication using Java 17.0.18 with PID 20680 (C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo\target\classes started by Guilherme in C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo)
-2026-04-06T18:44:10.761-03:00  INFO 20680 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : No active profile set, falling back to 1 default profile: "default"
-2026-04-06T18:44:10.766-03:00 DEBUG 20680 --- [demo] [           main] o.s.boot.SpringApplication               : Loading source class br.com.examplefatec.demo.DemoApplication
-2026-04-06T18:44:10.889-03:00 DEBUG 20680 --- [demo] [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@68702e03
-2026-04-06T18:44:11.299-03:00  INFO 20680 --- [demo] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-04-06T18:44:11.355-03:00  INFO 20680 --- [demo] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
-2026-04-06T18:44:12.214-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\Guilherme\.m2\repository\org\springframework\boot\spring-boot-web-server\4.0.3\spring-boot-web-server-4.0.3.jar
-2026-04-06T18:44:12.215-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\Guilherme\.m2\repository\org\springframework\boot\spring-boot-web-server\4.0.3\spring-boot-web-server-4.0.3.jar
-2026-04-06T18:44:12.216-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2026-04-06T18:44:12.262-03:00  INFO 20680 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
-2026-04-06T18:44:12.280-03:00  INFO 20680 --- [demo] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-04-06T18:44:12.281-03:00  INFO 20680 --- [demo] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
-2026-04-06T18:44:12.375-03:00 DEBUG 20680 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2026-04-06T18:44:12.376-03:00  INFO 20680 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1488 ms
-2026-04-06T18:44:12.398-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
-2026-04-06T18:44:12.398-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/], messageDispatcherServlet urls=[/services/*]
-2026-04-06T18:44:12.445-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
-2026-04-06T18:44:12.448-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
-2026-04-06T18:44:12.449-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
-2026-04-06T18:44:12.597-03:00  INFO 20680 --- [demo] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-04-06T18:44:12.678-03:00  INFO 20680 --- [demo] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
-2026-04-06T18:44:13.201-03:00  INFO 20680 --- [demo] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-04-06T18:44:13.246-03:00  INFO 20680 --- [demo] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-04-06T18:44:13.634-03:00  INFO 20680 --- [demo] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@24018c8b
-2026-04-06T18:44:13.636-03:00  INFO 20680 --- [demo] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-04-06T18:44:13.750-03:00  INFO 20680 --- [demo] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-04-13T20:25:59.049-03:00  INFO 23440 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : Starting DemoApplication using Java 17.0.18 with PID 23440 (C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo\target\classes started by Guilherme in C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo)
+2026-04-13T20:25:59.051-03:00  INFO 23440 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-04-13T20:25:59.051-03:00 DEBUG 23440 --- [demo] [           main] o.s.boot.SpringApplication               : Loading source class br.com.examplefatec.demo.DemoApplication
+2026-04-13T20:25:59.146-03:00 DEBUG 23440 --- [demo] [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@68702e03
+2026-04-13T20:25:59.879-03:00  INFO 23440 --- [demo] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-13T20:25:59.947-03:00  INFO 23440 --- [demo] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 4 JPA repository interfaces.
+2026-04-13T20:26:01.326-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\Guilherme\.m2\repository\org\springframework\boot\spring-boot-web-server\4.0.3\spring-boot-web-server-4.0.3.jar
+2026-04-13T20:26:01.327-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: C:\Users\Guilherme\.m2\repository\org\springframework\boot\spring-boot-web-server\4.0.3\spring-boot-web-server-4.0.3.jar
+2026-04-13T20:26:01.328-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2026-04-13T20:26:01.385-03:00  INFO 23440 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
+2026-04-13T20:26:01.428-03:00  INFO 23440 --- [demo] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-13T20:26:01.429-03:00  INFO 23440 --- [demo] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-04-13T20:26:01.641-03:00 DEBUG 23440 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2026-04-13T20:26:01.643-03:00  INFO 23440 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2497 ms
+2026-04-13T20:26:01.686-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2026-04-13T20:26:01.687-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/], messageDispatcherServlet urls=[/services/*]
+2026-04-13T20:26:01.741-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
+2026-04-13T20:26:01.747-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
+2026-04-13T20:26:01.749-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
+2026-04-13T20:26:02.000-03:00  INFO 23440 --- [demo] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-13T20:26:02.083-03:00  INFO 23440 --- [demo] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-04-13T20:26:03.081-03:00  INFO 23440 --- [demo] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-13T20:26:03.142-03:00  INFO 23440 --- [demo] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-13T20:26:03.463-03:00  INFO 23440 --- [demo] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@e706aa
+2026-04-13T20:26:03.463-03:00  INFO 23440 --- [demo] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-13T20:26:03.679-03:00  INFO 23440 --- [demo] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5432/fatecads_db]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -72,18 +72,18 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-04-06T18:44:14.959-03:00  INFO 20680 --- [demo] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-04-06T18:44:15.040-03:00  INFO 20680 --- [demo] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-04-06T18:44:15.132-03:00  INFO 20680 --- [demo] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-04-06T18:44:15.303-03:00  WARN 20680 --- [demo] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-04-06T18:44:15.387-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'br.com.examplefatec.demo'. Automatic @Repository and @Entity scanning is enabled.
-2026-04-06T18:44:15.503-03:00 DEBUG 20680 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 13 mappings in 'requestMappingHandlerMapping'
-2026-04-06T18:44:15.540-03:00 DEBUG 20680 --- [demo] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2026-04-06T18:44:15.574-03:00 DEBUG 20680 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-04-06T18:44:15.675-03:00 DEBUG 20680 --- [demo] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-04-06T18:44:15.893-03:00  INFO 20680 --- [demo] [           main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
-2026-04-06T18:44:15.958-03:00  INFO 20680 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
-2026-04-06T18:44:15.966-03:00 DEBUG 20680 --- [demo] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-04-13T20:26:06.865-03:00  INFO 23440 --- [demo] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-13T20:26:06.963-03:00  INFO 23440 --- [demo] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13T20:26:07.136-03:00  INFO 23440 --- [demo] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-13T20:26:07.613-03:00  WARN 23440 --- [demo] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-13T20:26:07.723-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'br.com.examplefatec.demo'. Automatic @Repository and @Entity scanning is enabled.
+2026-04-13T20:26:07.913-03:00 DEBUG 23440 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 23 mappings in 'requestMappingHandlerMapping'
+2026-04-13T20:26:07.971-03:00 DEBUG 23440 --- [demo] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-04-13T20:26:08.013-03:00 DEBUG 23440 --- [demo] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-13T20:26:08.151-03:00 DEBUG 23440 --- [demo] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-13T20:26:08.500-03:00  INFO 23440 --- [demo] [           main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2026-04-13T20:26:08.670-03:00  INFO 23440 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
+2026-04-13T20:26:08.690-03:00 DEBUG 23440 --- [demo] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 
 ============================
@@ -446,7 +446,7 @@ Negative matches:
 
    DataJpaRepositoriesAutoConfiguration:
       Did not match:
-         - @ConditionalOnMissingBean (types: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean,org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension; SearchStrategy: all) found beans of type 'org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean' &cursoRepository, &alunoRepository and found beans of type 'org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension' org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension#0 (OnBeanCondition)
+         - @ConditionalOnMissingBean (types: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean,org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension; SearchStrategy: all) found beans of type 'org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean' &cursoRepository, &alunoRepository, &professorRepository, &disciplinaRepository and found beans of type 'org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension' org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension#0 (OnBeanCondition)
       Matched:
          - @ConditionalOnClass found required class 'org.springframework.data.jpa.repository.JpaRepository' (OnClassCondition)
          - @ConditionalOnBooleanProperty (spring.data.jpa.repositories.enabled=true) matched (OnPropertyCondition)
@@ -755,30 +755,139 @@ Unconditional classes:
 
 
 
-2026-04-06T18:44:15.970-03:00  INFO 20680 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : Started DemoApplication in 5.67 seconds (process running for 6.081)
-2026-04-06T18:44:15.973-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
-2026-04-06T18:44:15.975-03:00 DEBUG 20680 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
-2026-04-06T18:44:26.304-03:00  INFO 20680 --- [demo] [nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-06T18:44:26.305-03:00  INFO 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-04-06T18:44:26.306-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
-2026-04-06T18:44:26.307-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
-2026-04-06T18:44:26.310-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b6fde93
-2026-04-06T18:44:26.310-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@543c887
-2026-04-06T18:44:26.312-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2026-04-06T18:44:26.313-03:00  INFO 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
-2026-04-06T18:44:26.327-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
-2026-04-06T18:44:26.347-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
-2026-04-06T18:44:26.457-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
-2026-04-06T18:44:26.584-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/alunos/listar", parameters={}
-2026-04-06T18:44:26.585-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.AlunoController#listar(Model)
-2026-04-06T18:44:26.598-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/cursos/listar", parameters={}
-2026-04-06T18:44:26.598-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.CursoController#listar(Model)
-2026-04-06T18:44:26.698-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-06T18:44:26.811-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-3] org.hibernate.SQL                        : select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
-2026-04-06T18:44:26.811-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-2] org.hibernate.SQL                        : select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
-Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+2026-04-13T20:26:08.702-03:00  INFO 23440 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : Started DemoApplication in 11.302 seconds (process running for 11.758)
+2026-04-13T20:26:08.707-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2026-04-13T20:26:08.712-03:00 DEBUG 23440 --- [demo] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2026-04-13T20:26:15.779-03:00  INFO 23440 --- [demo] [nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-13T20:26:15.780-03:00  INFO 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-13T20:26:15.782-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-04-13T20:26:15.783-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-04-13T20:26:15.787-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7dd847a2
+2026-04-13T20:26:15.788-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@66c32e15
+2026-04-13T20:26:15.790-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-04-13T20:26:15.791-03:00  INFO 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2026-04-13T20:26:15.813-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:26:15.833-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:26:15.938-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
+2026-04-13T20:26:16.192-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:32.662-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:26:32.662-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:26:32.662-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:32.662-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:32.793-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/app.css?v=20260413e", parameters={masked}
+2026-04-13T20:26:32.804-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2026-04-13T20:26:32.824-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:38.020-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/cursos/listar", parameters={}
+2026-04-13T20:26:38.031-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.CursoController#listar(Model)
+2026-04-13T20:26:38.326-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] org.hibernate.SQL                        : select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
 Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
-2026-04-06T18:44:26.867-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-3] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
-2026-04-06T18:44:26.868-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
-2026-04-06T18:44:27.035-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-06T18:44:27.035-03:00 DEBUG 20680 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:38.382-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:38.560-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:38.604-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/css/app.css?v=20260413c", parameters={masked}
+2026-04-13T20:26:38.605-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2026-04-13T20:26:38.610-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:41.452-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:26:41.453-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:26:41.455-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:41.457-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:41.499-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/css/app.css?v=20260413e", parameters={masked}
+2026-04-13T20:26:41.501-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2026-04-13T20:26:41.503-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 304 NOT_MODIFIED
+2026-04-13T20:26:43.429-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/alunos/listar", parameters={}
+2026-04-13T20:26:43.430-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.AlunoController#listar(Model)
+2026-04-13T20:26:43.436-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] org.hibernate.SQL                        : select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+2026-04-13T20:26:43.444-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:43.459-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:44.837-03:00 DEBUG 23440 --- [demo] [io-8082-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:26:44.839-03:00 DEBUG 23440 --- [demo] [io-8082-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:26:44.841-03:00 DEBUG 23440 --- [demo] [io-8082-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:44.846-03:00 DEBUG 23440 --- [demo] [io-8082-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:45.787-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/alunos/listar", parameters={}
+2026-04-13T20:26:45.787-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.AlunoController#listar(Model)
+2026-04-13T20:26:45.792-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] org.hibernate.SQL                        : select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+2026-04-13T20:26:45.797-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:45.804-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:46.482-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/cursos/listar", parameters={}
+2026-04-13T20:26:46.483-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.CursoController#listar(Model)
+2026-04-13T20:26:46.486-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] org.hibernate.SQL                        : select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+2026-04-13T20:26:46.490-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:46.492-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:47.221-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/professores/listar", parameters={}
+2026-04-13T20:26:47.222-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.ProfessorController#listar(Model)
+2026-04-13T20:26:47.226-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] org.hibernate.SQL                        : select p1_0.id_professor,p1_0.graduacao_professor,p1_0.nome_professor,p1_0.rm_professor,p1_0.telefone_professor from professor p1_0
+Hibernate: select p1_0.id_professor,p1_0.graduacao_professor,p1_0.nome_professor,p1_0.rm_professor,p1_0.telefone_professor from professor p1_0
+2026-04-13T20:26:47.237-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:47.245-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:47.278-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/app.css?v=20260413c", parameters={masked}
+2026-04-13T20:26:47.279-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2026-04-13T20:26:47.281-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 304 NOT_MODIFIED
+2026-04-13T20:26:48.131-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/disciplinas/listar", parameters={}
+2026-04-13T20:26:48.132-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.DisciplinaController#listar(Model)
+2026-04-13T20:26:48.136-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] org.hibernate.SQL                        : select d1_0.id_disciplina,d1_0.carga_horaria_disciplina,d1_0.nome_disciplina,d1_0.sigla_disciplina from disciplina d1_0
+Hibernate: select d1_0.id_disciplina,d1_0.carga_horaria_disciplina,d1_0.nome_disciplina,d1_0.sigla_disciplina from disciplina d1_0
+2026-04-13T20:26:48.146-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:48.158-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:52.060-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/professores/listar", parameters={}
+2026-04-13T20:26:52.061-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.ProfessorController#listar(Model)
+2026-04-13T20:26:52.067-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] org.hibernate.SQL                        : select p1_0.id_professor,p1_0.graduacao_professor,p1_0.nome_professor,p1_0.rm_professor,p1_0.telefone_professor from professor p1_0
+Hibernate: select p1_0.id_professor,p1_0.graduacao_professor,p1_0.nome_professor,p1_0.rm_professor,p1_0.telefone_professor from professor p1_0
+2026-04-13T20:26:52.072-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:52.080-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:52.760-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/cursos/listar", parameters={}
+2026-04-13T20:26:52.761-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.CursoController#listar(Model)
+2026-04-13T20:26:52.766-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] org.hibernate.SQL                        : select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+2026-04-13T20:26:52.771-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:52.777-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:53.326-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/alunos/listar", parameters={}
+2026-04-13T20:26:53.329-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.AlunoController#listar(Model)
+2026-04-13T20:26:53.348-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] org.hibernate.SQL                        : select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+2026-04-13T20:26:53.348-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:53.364-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:53.833-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:26:53.834-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:26:53.836-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:53.837-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:53.870-03:00 DEBUG 23440 --- [demo] [io-8082-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/app.css?v=20260413e", parameters={masked}
+2026-04-13T20:26:53.872-03:00 DEBUG 23440 --- [demo] [io-8082-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2026-04-13T20:26:53.874-03:00 DEBUG 23440 --- [demo] [io-8082-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 304 NOT_MODIFIED
+2026-04-13T20:26:56.700-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/alunos/listar", parameters={}
+2026-04-13T20:26:56.701-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.AlunoController#listar(Model)
+2026-04-13T20:26:56.705-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] org.hibernate.SQL                        : select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+2026-04-13T20:26:56.709-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:56.714-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:56.746-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/app.css?v=20260413c", parameters={masked}
+2026-04-13T20:26:56.747-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2026-04-13T20:26:56.749-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 304 NOT_MODIFIED
+2026-04-13T20:26:58.075-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:26:58.076-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:26:58.079-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:58.084-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:26:59.922-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/cursos/listar", parameters={}
+2026-04-13T20:26:59.923-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.CursoController#listar(Model)
+2026-04-13T20:26:59.928-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] org.hibernate.SQL                        : select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+2026-04-13T20:26:59.939-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:26:59.943-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:27:02.286-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:27:02.288-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:27:02.290-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:27:02.295-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:27:03.570-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/alunos/listar", parameters={}
+2026-04-13T20:27:03.571-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.AlunoController#listar(Model)
+2026-04-13T20:27:03.575-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] org.hibernate.SQL                        : select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+2026-04-13T20:27:03.581-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:27:03.585-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:27:04.858-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2026-04-13T20:27:04.860-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to br.com.examplefatec.controller.FatecAdsController#index()
+2026-04-13T20:27:04.862-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2026-04-13T20:27:04.864-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-04-13T20:27:04.903-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/css/app.css?v=20260413e", parameters={masked}
+2026-04-13T20:27:04.905-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2026-04-13T20:27:04.907-03:00 DEBUG 23440 --- [demo] [nio-8082-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 304 NOT_MODIFIED

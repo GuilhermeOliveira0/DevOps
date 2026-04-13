@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Cursos</title>
+    <title>Cadastro de Disciplinas</title>
     <link rel="stylesheet" href="/css/app.css?v=20260413c">
 </head>
 <body class="form-page">
@@ -15,28 +15,28 @@
                 <nav class="sidebar-nav">
                     <a class="nav-item" href="/"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
                     <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
-                    <a class="nav-item active" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
+                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
                     <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
-                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
+                    <a class="nav-item active" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
                 </nav>
             </section>
             <div class="sidebar-card">
                 <span>Formulario</span>
-                <strong>Cadastro de cursos</strong>
-                <p>Dados curriculares em um layout direto.</p>
+                <strong>Cadastro de disciplinas</strong>
+                <p>Grade curricular com preenchimento rapido.</p>
             </div>
         </aside>
 
         <main class="content-shell">
             <header class="content-topbar">
                 <div class="topbar-copy">
-                    <p class="section-kicker">Formulario de cursos</p>
-                    <h1 th:text="${curso.idCurso != 0} ? 'Editar curso' : 'Cadastrar curso'">Cadastro de Cursos</h1>
-                    <p class="section-copy">Cadastro de cursos com leitura clara e estrutura limpa.</p>
+                    <p class="section-kicker">Formulario de disciplinas</p>
+                    <h1 th:text="${disciplina.idDisciplina != 0} ? 'Editar disciplina' : 'Cadastrar disciplina'">Cadastro de Disciplinas</h1>
+                    <p class="section-copy">Cadastro objetivo para nome, sigla e carga horaria.</p>
                 </div>
                 <div class="topbar-actions">
                     <span class="status-chip">Fluxo preservado</span>
-                    <a class="button-ghost" href="/cursos/listar">Voltar para lista</a>
+                    <a class="button-ghost" href="/disciplinas/listar">Voltar para lista</a>
                 </div>
             </header>
 
@@ -45,21 +45,21 @@
                     <div class="panel-header">
                         <div class="panel-title-stack">
                             <span class="panel-eyebrow">Dados principais</span>
-                            <h2>Informacoes do curso</h2>
-                            <p>Mesmo endpoint e nova apresentacao visual.</p>
+                            <h2>Informacoes da disciplina</h2>
+                            <p>Mesmo fluxo operacional com visual mais limpo.</p>
                         </div>
                     </div>
 
-                    <form th:action="@{/cursos/salvar}" th:object="${curso}" method="post">
-                        <input type="hidden" th:field="*{idCurso}">
+                    <form th:action="@{/disciplinas/salvar}" th:object="${disciplina}" method="post">
+                        <input type="hidden" th:field="*{idDisciplina}">
                         <div class="form-grid">
-                            <div class="field field-full"><label for="nome">Nome do curso</label><input type="text" id="nome" th:field="*{nomeCurso}" required><span class="field-hint">Titulo utilizado para identificacao do curso nas listagens e operacoes.</span></div>
-                            <div class="field"><label for="periodo">Periodo</label><input type="text" id="periodo" th:field="*{periodoCurso}" required><span class="field-hint">Informe o turno ou periodo academico correspondente.</span></div>
-                            <div class="field"><label for="cargaHoraria">Carga horaria</label><input type="number" id="cargaHoraria" th:field="*{cargaHorariaCurso}" min="1" required><span class="field-hint">Valor numerico que representa a carga horaria total do curso.</span></div>
+                            <div class="field field-full"><label for="nome">Nome</label><input type="text" id="nome" th:field="*{nomeDisciplina}" required><span class="field-hint">Nome completo da disciplina exibido na area administrativa.</span></div>
+                            <div class="field"><label for="sigla">Sigla</label><input type="text" id="sigla" th:field="*{siglaDisciplina}" required><span class="field-hint">Identificador curto utilizado para referencia interna.</span></div>
+                            <div class="field"><label for="cargaHoraria">Carga horaria</label><input type="number" id="cargaHoraria" th:field="*{cargaHorariaDisciplina}" min="1" required><span class="field-hint">Quantidade numerica de horas associadas a disciplina.</span></div>
                         </div>
                         <div class="form-actions">
-                            <button class="button" type="submit">Salvar curso</button>
-                            <a class="button-secondary" href="/cursos/listar">Cancelar</a>
+                            <button class="button" type="submit">Salvar disciplina</button>
+                            <a class="button-secondary" href="/disciplinas/listar">Cancelar</a>
                         </div>
                     </form>
 
@@ -70,14 +70,14 @@
                     <section class="info-card">
                         <strong>Resumo do fluxo</strong>
                         <div class="info-list">
-                            <div class="info-row"><span>Contexto</span><b>Cadastro de cursos</b></div>
-                            <div class="info-row"><span>Acao principal</span><b>Salvar informacoes curriculares</b></div>
+                            <div class="info-row"><span>Contexto</span><b>Cadastro curricular</b></div>
+                            <div class="info-row"><span>Acao principal</span><b>Salvar dados da disciplina</b></div>
                             <div class="info-row"><span>Retorno</span><b>Redirecionamento para listagem</b></div>
                         </div>
                     </section>
                     <section class="info-card">
-                        <strong>Experiencia visual</strong>
-                        <p>O formulario reforca contraste e organizacao para acelerar o preenchimento em ambientes de gestao e ERP.</p>
+                        <strong>Qualidade da interface</strong>
+                        <p>Campos maiores, contrastes ajustados e auxiliares laterais deixam o cadastro mais profissional e mais agradavel de usar.</p>
                     </section>
                 </aside>
             </section>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Disciplinas</title>
+    <link rel="stylesheet" href="/css/app.css?v=20260413c">
+</head>
+<body class="list-page">
+    <div class="app-layout">
+        <aside class="sidebar">
+            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
+            <section class="sidebar-section">
+                <p class="sidebar-label">Navegacao</p>
+                <nav class="sidebar-nav">
+                    <a class="nav-item" href="/"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
+                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
+                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
+                    <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
+                    <a class="nav-item active" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
+                </nav>
+            </section>
+            <div class="sidebar-card">
+                <span>Modulo</span>
+                <strong>Disciplinas</strong>
+                <p>Grade curricular com leitura rapida.</p>
+            </div>
+        </aside>
+
+        <main class="content-shell">
+            <header class="content-topbar">
+                <div class="topbar-copy">
+                    <p class="section-kicker">Painel de disciplinas</p>
+                    <h1>Lista de disciplinas</h1>
+                    <p class="section-copy">Grade curricular com foco em nome, sigla e carga.</p>
+                </div>
+                <div class="topbar-actions">
+                    <span class="status-chip">Modulo online</span>
+                    <a class="button" href="/disciplinas/criar">Nova disciplina</a>
+                </div>
+            </header>
+
+            <section class="metric-grid">
+                <article class="metric-card"><span class="metric-label">Registros</span><strong th:text="${#lists.size(disciplinas)}">0</strong><p>Total de disciplinas.</p></article>
+                <article class="metric-card"><span class="metric-label">Estrutura</span><strong>Grade organizada</strong><p>Nome, sigla e carga em destaque.</p></article>
+                <article class="metric-card"><span class="metric-label">Operacao</span><strong>Acao direta</strong><p>Editar e excluir com mais clareza.</p></article>
+            </section>
+
+            <section class="panel">
+                <div class="panel-header">
+                    <div class="panel-title-stack">
+                        <span class="panel-eyebrow">Listagem principal</span>
+                        <h2>Registros de disciplinas</h2>
+                        <p>Controle visual da grade curricular.</p>
+                    </div>
+                    <span class="soft-chip">Grade curricular</span>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>ID</th><th>Nome</th><th>Sigla</th><th>Carga Horaria</th><th>Acoes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="disciplina : ${disciplinas}">
+                                <td><span class="table-id" th:text="${disciplina.idDisciplina}">1</span></td>
+                                <td><div class="cell-strong" th:text="${disciplina.nomeDisciplina}">Algoritmos</div><div class="table-note">Disciplina</div></td>
+                                <td th:text="${disciplina.siglaDisciplina}">ADS001</td>
+                                <td th:text="${disciplina.cargaHorariaDisciplina}">80</td>
+                                <td>
+                                    <div class="actions">
+                                        <a class="button-secondary" th:href="@{/disciplinas/editar/{id}(id=${disciplina.idDisciplina})}">Editar</a>
+                                        <a class="button-ghost button-danger" th:href="@{/disciplinas/excluir/{id}(id=${disciplina.idDisciplina})}" onclick="return confirm('Deseja excluir esta disciplina?');">Excluir</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(disciplinas)}"><td colspan="5" class="empty-state">Nenhuma disciplina cadastrada.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
