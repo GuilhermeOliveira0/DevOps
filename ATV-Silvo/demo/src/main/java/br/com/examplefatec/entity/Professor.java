@@ -1,10 +1,13 @@
 package br.com.examplefatec.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +22,7 @@ public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idProfessor;
+    private Integer idProfessor;
 
     @Column(nullable = false, length = 40)
     private String nomeProfessor;
@@ -32,4 +35,7 @@ public class Professor {
 
     @Column(nullable = false, length = 20)
     private String rmProfessor;
+
+    @OneToMany(mappedBy = "professor")
+    private List<Disciplina> disciplinas;
 }

@@ -1,90 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Alunos</title>
     <link rel="stylesheet" href="/css/app.css?v=20260413c">
-</head>
-<body class="form-page">
+  </head>
+  <body class="form-page">
     <div class="app-layout">
-        <aside class="sidebar">
-            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
-            <section class="sidebar-section">
-                <p class="sidebar-label">Navegacao</p>
-                <nav class="sidebar-nav">
-                    <a class="nav-item" href="/"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
-                    <a class="nav-item active" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
-                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
-                    <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
-                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
-                </nav>
-            </section>
-            <div class="sidebar-card">
-                <span>Formulario</span>
-                <strong>Cadastro de alunos</strong>
-                <p>Campos organizados para preenchimento rapido.</p>
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <a class="brand brand-link" href="/">
+          <span class="brand-mark"></span>
+          <span class="brand-text">
+            <strong>FatecADS</strong>
+            <span>Gestao academica</span>
+          </span>
+        </a>
+
+        <section class="sidebar-section">
+          <p class="sidebar-label">Navegacao</p>
+          <nav class="sidebar-nav">
+            <a class="nav-item" href="/">
+              <span class="nav-item-copy">
+                <span class="nav-item-title">Inicio</span>
+                <span class="nav-item-meta">Dashboard</span>
+              </span>
+              <span class="nav-item-badge">01</span>
+            </a>
+            <a class="nav-item active" href="/alunos/listar">
+              <span class="nav-item-copy">
+                <span class="nav-item-title">Alunos</span>
+                <span class="nav-item-meta">Cadastros</span>
+              </span>
+              <span class="nav-item-badge">02</span>
+            </a>
+            <a class="nav-item" href="/cursos/listar">
+              <span class="nav-item-copy">
+                <span class="nav-item-title">Cursos</span>
+                <span class="nav-item-meta">Catalogo</span>
+              </span>
+              <span class="nav-item-badge">03</span>
+            </a>
+            <a class="nav-item" href="/professores/listar">
+              <span class="nav-item-copy">
+                <span class="nav-item-title">Professores</span>
+                <span class="nav-item-meta">Equipe docente</span>
+              </span>
+              <span class="nav-item-badge">04</span>
+            </a>
+            <a class="nav-item" href="/disciplinas/listar">
+              <span class="nav-item-copy">
+                <span class="nav-item-title">Disciplinas</span>
+                <span class="nav-item-meta">Grade</span>
+              </span>
+              <span class="nav-item-badge">05</span>
+            </a>
+          </nav>
+        </section>
+
+        <div class="sidebar-card">
+          <span>Formulario</span>
+          <strong>Cadastro de alunos</strong>
+          <p>Campos organizados para preenchimento rapido.</p>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content-shell">
+        <header class="content-topbar">
+          <div class="topbar-copy">
+            <p class="section-kicker">Formulario de alunos</p>
+            <h1 th:text="${aluno.idAluno != 0} ? 'Editar aluno' : 'Cadastrar aluno'">
+              Cadastro de Alunos
+            </h1>
+            <p class="section-copy">Cadastro com foco em clareza, ordem e rapidez.</p>
+          </div>
+          <div class="topbar-actions">
+            <span class="status-chip">Fluxo preservado</span>
+            <a class="button-ghost" href="/alunos/listar">Voltar para lista</a>
+          </div>
+        </header>
+
+        <section class="content-grid form-layout">
+          <!-- Form Panel -->
+          <section class="panel form-panel">
+            <div class="panel-header">
+              <div class="panel-title-stack">
+                <span class="panel-eyebrow">Dados principais</span>
+                <h2>Informacoes do aluno</h2>
+                <p>Mesmo fluxo de cadastro, com interface mais objetiva.</p>
+              </div>
             </div>
-        </aside>
 
-        <main class="content-shell">
-            <header class="content-topbar">
-                <div class="topbar-copy">
-                    <p class="section-kicker">Formulario de alunos</p>
-                    <h1 th:text="${aluno.idAluno != 0} ? 'Editar aluno' : 'Cadastrar aluno'">Cadastro de Alunos</h1>
-                    <p class="section-copy">Cadastro com foco em clareza, ordem e rapidez.</p>
+            <form th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
+              <input type="hidden" th:field="*{idAluno}">
+
+              <div class="form-grid">
+                <div class="field field-full">
+                  <label for="nome">Nome</label>
+                  <input type="text" id="nome" th:field="*{nomeAluno}" required>
+                  <span class="field-hint">Identificacao principal exibida nas listagens do modulo.</span>
                 </div>
-                <div class="topbar-actions">
-                    <span class="status-chip">Fluxo preservado</span>
-                    <a class="button-ghost" href="/alunos/listar">Voltar para lista</a>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" th:field="*{emailAluno}" required>
+                  <span class="field-hint">Canal de contato digital do aluno.</span>
                 </div>
-            </header>
 
-            <section class="content-grid form-layout">
-                <section class="panel form-panel">
-                    <div class="panel-header">
-                        <div class="panel-title-stack">
-                            <span class="panel-eyebrow">Dados principais</span>
-                            <h2>Informacoes do aluno</h2>
-                            <p>Mesmo fluxo de cadastro, com interface mais objetiva.</p>
-                        </div>
-                    </div>
+                <div class="field">
+                  <label for="telefone">Telefone</label>
+                  <input type="text" id="telefone" th:field="*{telefoneAluno}" maxlength="15" required>
+                  <span class="field-hint">Numero usado para atendimento e confirmacoes.</span>
+                </div>
 
-                    <form th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
-                        <input type="hidden" th:field="*{idAluno}">
-                        <div class="form-grid">
-                            <div class="field field-full"><label for="nome">Nome</label><input type="text" id="nome" th:field="*{nomeAluno}" required><span class="field-hint">Identificacao principal exibida nas listagens do modulo.</span></div>
-                            <div class="field"><label for="email">Email</label><input type="email" id="email" th:field="*{emailAluno}" required><span class="field-hint">Canal de contato digital do aluno.</span></div>
-                            <div class="field"><label for="telefone">Telefone</label><input type="text" id="telefone" th:field="*{telefoneAluno}" required><span class="field-hint">Numero usado para atendimento e confirmacoes.</span></div>
-                            <div class="field field-full"><label for="endereco">Endereco</label><input type="text" id="endereco" th:field="*{enderecoAluno}" required><span class="field-hint">Localizacao cadastrada para referencia administrativa.</span></div>
-                            <div class="field"><label for="cpf">CPF</label><input type="text" id="cpf" th:field="*{cpfAluno}" required><span class="field-hint">Documento de identificacao civil do aluno.</span></div>
-                            <div class="field"><label for="ra">RA</label><input type="text" id="ra" th:field="*{raAluno}" required><span class="field-hint">Registro academico utilizado nas consultas internas.</span></div>
-                        </div>
-                        <div class="form-actions">
-                            <button class="button" type="submit">Salvar aluno</button>
-                            <a class="button-secondary" href="/alunos/listar">Cancelar</a>
-                        </div>
-                    </form>
+                <div class="field field-full">
+                  <label for="endereco">Endereco</label>
+                  <input type="text" id="endereco" th:field="*{enderecoAluno}" required>
+                  <span class="field-hint">Localizacao cadastrada para referencia administrativa.</span>
+                </div>
 
-                    <p class="panel-note">Fluxo preservado. Apenas a apresentacao foi refinada.</p>
-                </section>
+                <div class="field">
+                  <label for="cpf">CPF</label>
+                  <input type="text" id="cpf" th:field="*{cpfAluno}" maxlength="14" required>
+                  <span class="field-hint">Documento de identificacao civil do aluno.</span>
+                </div>
 
-                <aside class="side-stack">
-                    <section class="info-card">
-                        <strong>Resumo do fluxo</strong>
-                        <div class="info-list">
-                            <div class="info-row"><span>Contexto</span><b>Cadastro academico individual</b></div>
-                            <div class="info-row"><span>Acao principal</span><b>Salvar informacoes do aluno</b></div>
-                            <div class="info-row"><span>Retorno</span><b>Redirecionamento para listagem</b></div>
-                        </div>
-                    </section>
-                    <section class="info-card">
-                        <strong>Boas praticas visuais</strong>
-                        <p>Campos organizados por prioridade, espacamento consistente e contraste reforcado para facilitar leitura e preenchimento em telas administrativas.</p>
-                    </section>
-                </aside>
+                <div class="field">
+                  <label for="ra">RA</label>
+                  <input type="text" id="ra" th:field="*{raAluno}" required>
+                  <span class="field-hint">Registro academico utilizado nas consultas internas.</span>
+                </div>
+
+                <div class="field">
+                  <label for="curso">Curso</label>
+                  <select id="curso" th:field="*{curso.idCurso}" required>
+                    <option value="">Selecione um curso</option>
+                    <option
+                      th:each="cursoItem : ${cursos}"
+                      th:value="${cursoItem.idCurso}"
+                      th:text="${cursoItem.nomeCurso}"
+                    >
+                      Curso
+                    </option>
+                  </select>
+                  <span class="field-hint">Curso ao qual o aluno esta matriculado.</span>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button class="button" type="submit">Salvar aluno</button>
+                <a class="button-secondary" href="/alunos/listar">Cancelar</a>
+              </div>
+            </form>
+
+            <p class="panel-note">Fluxo preservado. Apenas a apresentacao foi refinada.</p>
+          </section>
+
+          <!-- Side Information Panel -->
+          <aside class="side-stack">
+            <section class="info-card">
+              <strong>Resumo do fluxo</strong>
+              <div class="info-list">
+                <div class="info-row">
+                  <span>Contexto</span>
+                  <b>Cadastro academico individual</b>
+                </div>
+                <div class="info-row">
+                  <span>Acao principal</span>
+                  <b>Salvar informacoes do aluno</b>
+                </div>
+                <div class="info-row">
+                  <span>Retorno</span>
+                  <b>Redirecionamento para listagem</b>
+                </div>
+              </div>
             </section>
-        </main>
+
+            <section class="info-card">
+              <strong>Boas praticas visuais</strong>
+              <p>Campos organizados por prioridade, espacamento consistente e contraste reforcado para facilitar leitura e preenchimento em telas administrativas.</p>
+            </section>
+          </aside>
+        </section>
+      </main>
     </div>
-</body>
+  </body>
 </html>

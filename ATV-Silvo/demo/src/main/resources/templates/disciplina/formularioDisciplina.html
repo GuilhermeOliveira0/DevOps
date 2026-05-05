@@ -31,8 +31,8 @@
             <header class="content-topbar">
                 <div class="topbar-copy">
                     <p class="section-kicker">Formulario de disciplinas</p>
-                    <h1 th:text="${disciplina.idDisciplina != 0} ? 'Editar disciplina' : 'Cadastrar disciplina'">Cadastro de Disciplinas</h1>
-                    <p class="section-copy">Cadastro objetivo para nome, sigla e carga horaria.</p>
+                    <h1 th:text="${disciplina.idDisciplina != null} ? 'Editar disciplina' : 'Cadastrar disciplina'">Cadastro de Disciplinas</h1>
+                    <p class="section-copy">Cadastro objetivo para nome, sigla, carga, curso e professor.</p>
                 </div>
                 <div class="topbar-actions">
                     <span class="status-chip">Fluxo preservado</span>
@@ -56,6 +56,8 @@
                             <div class="field field-full"><label for="nome">Nome</label><input type="text" id="nome" th:field="*{nomeDisciplina}" required><span class="field-hint">Nome completo da disciplina exibido na area administrativa.</span></div>
                             <div class="field"><label for="sigla">Sigla</label><input type="text" id="sigla" th:field="*{siglaDisciplina}" required><span class="field-hint">Identificador curto utilizado para referencia interna.</span></div>
                             <div class="field"><label for="cargaHoraria">Carga horaria</label><input type="number" id="cargaHoraria" th:field="*{cargaHorariaDisciplina}" min="1" required><span class="field-hint">Quantidade numerica de horas associadas a disciplina.</span></div>
+                            <div class="field"><label for="curso">Curso</label><select id="curso" th:field="*{curso.idCurso}" required><option value="">Selecione um curso</option><option th:each="cursoItem : ${cursos}" th:value="${cursoItem.idCurso}" th:text="${cursoItem.nomeCurso}">Curso</option></select><span class="field-hint">Curso ao qual a disciplina pertence.</span></div>
+                            <div class="field"><label for="professor">Professor</label><select id="professor" th:field="*{professor.idProfessor}" required><option value="">Selecione um professor</option><option th:each="professorItem : ${professores}" th:value="${professorItem.idProfessor}" th:text="${professorItem.nomeProfessor}">Professor</option></select><span class="field-hint">Professor responsavel pela disciplina.</span></div>
                         </div>
                         <div class="form-actions">
                             <button class="button" type="submit">Salvar disciplina</button>

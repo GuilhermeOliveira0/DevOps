@@ -5,7 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 
@@ -21,7 +22,7 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO  )
     
-    private int idAluno;
+    private Integer idAluno;
 
     @Column(nullable = false, length = 40)
     private String nomeAluno;
@@ -41,7 +42,9 @@ public class Aluno {
     @Column(nullable = false)
     private String raAluno;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "idCurso_fk")
+    private Curso curso;
 
 
     

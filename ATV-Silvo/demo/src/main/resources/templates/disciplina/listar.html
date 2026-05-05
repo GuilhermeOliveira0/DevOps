@@ -32,7 +32,7 @@
                 <div class="topbar-copy">
                     <p class="section-kicker">Painel de disciplinas</p>
                     <h1>Lista de disciplinas</h1>
-                    <p class="section-copy">Grade curricular com foco em nome, sigla e carga.</p>
+                    <p class="section-copy">Grade curricular com foco em nome, sigla, curso e professor.</p>
                 </div>
                 <div class="topbar-actions">
                     <span class="status-chip">Modulo online</span>
@@ -59,13 +59,15 @@
                 <div class="table-wrap">
                     <table class="data-table">
                         <thead>
-                            <tr><th>ID</th><th>Nome</th><th>Sigla</th><th>Carga Horaria</th><th>Acoes</th></tr>
+                            <tr><th>ID</th><th>Nome</th><th>Sigla</th><th>Curso</th><th>Professor</th><th>Carga Horaria</th><th>Acoes</th></tr>
                         </thead>
                         <tbody>
                             <tr th:each="disciplina : ${disciplinas}">
                                 <td><span class="table-id" th:text="${disciplina.idDisciplina}">1</span></td>
                                 <td><div class="cell-strong" th:text="${disciplina.nomeDisciplina}">Algoritmos</div><div class="table-note">Disciplina</div></td>
                                 <td th:text="${disciplina.siglaDisciplina}">ADS001</td>
+                                <td th:text="${disciplina.curso != null ? disciplina.curso.nomeCurso : '-'}">ADS</td>
+                                <td th:text="${disciplina.professor != null ? disciplina.professor.nomeProfessor : '-'}">Professor</td>
                                 <td th:text="${disciplina.cargaHorariaDisciplina}">80</td>
                                 <td>
                                     <div class="actions">
@@ -74,7 +76,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr th:if="${#lists.isEmpty(disciplinas)}"><td colspan="5" class="empty-state">Nenhuma disciplina cadastrada.</td></tr>
+                            <tr th:if="${#lists.isEmpty(disciplinas)}"><td colspan="7" class="empty-state">Nenhuma disciplina cadastrada.</td></tr>
                         </tbody>
                     </table>
                 </div>
