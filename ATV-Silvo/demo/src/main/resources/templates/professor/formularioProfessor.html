@@ -31,11 +31,10 @@
             <header class="content-topbar">
                 <div class="topbar-copy">
                     <p class="section-kicker">Formulario de professores</p>
-                    <h1 th:text="${professor.idProfessor != 0} ? 'Editar professor' : 'Cadastrar professor'">Cadastro de Professores</h1>
+                    <h1 th:text="${professor.idProfessor != null} ? 'Editar professor' : 'Cadastrar professor'">Cadastro de Professores</h1>
                     <p class="section-copy">Cadastro docente com foco em clareza e produtividade.</p>
                 </div>
                 <div class="topbar-actions">
-                    <span class="status-chip">Fluxo preservado</span>
                     <a class="button-ghost" href="/professores/listar">Voltar para lista</a>
                 </div>
             </header>

@@ -71,13 +71,12 @@
         <header class="content-topbar">
           <div class="topbar-copy">
             <p class="section-kicker">Formulario de alunos</p>
-            <h1 th:text="${aluno.idAluno != 0} ? 'Editar aluno' : 'Cadastrar aluno'">
+            <h1 th:text="${aluno.idAluno != null} ? 'Editar aluno' : 'Cadastrar aluno'">
               Cadastro de Alunos
             </h1>
             <p class="section-copy">Cadastro com foco em clareza, ordem e rapidez.</p>
           </div>
           <div class="topbar-actions">
-            <span class="status-chip">Fluxo preservado</span>
             <a class="button-ghost" href="/alunos/listar">Voltar para lista</a>
           </div>
         </header>

@@ -31,11 +31,10 @@
             <header class="content-topbar">
                 <div class="topbar-copy">
                     <p class="section-kicker">Formulario de cursos</p>
-                    <h1 th:text="${curso.idCurso != 0} ? 'Editar curso' : 'Cadastrar curso'">Cadastro de Cursos</h1>
+                    <h1 th:text="${curso.idCurso != null} ? 'Editar curso' : 'Cadastrar curso'">Cadastro de Cursos</h1>
                     <p class="section-copy">Cadastro de cursos com leitura clara e estrutura limpa.</p>
                 </div>
                 <div class="topbar-actions">
-                    <span class="status-chip">Fluxo preservado</span>
                     <a class="button-ghost" href="/cursos/listar">Voltar para lista</a>
                 </div>
             </header>
