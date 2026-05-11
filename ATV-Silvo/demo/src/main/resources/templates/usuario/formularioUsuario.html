@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuarios</title>
+    <link rel="stylesheet" href="/css/app.css?v=20260413c">
+</head>
+<body class="form-page">
+    <div class="app-layout">
+        <aside class="sidebar">
+            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
+            <section class="sidebar-section">
+                <p class="sidebar-label">Navegacao</p>
+                <nav class="sidebar-nav">
+                    <a class="nav-item" href="/"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
+                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
+                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
+                    <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
+                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
+                    <a class="nav-item active" href="/usuarios/listar"><span class="nav-item-copy"><span class="nav-item-title">Usuarios</span><span class="nav-item-meta">Acessos</span></span><span class="nav-item-badge">06</span></a>
+                </nav>
+            </section>
+            <div class="sidebar-card">
+                <span>Formulario</span>
+                <strong>Cadastro de usuarios</strong>
+                <p>Gestao de acesso com preenchimento objetivo.</p>
+            </div>
+        </aside>
+
+        <main class="content-shell">
+            <header class="content-topbar">
+                <div class="topbar-copy">
+                    <p class="section-kicker">Formulario de usuarios</p>
+                    <h1 th:text="${usuario.idUsuario != null} ? 'Editar usuario' : 'Cadastrar usuario'">Cadastro de Usuarios</h1>
+                    <p class="section-copy">Cadastro de acesso com foco em clareza e configuracao rapida.</p>
+                </div>
+                <div class="topbar-actions">
+                    <a class="button-ghost" href="/usuarios/listar">Voltar para lista</a>
+                </div>
+            </header>
+
+            <section class="content-grid form-layout">
+                <section class="panel form-panel">
+                    <div class="panel-header">
+                        <div class="panel-title-stack">
+                            <span class="panel-eyebrow">Dados principais</span>
+                            <h2>Informacoes do usuario</h2>
+                            <p>Mesmo fluxo do projeto com visual consistente com os outros modulos.</p>
+                        </div>
+                    </div>
+
+                    <form th:action="@{/usuarios/salvar}" th:object="${usuario}" method="post">
+                        <input type="hidden" th:field="*{idUsuario}">
+                        <div class="form-grid">
+                            <div class="field field-full">
+                                <label for="nome">Nome</label>
+                                <input type="text" id="nome" th:field="*{nomeUsuario}" maxlength="40" required>
+                                <span class="field-hint">Nome exibido nas telas administrativas e de controle de acesso.</span>
+                            </div>
+                            <div class="field field-full">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" th:field="*{emailUsuario}" maxlength="40" required>
+                                <span class="field-hint">Endereco utilizado para identificacao e contato do usuario.</span>
+                            </div>
+                            <div class="field">
+                                <label for="senha">Senha</label>
+                                <input type="password" id="senha" th:field="*{senhaUsuario}" maxlength="8" required>
+                                <span class="field-hint">Senha de acesso com limite atual definido na entidade.</span>
+                            </div>
+                            <div class="field">
+                                <label for="role">Perfil</label>
+                                <input type="text" id="role" th:field="*{roleUsuario}" maxlength="20" required>
+                                <span class="field-hint">Perfil de permissao do usuario, como ADMIN ou USER.</span>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="button" type="submit">Salvar usuario</button>
+                            <a class="button-secondary" href="/usuarios/listar">Cancelar</a>
+                        </div>
+                    </form>
+
+                    <p class="panel-note">Formulario pronto no mesmo padrao visual das demais entidades.</p>
+                </section>
+
+                <aside class="side-stack">
+                    <section class="info-card">
+                        <strong>Resumo do fluxo</strong>
+                        <div class="info-list">
+                            <div class="info-row"><span>Contexto</span><b>Cadastro de acesso</b></div>
+                            <div class="info-row"><span>Acao principal</span><b>Salvar dados do usuario</b></div>
+                            <div class="info-row"><span>Retorno</span><b>Redirecionamento para listagem</b></div>
+                        </div>
+                    </section>
+                    <section class="info-card">
+                        <strong>Configuracao</strong>
+                        <p>Campos organizados para nome, email, senha e perfil, mantendo a mesma linguagem das outras telas do sistema.</p>
+                    </section>
+                </aside>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

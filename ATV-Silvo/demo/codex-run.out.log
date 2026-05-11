@@ -1,0 +1,91 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< br.com.examplefatec:demo >----------------------
+[INFO] Building demo 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.3:run (default-cli) > test-compile @ demo >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 10 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ demo ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demo ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ demo ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.3:run (default-cli) < test-compile @ demo <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.3:run (default-cli) @ demo ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-05-04T21:45:28.967-03:00  INFO 1404 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : Starting DemoApplication using Java 17.0.18 with PID 1404 (C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo\target\classes started by Guilherme in C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo)
+2026-05-04T21:45:28.972-03:00  INFO 1404 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : The following 1 profile is active: "postgres"
+2026-05-04T21:45:29.442-03:00  INFO 1404 --- [demo] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-04T21:45:29.491-03:00  INFO 1404 --- [demo] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 4 JPA repository interfaces.
+2026-05-04T21:45:30.292-03:00  INFO 1404 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
+2026-05-04T21:45:30.307-03:00  INFO 1404 --- [demo] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-04T21:45:30.307-03:00  INFO 1404 --- [demo] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-05-04T21:45:30.390-03:00  INFO 1404 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1348 ms
+2026-05-04T21:45:30.556-03:00  INFO 1404 --- [demo] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-04T21:45:30.592-03:00  INFO 1404 --- [demo] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-05-04T21:45:31.253-03:00  INFO 1404 --- [demo] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-04T21:45:31.307-03:00  INFO 1404 --- [demo] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-04T21:45:31.763-03:00  INFO 1404 --- [demo] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@edbc2bf
+2026-05-04T21:45:31.763-03:00  INFO 1404 --- [demo] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-04T21:45:31.825-03:00  WARN 1404 --- [demo] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-04T21:45:31.881-03:00  INFO 1404 --- [demo] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/fatecads_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.3
+	Default catalog/schema: fatecads_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-04T21:45:33.908-03:00  INFO 1404 --- [demo] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-04T21:45:34.009-03:00  INFO 1404 --- [demo] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-04T21:45:34.140-03:00  INFO 1404 --- [demo] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-04T21:45:34.375-03:00  WARN 1404 --- [demo] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-04T21:45:35.041-03:00  INFO 1404 --- [demo] [           main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2026-05-04T21:45:35.109-03:00  INFO 1404 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
+2026-05-04T21:45:35.125-03:00  INFO 1404 --- [demo] [           main] b.com.examplefatec.demo.DemoApplication  : Started DemoApplication in 6.618 seconds (process running for 6.99)
+2026-05-04T21:45:44.713-03:00  INFO 1404 --- [demo] [nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-04T21:45:44.714-03:00  INFO 1404 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-04T21:45:44.717-03:00  INFO 1404 --- [demo] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+Hibernate: select d1_0.id_disciplina,d1_0.carga_horaria_disciplina,d1_0.id_curso_fk,d1_0.nome_disciplina,d1_0.id_professor_fk,d1_0.sigla_disciplina from disciplina d1_0
+Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.id_curso_fk,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0 where c1_0.id_curso=?
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0 where c1_0.id_curso=?
+Hibernate: select p1_0.id_professor,p1_0.graduacao_professor,p1_0.nome_professor,p1_0.rm_professor,p1_0.telefone_professor from professor p1_0 where p1_0.id_professor=?
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0 where c1_0.id_curso=?
+Hibernate: select a1_0.id_aluno,a1_0.cpf_aluno,a1_0.id_curso_fk,a1_0.email_aluno,a1_0.endereco_aluno,a1_0.nome_aluno,a1_0.ra_aluno,a1_0.telefone_aluno from aluno a1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0 where c1_0.id_curso=?
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0 where c1_0.id_curso=?
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0 where c1_0.id_curso=?
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+Hibernate: select nextval('curso_seq')
+Hibernate: insert into curso (carga_horaria_curso,nome_curso,periodo_curso,id_curso) values (?,?,?,?)
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
+Hibernate: select c1_0.id_curso,c1_0.carga_horaria_curso,c1_0.nome_curso,c1_0.periodo_curso from curso c1_0
