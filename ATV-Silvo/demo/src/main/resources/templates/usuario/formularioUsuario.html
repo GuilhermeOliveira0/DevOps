@@ -4,49 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuarios</title>
-    <link rel="stylesheet" href="/css/app.css?v=20260413c">
+    <link rel="stylesheet" href="/css/app.css?v=20260518c">
 </head>
-<body class="form-page">
-    <div class="app-layout">
-        <aside class="sidebar">
-            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
-            <section class="sidebar-section">
-                <p class="sidebar-label">Navegacao</p>
-                <nav class="sidebar-nav">
-                    <a class="nav-item" href="/"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
-                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
-                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
-                    <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
-                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
-                    <a class="nav-item active" href="/usuarios/listar"><span class="nav-item-copy"><span class="nav-item-title">Usuarios</span><span class="nav-item-meta">Acessos</span></span><span class="nav-item-badge">06</span></a>
-                </nav>
-            </section>
-            <div class="sidebar-card">
-                <span>Formulario</span>
-                <strong>Cadastro de usuarios</strong>
-                <p>Gestao de acesso com preenchimento objetivo.</p>
-            </div>
-        </aside>
-
-        <main class="content-shell">
-            <header class="content-topbar">
+<body class="auth-page">
+    <main class="auth-shell user-form-shell">
+        <section class="panel form-panel user-form-card">
+            <header class="content-topbar user-form-topbar">
                 <div class="topbar-copy">
                     <p class="section-kicker">Formulario de usuarios</p>
                     <h1 th:text="${usuario.idUsuario != null} ? 'Editar usuario' : 'Cadastrar usuario'">Cadastro de Usuarios</h1>
-                    <p class="section-copy">Cadastro de acesso com foco em clareza e configuracao rapida.</p>
+                    <p class="section-copy" th:text="${publicRegistration} ? 'Crie seu acesso ao sistema com um cadastro simples e direto.' : 'Cadastro de acesso com foco em clareza e configuracao rapida.'">Cadastro de acesso com foco em clareza e configuracao rapida.</p>
                 </div>
                 <div class="topbar-actions">
-                    <a class="button-ghost" href="/usuarios/listar">Voltar para lista</a>
+                    <a class="button-ghost" th:href="${backHref}" th:text="${backLabel}">Voltar</a>
                 </div>
             </header>
 
-            <section class="content-grid form-layout">
-                <section class="panel form-panel">
+            <section class="content-grid form-layout user-form-layout">
+                <section class="panel form-panel user-form-inner">
                     <div class="panel-header">
                         <div class="panel-title-stack">
                             <span class="panel-eyebrow">Dados principais</span>
                             <h2>Informacoes do usuario</h2>
-                            <p>Mesmo fluxo do projeto com visual consistente com os outros modulos.</p>
+                            <p th:text="${publicRegistration} ? 'Preencha nome, email e senha para solicitar seu acesso.' : 'Mesmo fluxo do projeto com visual consistente com os outros modulos.'">Mesmo fluxo do projeto com visual consistente com os outros modulos.</p>
                         </div>
                     </div>
 
@@ -61,29 +41,32 @@
                             <div class="field field-full">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" th:field="*{emailUsuario}" maxlength="40" required>
-                                <span class="field-hint">Endereco utilizado para identificacao e contato do usuario.</span>
+                                <span class="field-hint">Endereco usado como login no sistema.</span>
                             </div>
-                            <div class="field">
+                            <div class="field" th:classappend="${canManageRole} ? '' : ' field-full'">
                                 <label for="senha">Senha</label>
-                                <input type="password" id="senha" th:field="*{senhaUsuario}" maxlength="8" required>
-                                <span class="field-hint">Senha de acesso com limite atual definido na entidade.</span>
+                                <input type="password" id="senha" th:field="*{senhaUsuario}" maxlength="150" th:attr="required=${usuario.idUsuario == null ? true : null}">
+                                <span class="field-hint" th:text="${usuario.idUsuario != null} ? 'Deixe em branco para manter a senha atual.' : 'Senha protegida com criptografia antes de ser salva.'">Senha protegida com criptografia antes de ser salva.</span>
                             </div>
-                            <div class="field">
+                            <div class="field" th:if="${canManageRole}">
                                 <label for="role">Perfil</label>
-                                <input type="text" id="role" th:field="*{roleUsuario}" maxlength="20" required>
-                                <span class="field-hint">Perfil de permissao do usuario, como ADMIN ou USER.</span>
+                                <select id="role" th:field="*{role}" required>
+                                    <option value="ROLE_USER">Usuario</option>
+                                    <option value="ROLE_ADMIN">Administrador</option>
+                                </select>
+                                <span class="field-hint">Perfil de permissao para acesso ao sistema.</span>
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button class="button" type="submit">Salvar usuario</button>
-                            <a class="button-secondary" href="/usuarios/listar">Cancelar</a>
+                            <button class="button" type="submit" th:text="${usuario.idUsuario != null} ? 'Salvar alteracoes' : 'Salvar usuario'">Salvar usuario</button>
+                            <a class="button-secondary" th:href="${backHref}">Cancelar</a>
                         </div>
                     </form>
 
-                    <p class="panel-note">Formulario pronto no mesmo padrao visual das demais entidades.</p>
+                    <p class="panel-note" th:text="${publicRegistration} ? 'O perfil do novo cadastro e definido automaticamente como usuario padrao.' : 'Apenas administradores podem ajustar o perfil de acesso deste cadastro.'">Apenas administradores podem ajustar o perfil de acesso deste cadastro.</p>
                 </section>
 
-                <aside class="side-stack">
+                <aside class="side-stack" th:if="${canManageRole}">
                     <section class="info-card">
                         <strong>Resumo do fluxo</strong>
                         <div class="info-list">
@@ -98,7 +81,8 @@
                     </section>
                 </aside>
             </section>
-        </main>
-    </div>
+        </section>
+    </main>
 </body>
 </html>
+

@@ -8,7 +8,7 @@ public class FatecAdsController {
 
     @GetMapping({"/", "/fatecads"})
     public String index() {
-        return "aluno/index";
+        return "index";
     }
     
 }

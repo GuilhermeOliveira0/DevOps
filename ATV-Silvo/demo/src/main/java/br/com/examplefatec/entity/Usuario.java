@@ -10,10 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Entity
-@Setter     
-
+@Setter
 @Getter
-@AllArgsConstructor 
+@AllArgsConstructor
 @NoArgsConstructor
 public class Usuario {
 
@@ -30,7 +29,6 @@ public class Usuario {
     @Column(nullable = false, length = 150)  
     private String senhaUsuario;
 
+    @Column(name = "role_usuario", nullable = false, length = 30)
     private String role = "ROLE_USER";
-
-    
 }

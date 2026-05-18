@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - FatecADS</title>
+    <link rel="stylesheet" href="/css/app.css?v=20260518c">
+</head>
+<body class="landing-page">
+    <main class="landing-shell dashboard-shell">
+        <section class="dashboard-home">
+            <header class="dashboard-home-topbar">
+                <div>
+                    <p class="section-kicker">Painel interno</p>
+                    <h1>Modulos do sistema</h1>
+                    <p class="section-copy">Selecione o modulo que deseja gerenciar.</p>
+                </div>
+                <form action="/logout" method="post">
+                    <button class="button-ghost" type="submit">Sair</button>
+                </form>
+            </header>
+
+            <section class="dashboard-module-grid">
+                <a class="dashboard-module-card" href="/alunos/listar">
+                    <span class="dashboard-module-id">01</span>
+                    <strong>Alunos</strong>
+                    <span>Cadastro e consulta academica</span>
+                </a>
+                <a class="dashboard-module-card" href="/cursos/listar">
+                    <span class="dashboard-module-id">02</span>
+                    <strong>Cursos</strong>
+                    <span>Catalogo e estrutura curricular</span>
+                </a>
+                <a class="dashboard-module-card" href="/professores/listar">
+                    <span class="dashboard-module-id">03</span>
+                    <strong>Professores</strong>
+                    <span>Equipe docente</span>
+                </a>
+                <a class="dashboard-module-card" href="/disciplinas/listar">
+                    <span class="dashboard-module-id">04</span>
+                    <strong>Disciplinas</strong>
+                    <span>Grade e vinculacoes</span>
+                </a>
+                <a class="dashboard-module-card" href="/usuarios/listar">
+                    <span class="dashboard-module-id">05</span>
+                    <strong>Usuarios</strong>
+                    <span>Perfis e acessos</span>
+                </a>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

@@ -19,8 +19,23 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
 
     public Usuario save(Usuario usuario) {
-        String encodedPassword = passwordEncoder.encode(usuario.getSenhaUsuario());
-        usuario.setSenhaUsuario(encodedPassword);
+        Usuario usuarioExistente = null;
+        if (usuario.getIdUsuario() != null) {
+            usuarioExistente = findById(usuario.getIdUsuario());
+        }
+
+        if (usuario.getRole() == null || usuario.getRole().isBlank()) {
+            usuario.setRole("ROLE_USER");
+        }
+
+        if (usuario.getSenhaUsuario() == null || usuario.getSenhaUsuario().isBlank()) {
+            if (usuarioExistente != null) {
+                usuario.setSenhaUsuario(usuarioExistente.getSenhaUsuario());
+            }
+        } else if (!usuario.getSenhaUsuario().startsWith("$2")) {
+            usuario.setSenhaUsuario(passwordEncoder.encode(usuario.getSenhaUsuario()));
+        }
+
         return usuarioRepository.save(usuario);
     }
 
