@@ -43,7 +43,7 @@
                 <div class="table-wrap">
                     <table class="data-table">
                         <thead>
-                            <tr><th>ID</th><th>Nome</th><th>Email</th><th>Perfil</th><th>Acoes</th></tr>
+                            <tr><th>ID</th><th>Nome</th><th>Email</th><th>Perfil</th><th th:if="${canManageUsers}">Acoes</th></tr>
                         </thead>
                         <tbody>
                             <tr th:each="usuario : ${usuarios}">
@@ -51,14 +51,14 @@
                                 <td><div class="cell-strong" th:text="${usuario.nomeUsuario}">Nome</div><div class="table-note">Usuario</div></td>
                                 <td th:text="${usuario.emailUsuario}">email@dominio.com</td>
                                 <td th:text="${usuario.role}">ROLE_USER</td>
-                                <td>
+                                <td th:if="${canManageUsers}">
                                     <div class="actions">
                                         <a class="button-secondary" th:href="@{/usuarios/editar/{id}(id=${usuario.idUsuario})}">Editar</a>
                                         <a class="button-ghost button-danger" th:href="@{/usuarios/excluir/{id}(id=${usuario.idUsuario})}" onclick="return confirm('Deseja excluir este usuario?');">Excluir</a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr th:if="${#lists.isEmpty(usuarios)}"><td colspan="5" class="empty-state">Nenhum usuario cadastrado.</td></tr>
+                            <tr th:if="${#lists.isEmpty(usuarios)}"><td th:attr="colspan=${canManageUsers ? 5 : 4}" class="empty-state">Nenhum usuario cadastrado.</td></tr>
                         </tbody>
                     </table>
                 </div>

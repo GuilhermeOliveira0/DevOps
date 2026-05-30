@@ -21,8 +21,9 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/listar")
-    public String listar(Model model) {
+    public String listar(Model model, Authentication authentication) {
         model.addAttribute("usuarios", usuarioService.findAll());
+        model.addAttribute("canManageUsers", isAdmin(authentication));
         return "usuario/listar";
     }
 
@@ -45,7 +46,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Usuario usuario, Authentication authentication) {
+    public String salvar(@ModelAttribute Usuario usuario, Authentication authentication, Model model) {
         boolean novoCadastro = usuario.getIdUsuario() == null;
         boolean admin = isAdmin(authentication);
 
@@ -59,7 +60,14 @@ public class UsuarioController {
             usuario.setRole("ROLE_USER");
         }
 
-        usuarioService.save(usuario);
+        try {
+            usuarioService.save(usuario);
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("errorMessage", exception.getMessage());
+            configurarFormulario(model, authentication, novoCadastro);
+            return "usuario/formularioUsuario";
+        }
 
         if (novoCadastro && !admin) {
             return "redirect:/login?created";

@@ -19,10 +19,11 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/usuarios/listar",
                                 "/usuarios/editar/**",
                                 "/usuarios/excluir/**")
                         .hasRole("ADMIN")
+                        .requestMatchers("/usuarios/listar")
+                        .authenticated()
                         .requestMatchers(
                                 "/",
                                 "/login",
@@ -30,6 +31,8 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/images/**",
                                 "/h2-console/**",
+                                "/forgot-password",
+                                "/reset-password",
                                 "/usuarios/criar",
                                 "/usuarios/salvar")
                         .permitAll()

@@ -30,6 +30,8 @@
                         </div>
                     </div>
 
+                    <p class="auth-alert" th:if="${errorMessage}" th:text="${errorMessage}">Nao foi possivel salvar o usuario.</p>
+
                     <form th:action="@{/usuarios/salvar}" th:object="${usuario}" method="post">
                         <input type="hidden" th:field="*{idUsuario}">
                         <div class="form-grid">

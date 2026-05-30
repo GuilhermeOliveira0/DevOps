@@ -45,8 +45,10 @@
                 <p class="auth-alert" th:if="${param.error}">Login invalido. Confira email e senha.</p>
                 <p class="auth-alert auth-alert-success" th:if="${param.created}">Cadastro concluido. Agora e so entrar com seu email e senha.</p>
                 <p class="auth-alert auth-alert-success" th:if="${param.logout}">Logout realizado com sucesso.</p>
+                <p class="auth-alert auth-alert-success" th:if="${param.resetSuccess}">Senha alterada com sucesso. Entre com sua nova senha.</p>
 
                 <div class="auth-links auth-links-centered auth-links-stack">
+                    <a href="/forgot-password">Esqueci minha senha</a>
                     <a href="/">Voltar para inicio</a>
                     <a href="/usuarios/criar">Criar cadastro</a>
                 </div>

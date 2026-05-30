@@ -3,6 +3,14 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+data/
+*.log
+*.out.log
+*.err.log
+*.lock.db
+*.mv.db
+chrome-shot*.png
+landing-shot*.png
 
 ### STS ###
 .apt_generated
