@@ -9,6 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.examplefatec.entity.Usuario;
 
+/**
+ * Adaptador entre a entity Usuario e o contrato UserDetails do Spring Security.
+ * Informa username, senha criptografada e authorities do usuario autenticado.
+ */
 public class UserDetailsImpl implements UserDetails {
 
     private final Usuario usuario;
@@ -17,16 +21,25 @@ public class UserDetailsImpl implements UserDetails {
         this.usuario = usuario;
     }
 
+    /**
+     * Entrega a role salva no banco como authority do Spring Security.
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(usuario.getRole()));
     }
 
+    /**
+     * Retorna a senha ja criptografada para comparacao feita pelo Spring Security.
+     */
     @Override
     public String getPassword() {
         return usuario.getSenhaUsuario();
     }
 
+    /**
+     * Usa e-mail como username de login.
+     */
     @Override
     public String getUsername() {
         return usuario.getEmailUsuario();

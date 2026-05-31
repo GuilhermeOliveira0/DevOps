@@ -9,6 +9,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+/**
+ * Entity JPA que representa usuario de acesso ao sistema.
+ * A senha deve ser persistida somente em formato criptografado e a role deve seguir o padrao ROLE_*.
+ */
 @Entity
 @Setter
 @Getter

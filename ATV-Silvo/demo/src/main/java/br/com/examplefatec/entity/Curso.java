@@ -8,20 +8,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+/**
+ * Entity JPA que representa um curso.
+ * Um curso pode estar vinculado a varias disciplinas.
+ */
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
-
 public class Curso {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO  )
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idCurso;
 
     @Column(nullable = false, length = 40)
@@ -29,7 +33,7 @@ public class Curso {
 
     @Column(nullable = false, length = 40)
     private String periodoCurso;
-   
+
     @Column(nullable = false)
     private int cargaHorariaCurso;
 

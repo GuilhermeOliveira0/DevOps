@@ -13,6 +13,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Entity JPA que representa um professor.
+ * Um professor pode estar vinculado a varias disciplinas.
+ */
 @Entity
 @Setter
 @Getter

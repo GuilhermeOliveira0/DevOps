@@ -9,9 +9,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Configuracao central do Spring Security.
+ * Define rotas publicas, rotas autenticadas, rotas de ADMIN, login, logout e BCrypt.
+ */
 @Configuration
 public class SecurityConfig {
 
+    /**
+     * Monta a cadeia de filtros de seguranca da aplicacao.
+     * CSRF permanece desabilitado para preservar o comportamento atual do projeto.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -48,11 +56,17 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Encoder usado para salvar e validar senhas com BCrypt.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Expoe o AuthenticationManager padrao do Spring quando algum componente precisar dele.
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

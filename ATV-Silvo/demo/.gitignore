@@ -9,6 +9,7 @@ data/
 *.err.log
 *.lock.db
 *.mv.db
+run-local.ps1
 chrome-shot*.png
 landing-shot*.png
 

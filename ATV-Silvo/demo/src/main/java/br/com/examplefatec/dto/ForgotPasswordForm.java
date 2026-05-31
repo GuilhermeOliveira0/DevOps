@@ -6,6 +6,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Objeto de formulario da tela "Esqueci minha senha".
+ * Recebe apenas o e-mail informado pelo usuario.
+ */
 @Getter
 @Setter
 public class ForgotPasswordForm {

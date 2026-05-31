@@ -11,8 +11,14 @@ import br.com.examplefatec.entity.Usuario;
 import br.com.examplefatec.repository.PasswordResetTokenRepository;
 import br.com.examplefatec.repository.UsuarioRepository;
 
+/**
+ * Service de usuarios.
+ * Centraliza normalizacao, validacao de e-mail unico, criptografia de senha e exclusao segura.
+ */
 @Service
 public class UsuarioService {
+
+    private static final int MAX_EMAIL_LENGTH = 40;
 
     private final UsuarioRepository usuarioRepository;
 
@@ -29,6 +35,10 @@ public class UsuarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * Salva usuario novo ou editado.
+     * Normaliza campos, garante ROLE_USER por padrao e criptografa senha em texto puro com BCrypt.
+     */
     public Usuario save(Usuario usuario) {
         normalizarDados(usuario);
         validarEmailUnico(usuario);
@@ -53,6 +63,9 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    /**
+     * Padroniza nome, e-mail e role antes das validacoes e da persistencia.
+     */
     private void normalizarDados(Usuario usuario) {
         if (usuario.getNomeUsuario() != null) {
             usuario.setNomeUsuario(usuario.getNomeUsuario().trim());
@@ -67,9 +80,16 @@ public class UsuarioService {
         }
     }
 
+    /**
+     * Impede cadastro ou edicao com e-mail ja usado por outro usuario.
+     */
     private void validarEmailUnico(Usuario usuario) {
         if (usuario.getEmailUsuario() == null || usuario.getEmailUsuario().isBlank()) {
             throw new IllegalArgumentException("Informe um email valido.");
+        }
+
+        if (usuario.getEmailUsuario().length() > MAX_EMAIL_LENGTH) {
+            throw new IllegalArgumentException("O email deve ter no maximo 40 caracteres.");
         }
 
         boolean emailJaExiste = usuario.getIdUsuario() == null
@@ -83,14 +103,23 @@ public class UsuarioService {
         }
     }
 
+    /**
+     * Retorna todos os usuarios cadastrados.
+     */
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
 
+    /**
+     * Busca usuario pelo id ou retorna null quando nao existe.
+     */
     public Usuario findById(int id) {
         return usuarioRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Exclui usuario e remove tokens de recuperacao associados antes da exclusao.
+     */
     @Transactional
     public void deleteById(int id) {
         Usuario usuario = findById(id);
@@ -102,6 +131,9 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    /**
+     * Atualiza senha durante a recuperacao, sempre criptografando o valor recebido.
+     */
     public void updatePassword(Usuario usuario, String rawPassword) {
         usuario.setSenhaUsuario(passwordEncoder.encode(rawPassword));
         usuarioRepository.save(usuario);

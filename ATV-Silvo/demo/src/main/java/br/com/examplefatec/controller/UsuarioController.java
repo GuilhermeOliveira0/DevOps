@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.examplefatec.entity.Usuario;
 import br.com.examplefatec.service.UsuarioService;
 
+/**
+ * Controller responsavel pelo cadastro, listagem e administracao de usuarios.
+ * Mantem regras de perfil no controller apenas para decidir fluxo de tela e permissao visual.
+ */
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -20,6 +24,10 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    /**
+     * Lista usuarios cadastrados para usuario autenticado.
+     * Tambem informa para a view se o usuario logado pode editar/excluir perfis.
+     */
     @GetMapping("/listar")
     public String listar(Model model, Authentication authentication) {
         model.addAttribute("usuarios", usuarioService.findAll());
@@ -27,6 +35,10 @@ public class UsuarioController {
         return "usuario/listar";
     }
 
+    /**
+     * Abre o formulario de novo usuario.
+     * A mesma tela atende cadastro publico e cadastro feito por administrador.
+     */
     @GetMapping("/criar")
     public String criar(Model model, Authentication authentication) {
         model.addAttribute("usuario", new Usuario());
@@ -34,6 +46,10 @@ public class UsuarioController {
         return "usuario/formularioUsuario";
     }
 
+    /**
+     * Abre o formulario de edicao de usuario existente.
+     * Apenas administradores devem chegar aqui pela regra do SecurityConfig.
+     */
     @GetMapping("/editar/{id}")
     public String editarForm(@PathVariable int id, Model model, Authentication authentication) {
         Usuario usuario = usuarioService.findById(id);
@@ -45,6 +61,10 @@ public class UsuarioController {
         return "usuario/formularioUsuario";
     }
 
+    /**
+     * Salva cadastro novo ou edicao de usuario.
+     * Novos cadastros publicos sempre recebem ROLE_USER antes de gravar.
+     */
     @PostMapping("/salvar")
     public String salvar(@ModelAttribute Usuario usuario, Authentication authentication, Model model) {
         boolean novoCadastro = usuario.getIdUsuario() == null;
@@ -75,12 +95,19 @@ public class UsuarioController {
         return "redirect:/usuarios/listar";
     }
 
+    /**
+     * Exclui usuario pelo id.
+     * A rota e protegida para ADMIN no SecurityConfig e altera dados no banco.
+     */
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable int id) {
         usuarioService.deleteById(id);
         return "redirect:/usuarios/listar";
     }
 
+    /**
+     * Prepara flags e links usados pela tela de formulario de usuario.
+     */
     private void configurarFormulario(Model model, Authentication authentication, boolean novoCadastro) {
         boolean admin = isAdmin(authentication);
         model.addAttribute("canManageRole", admin);
@@ -89,6 +116,9 @@ public class UsuarioController {
         model.addAttribute("backLabel", admin ? "Voltar para lista" : "Voltar para inicio");
     }
 
+    /**
+     * Verifica se a autenticacao atual possui autoridade ROLE_ADMIN.
+     */
     private boolean isAdmin(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
             return false;

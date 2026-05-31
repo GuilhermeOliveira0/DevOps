@@ -15,6 +15,10 @@ import br.com.examplefatec.service.PasswordResetService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+/**
+ * Controller do fluxo "Esqueci minha senha".
+ * Recebe os formularios, aciona o service e retorna apenas views ou redirects.
+ */
 @Controller
 public class PasswordResetController {
 
@@ -27,6 +31,10 @@ public class PasswordResetController {
         this.passwordResetService = passwordResetService;
     }
 
+    /**
+     * Abre a tela para informar o email de recuperacao.
+     * Apenas prepara o objeto do formulario, sem consultar o banco.
+     */
     @GetMapping("/forgot-password")
     public String forgotPasswordForm(Model model) {
         if (!model.containsAttribute("forgotPasswordForm")) {
@@ -35,6 +43,10 @@ public class PasswordResetController {
         return "forgot-password";
     }
 
+    /**
+     * Recebe o email informado e solicita a geracao de token.
+     * A mensagem de retorno e sempre generica para nao revelar se o email existe.
+     */
     @PostMapping("/forgot-password")
     public String forgotPasswordSubmit(
             @Valid @ModelAttribute ForgotPasswordForm forgotPasswordForm,
@@ -50,6 +62,9 @@ public class PasswordResetController {
         return "forgot-password";
     }
 
+    /**
+     * Valida o token da URL e abre a tela de nova senha quando ele ainda e utilizavel.
+     */
     @GetMapping("/reset-password")
     public String resetPasswordForm(@RequestParam(required = false) String token, Model model) {
         if (!passwordResetService.isTokenValid(token)) {
@@ -63,6 +78,10 @@ public class PasswordResetController {
         return "reset-password";
     }
 
+    /**
+     * Recebe nova senha e confirmacao, delegando a troca segura ao service.
+     * Em sucesso, redireciona para o login com mensagem de confirmacao.
+     */
     @PostMapping("/reset-password")
     public String resetPasswordSubmit(
             @Valid @ModelAttribute ResetPasswordForm resetPasswordForm,
@@ -81,6 +100,9 @@ public class PasswordResetController {
         return "reset-password";
     }
 
+    /**
+     * Traduz o resultado de negocio em uma mensagem simples para a tela.
+     */
     private String messageFor(PasswordResetResult result) {
         return switch (result) {
             case INVALID_TOKEN -> "Link de redefinicao invalido, expirado ou ja utilizado.";

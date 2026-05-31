@@ -12,6 +12,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Entity JPA que representa uma disciplina.
+ * Guarda os relacionamentos com curso e professor selecionados no cadastro.
+ */
 @Entity
 @Setter
 @Getter

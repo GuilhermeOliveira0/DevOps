@@ -82,6 +82,21 @@ class UsuarioServiceTest {
     }
 
     @Test
+    void saveNewUserRejectsEmailLongerThanColumnLimit() {
+        Usuario usuario = new Usuario();
+        usuario.setNomeUsuario("Usuario Teste");
+        usuario.setEmailUsuario("email-com-mais-de-quarenta-caracteres@teste.local");
+        usuario.setSenhaUsuario("senhaAberta123");
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> usuarioService.save(usuario));
+
+        assertEquals("O email deve ter no maximo 40 caracteres.", exception.getMessage());
+        verify(usuarioRepository, never()).save(any());
+    }
+
+    @Test
     void deleteByIdRemovesPasswordResetTokensBeforeDeletingUser() {
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(352);

@@ -5,6 +5,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Objeto de formulario da tela de redefinicao de senha.
+ * Transporta token, nova senha e confirmacao ate o PasswordResetService.
+ */
 @Getter
 @Setter
 public class ResetPasswordForm {

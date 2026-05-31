@@ -14,6 +14,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Entity JPA que representa um token de recuperacao de senha.
+ * Por seguranca, armazena apenas o hash do token bruto enviado por e-mail.
+ */
 @Entity
 @Getter
 @Setter
