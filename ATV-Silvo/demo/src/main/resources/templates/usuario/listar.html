@@ -1,41 +1,45 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Usuarios</title>
-    <link rel="stylesheet" href="/css/app.css?v=20260518c">
+    <title>Lista de usuários</title>
+    <link rel="stylesheet" href="/css/app.css?v=20260530ui">
 </head>
 <body class="list-page">
     <div class="app-layout">
         <aside class="sidebar">
-            <a class="brand brand-link" href="/home"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
+            <a class="brand brand-link" href="/home"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestão acadêmica</span></span></a>
             <section class="sidebar-section">
-                <p class="sidebar-label">Navegacao</p>
+                <p class="sidebar-label">Navegação</p>
                 <nav class="sidebar-nav">
-                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">01</span></a>
-                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">02</span></a>
-                    <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">03</span></a>
-                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">04</span></a>
-                    <a class="nav-item active" href="/usuarios/listar"><span class="nav-item-copy"><span class="nav-item-title">Usuarios</span><span class="nav-item-meta">Acessos</span></span><span class="nav-item-badge">05</span></a>
+                    <a class="nav-item" href="/home"><span class="nav-item-copy"><span class="nav-item-title">Início</span><span class="nav-item-meta">Dashboard</span></span></a>
+                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span></a>
+                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catálogo</span></span></a>
+                    <a class="nav-item" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span></a>
+                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span></a>
+                    <a class="nav-item active" href="/usuarios/listar"><span class="nav-item-copy"><span class="nav-item-title">Usuários</span><span class="nav-item-meta">Acessos</span></span></a>
                 </nav>
             </section>
             <div class="sidebar-card">
-                <span>Modulo</span>
-                <strong>Usuarios</strong>
+                <span>Módulo</span>
+                <strong>Usuários</strong>
                 <p>Controle de acesso e perfis do sistema.</p>
             </div>
+            <form class="sidebar-footer" action="/logout" method="post">
+                <button class="sidebar-logout" type="submit">Sair</button>
+            </form>
         </aside>
 
         <main class="content-shell">
             <header class="content-topbar">
                 <div class="topbar-copy">
-                    <p class="section-kicker">Painel de usuarios</p>
-                    <h1>Lista de usuarios</h1>
-                    <p class="section-copy">Visualizacao objetiva dos acessos cadastrados.</p>
+                    <p class="section-kicker">Painel de usuários</p>
+                    <h1>Lista de usuários</h1>
+                    <p class="section-copy">Visualização objetiva dos acessos cadastrados.</p>
                 </div>
                 <div class="topbar-actions">
-                    <a class="button" href="/usuarios/criar">Novo usuario</a>
+                    <a class="button" href="/usuarios/criar">Novo usuário</a>
                 </div>
             </header>
 
@@ -43,22 +47,22 @@
                 <div class="table-wrap">
                     <table class="data-table">
                         <thead>
-                            <tr><th>ID</th><th>Nome</th><th>Email</th><th>Perfil</th><th th:if="${canManageUsers}">Acoes</th></tr>
+                            <tr><th>ID</th><th>Nome</th><th>Email</th><th>Perfil</th><th th:if="${canManageUsers}">Ações</th></tr>
                         </thead>
                         <tbody>
                             <tr th:each="usuario : ${usuarios}">
                                 <td><span class="table-id" th:text="${usuario.idUsuario}">1</span></td>
-                                <td><div class="cell-strong" th:text="${usuario.nomeUsuario}">Nome</div><div class="table-note">Usuario</div></td>
+                                <td><div class="cell-strong" th:text="${usuario.nomeUsuario}">Nome</div><div class="table-note">Usuário</div></td>
                                 <td th:text="${usuario.emailUsuario}">email@dominio.com</td>
                                 <td th:text="${usuario.role}">ROLE_USER</td>
                                 <td th:if="${canManageUsers}">
                                     <div class="actions">
                                         <a class="button-secondary" th:href="@{/usuarios/editar/{id}(id=${usuario.idUsuario})}">Editar</a>
-                                        <a class="button-ghost button-danger" th:href="@{/usuarios/excluir/{id}(id=${usuario.idUsuario})}" onclick="return confirm('Deseja excluir este usuario?');">Excluir</a>
+                                        <a class="button-ghost button-danger" th:href="@{/usuarios/excluir/{id}(id=${usuario.idUsuario})}" onclick="return confirm('Deseja excluir este usuário?');">Excluir</a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr th:if="${#lists.isEmpty(usuarios)}"><td th:attr="colspan=${canManageUsers ? 5 : 4}" class="empty-state">Nenhum usuario cadastrado.</td></tr>
+                            <tr th:if="${#lists.isEmpty(usuarios)}"><td th:attr="colspan=${canManageUsers ? 5 : 4}" class="empty-state">Nenhum usuário cadastrado.</td></tr>
                         </tbody>
                     </table>
                 </div>

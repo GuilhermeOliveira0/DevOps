@@ -1,36 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Professores</title>
-    <link rel="stylesheet" href="/css/app.css?v=20260518c">
+    <link rel="stylesheet" href="/css/app.css?v=20260530ui">
 </head>
 <body class="form-page">
     <div class="app-layout">
         <aside class="sidebar">
-            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
+            <a class="brand brand-link" href="/home"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestão acadêmica</span></span></a>
             <section class="sidebar-section">
-                <p class="sidebar-label">Navegacao</p>
+                <p class="sidebar-label">Navegação</p>
                 <nav class="sidebar-nav">
-                    <a class="nav-item" href="/home"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
-                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
-                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
-                    <a class="nav-item active" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
-                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
+                    <a class="nav-item" href="/home"><span class="nav-item-copy"><span class="nav-item-title">Início</span><span class="nav-item-meta">Dashboard</span></span></a>
+                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span></a>
+                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catálogo</span></span></a>
+                    <a class="nav-item active" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span></a>
+                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span></a>
+                    <a class="nav-item" href="/usuarios/listar"><span class="nav-item-copy"><span class="nav-item-title">Usuários</span><span class="nav-item-meta">Acessos</span></span></a>
                 </nav>
             </section>
             <div class="sidebar-card">
-                <span>Formulario</span>
+                <span>Formulário</span>
                 <strong>Cadastro de professores</strong>
                 <p>Dados docentes com preenchimento objetivo.</p>
             </div>
+            <form class="sidebar-footer" action="/logout" method="post">
+                <button class="sidebar-logout" type="submit">Sair</button>
+            </form>
         </aside>
 
         <main class="content-shell">
             <header class="content-topbar">
                 <div class="topbar-copy">
-                    <p class="section-kicker">Formulario de professores</p>
+                    <p class="section-kicker">Formulário de professores</p>
                     <h1 th:text="${professor.idProfessor != null} ? 'Editar professor' : 'Cadastrar professor'">Cadastro de Professores</h1>
                     <p class="section-copy">Cadastro docente com foco em clareza e produtividade.</p>
                 </div>
@@ -44,7 +48,7 @@
                     <div class="panel-header">
                         <div class="panel-title-stack">
                             <span class="panel-eyebrow">Dados principais</span>
-                            <h2>Informacoes do professor</h2>
+                            <h2>Informações do professor</h2>
                             <p>Mesmo fluxo de cadastro com visual mais limpo.</p>
                         </div>
                     </div>
@@ -53,9 +57,9 @@
                         <input type="hidden" th:field="*{idProfessor}">
                         <div class="form-grid">
                             <div class="field field-full"><label for="nome">Nome</label><input type="text" id="nome" th:field="*{nomeProfessor}" required><span class="field-hint">Nome completo exibido nas telas operacionais do sistema.</span></div>
-                            <div class="field"><label for="telefone">Telefone</label><input type="text" id="telefone" th:field="*{telefoneProfessor}" required><span class="field-hint">Contato principal do docente para comunicacoes institucionais.</span></div>
-                            <div class="field"><label for="graduacao">Graduacao</label><input type="text" id="graduacao" th:field="*{graduacaoProfessor}" required><span class="field-hint">Formacao ou titulacao academica do professor.</span></div>
-                            <div class="field field-full"><label for="rm">RM</label><input type="text" id="rm" th:field="*{rmProfessor}" required><span class="field-hint">Identificador interno usado para administracao do cadastro.</span></div>
+                            <div class="field"><label for="telefone">Telefone</label><input type="text" id="telefone" th:field="*{telefoneProfessor}" required><span class="field-hint">Contato principal do docente para comunicações institucionais.</span></div>
+                            <div class="field"><label for="graduacao">Graduação</label><input type="text" id="graduacao" th:field="*{graduacaoProfessor}" required><span class="field-hint">Formação ou titulação acadêmica do professor.</span></div>
+                            <div class="field field-full"><label for="rm">RM</label><input type="text" id="rm" th:field="*{rmProfessor}" required><span class="field-hint">Identificador interno usado para administração do cadastro.</span></div>
                         </div>
                         <div class="form-actions">
                             <button class="button" type="submit">Salvar professor</button>

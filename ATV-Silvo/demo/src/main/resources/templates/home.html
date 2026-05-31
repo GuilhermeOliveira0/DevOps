@@ -1,49 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - FatecADS</title>
-    <link rel="stylesheet" href="/css/app.css?v=20260518c">
+    <link rel="stylesheet" href="/css/app.css?v=20260530ui">
 </head>
-<body class="landing-page">
+<body class="landing-page dashboard-page">
     <main class="landing-shell dashboard-shell">
         <section class="dashboard-home">
-            <header class="dashboard-home-topbar">
-                <div>
+            <header class="dashboard-hero">
+                <div class="dashboard-hero-copy">
                     <p class="section-kicker">Painel interno</p>
-                    <h1>Modulos do sistema</h1>
-                    <p class="section-copy">Selecione o modulo que deseja gerenciar.</p>
+                    <h1>Bem-vindo ao Painel Acadêmico</h1>
+                    <p class="section-copy">Acesse os módulos do sistema com navegação rápida, clara e organizada.</p>
+                    <div class="dashboard-hero-meta">
+                        <span>Gestão acadêmica</span>
+                        <span>Rotinas administrativas</span>
+                    </div>
                 </div>
                 <form action="/logout" method="post">
-                    <button class="button-ghost" type="submit">Sair</button>
+                    <button class="button-ghost dashboard-logout" type="submit">Sair</button>
                 </form>
             </header>
 
+            <div class="dashboard-section-head">
+                <div>
+                    <p class="section-kicker">Navegação</p>
+                    <h2>Módulos do sistema</h2>
+                </div>
+                <p>Selecione o módulo que deseja gerenciar.</p>
+            </div>
+
             <section class="dashboard-module-grid">
                 <a class="dashboard-module-card" href="/alunos/listar">
-                    <span class="dashboard-module-id">01</span>
+                    <span class="dashboard-module-icon">A</span>
                     <strong>Alunos</strong>
-                    <span>Cadastro e consulta academica</span>
+                    <span>Cadastro e consulta acadêmica</span>
                 </a>
                 <a class="dashboard-module-card" href="/cursos/listar">
-                    <span class="dashboard-module-id">02</span>
+                    <span class="dashboard-module-icon">C</span>
                     <strong>Cursos</strong>
-                    <span>Catalogo e estrutura curricular</span>
+                    <span>Catálogo e estrutura curricular</span>
                 </a>
                 <a class="dashboard-module-card" href="/professores/listar">
-                    <span class="dashboard-module-id">03</span>
+                    <span class="dashboard-module-icon">P</span>
                     <strong>Professores</strong>
                     <span>Equipe docente</span>
                 </a>
                 <a class="dashboard-module-card" href="/disciplinas/listar">
-                    <span class="dashboard-module-id">04</span>
+                    <span class="dashboard-module-icon">D</span>
                     <strong>Disciplinas</strong>
-                    <span>Grade e vinculacoes</span>
+                    <span>Grade e vinculações</span>
                 </a>
                 <a class="dashboard-module-card" href="/usuarios/listar">
-                    <span class="dashboard-module-id">05</span>
-                    <strong>Usuarios</strong>
+                    <span class="dashboard-module-icon">U</span>
+                    <strong>Usuários</strong>
                     <span>Perfis e acessos</span>
                 </a>
             </section>

@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuarios</title>
-    <link rel="stylesheet" href="/css/app.css?v=20260518c">
+    <title>Cadastro de Usuários</title>
+    <link rel="stylesheet" href="/css/app.css?v=20260530ui">
 </head>
 <body class="auth-page">
     <main class="auth-shell user-form-shell">
         <section class="panel form-panel user-form-card">
             <header class="content-topbar user-form-topbar">
                 <div class="topbar-copy">
-                    <p class="section-kicker">Formulario de usuarios</p>
-                    <h1 th:text="${usuario.idUsuario != null} ? 'Editar usuario' : 'Cadastrar usuario'">Cadastro de Usuarios</h1>
-                    <p class="section-copy" th:text="${publicRegistration} ? 'Crie seu acesso ao sistema com um cadastro simples e direto.' : 'Cadastro de acesso com foco em clareza e configuracao rapida.'">Cadastro de acesso com foco em clareza e configuracao rapida.</p>
+                    <p class="section-kicker">Formulário de usuários</p>
+                    <h1 th:text="${usuario.idUsuario != null} ? 'Editar usuário' : 'Cadastrar usuário'">Cadastro de Usuários</h1>
+                    <p class="section-copy" th:text="${publicRegistration} ? 'Crie seu acesso ao sistema com um cadastro simples e direto.' : 'Cadastro de acesso com foco em clareza e Configuração rapida.'">Cadastro de acesso com foco em clareza e Configuração rapida.</p>
                 </div>
                 <div class="topbar-actions">
                     <a class="button-ghost" th:href="${backHref}" th:text="${backLabel}">Voltar</a>
@@ -25,8 +25,8 @@
                     <div class="panel-header">
                         <div class="panel-title-stack">
                             <span class="panel-eyebrow">Dados principais</span>
-                            <h2>Informacoes do usuario</h2>
-                            <p th:text="${publicRegistration} ? 'Preencha nome, email e senha para solicitar seu acesso.' : 'Mesmo fluxo do projeto com visual consistente com os outros modulos.'">Mesmo fluxo do projeto com visual consistente com os outros modulos.</p>
+                            <h2>Informações do usuário</h2>
+                            <p th:text="${publicRegistration} ? 'Preencha nome, email e senha para solicitar seu acesso.' : 'Mesmo fluxo do projeto com visual consistente com os outros módulos.'">Mesmo fluxo do projeto com visual consistente com os outros módulos.</p>
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                             <div class="field field-full">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" th:field="*{emailUsuario}" maxlength="40" required>
-                                <span class="field-hint">Endereco usado como login no sistema.</span>
+                                <span class="field-hint">Endereço usado como login no sistema.</span>
                             </div>
                             <div class="field" th:classappend="${canManageRole} ? '' : ' field-full'">
                                 <label for="senha">Senha</label>
@@ -56,7 +56,7 @@
                                     <option value="ROLE_USER">Usuario</option>
                                     <option value="ROLE_ADMIN">Administrador</option>
                                 </select>
-                                <span class="field-hint">Perfil de permissao para acesso ao sistema.</span>
+                                <span class="field-hint">Perfil de permissão para acesso ao sistema.</span>
                             </div>
                         </div>
                         <div class="form-actions">
@@ -65,7 +65,7 @@
                         </div>
                     </form>
 
-                    <p class="panel-note" th:text="${publicRegistration} ? 'O perfil do novo cadastro e definido automaticamente como usuario padrao.' : 'Apenas administradores podem ajustar o perfil de acesso deste cadastro.'">Apenas administradores podem ajustar o perfil de acesso deste cadastro.</p>
+                    <p class="panel-note" th:text="${publicRegistration} ? 'O perfil do novo cadastro e definido automaticamente como usuário padrão.' : 'Apenas administradores podem ajustar o perfil de acesso deste cadastro.'">Apenas administradores podem ajustar o perfil de acesso deste cadastro.</p>
                 </section>
 
                 <aside class="side-stack" th:if="${canManageRole}">
@@ -73,12 +73,12 @@
                         <strong>Resumo do fluxo</strong>
                         <div class="info-list">
                             <div class="info-row"><span>Contexto</span><b>Cadastro de acesso</b></div>
-                            <div class="info-row"><span>Acao principal</span><b>Salvar dados do usuario</b></div>
+                            <div class="info-row"><span>Ação principal</span><b>Salvar dados do usuario</b></div>
                             <div class="info-row"><span>Retorno</span><b>Redirecionamento para listagem</b></div>
                         </div>
                     </section>
                     <section class="info-card">
-                        <strong>Configuracao</strong>
+                        <strong>Configuração</strong>
                         <p>Campos organizados para nome, email, senha e perfil, mantendo a mesma linguagem das outras telas do sistema.</p>
                     </section>
                 </aside>

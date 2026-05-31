@@ -1,30 +1,34 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Professores</title>
-    <link rel="stylesheet" href="/css/app.css?v=20260518c">
+    <link rel="stylesheet" href="/css/app.css?v=20260530ui">
 </head>
 <body class="list-page">
     <div class="app-layout">
         <aside class="sidebar">
-            <a class="brand brand-link" href="/"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestao academica</span></span></a>
+            <a class="brand brand-link" href="/home"><span class="brand-mark"></span><span class="brand-text"><strong>FatecADS</strong><span>Gestão acadêmica</span></span></a>
             <section class="sidebar-section">
-                <p class="sidebar-label">Navegacao</p>
+                <p class="sidebar-label">Navegação</p>
                 <nav class="sidebar-nav">
-                    <a class="nav-item" href="/home"><span class="nav-item-copy"><span class="nav-item-title">Inicio</span><span class="nav-item-meta">Dashboard</span></span><span class="nav-item-badge">01</span></a>
-                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span><span class="nav-item-badge">02</span></a>
-                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catalogo</span></span><span class="nav-item-badge">03</span></a>
-                    <a class="nav-item active" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span><span class="nav-item-badge">04</span></a>
-                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span><span class="nav-item-badge">05</span></a>
+                    <a class="nav-item" href="/home"><span class="nav-item-copy"><span class="nav-item-title">Início</span><span class="nav-item-meta">Dashboard</span></span></a>
+                    <a class="nav-item" href="/alunos/listar"><span class="nav-item-copy"><span class="nav-item-title">Alunos</span><span class="nav-item-meta">Cadastros</span></span></a>
+                    <a class="nav-item" href="/cursos/listar"><span class="nav-item-copy"><span class="nav-item-title">Cursos</span><span class="nav-item-meta">Catálogo</span></span></a>
+                    <a class="nav-item active" href="/professores/listar"><span class="nav-item-copy"><span class="nav-item-title">Professores</span><span class="nav-item-meta">Equipe docente</span></span></a>
+                    <a class="nav-item" href="/disciplinas/listar"><span class="nav-item-copy"><span class="nav-item-title">Disciplinas</span><span class="nav-item-meta">Grade</span></span></a>
+                    <a class="nav-item" href="/usuarios/listar"><span class="nav-item-copy"><span class="nav-item-title">Usuários</span><span class="nav-item-meta">Acessos</span></span></a>
                 </nav>
             </section>
             <div class="sidebar-card">
-                <span>Modulo</span>
+                <span>Módulo</span>
                 <strong>Professores</strong>
-                <p>Equipe docente com manutencao direta.</p>
+                <p>Equipe docente com manutenção direta.</p>
             </div>
+            <form class="sidebar-footer" action="/logout" method="post">
+                <button class="sidebar-logout" type="submit">Sair</button>
+            </form>
         </aside>
 
         <main class="content-shell">
@@ -32,7 +36,7 @@
                 <div class="topbar-copy">
                     <p class="section-kicker">Painel de professores</p>
                     <h1>Lista de professores</h1>
-                    <p class="section-copy">Quadro docente com dados essenciais e acoes rapidas.</p>
+                    <p class="section-copy">Quadro docente com dados essenciais e ações rápidas.</p>
                 </div>
                 <div class="topbar-actions">
                     <a class="button" href="/professores/criar">Novo professor</a>
@@ -43,7 +47,7 @@
                 <div class="table-wrap">
                     <table class="data-table">
                         <thead>
-                            <tr><th>ID</th><th>Nome</th><th>Telefone</th><th>Graduacao</th><th>RM</th><th>Acoes</th></tr>
+                            <tr><th>ID</th><th>Nome</th><th>Telefone</th><th>Graduação</th><th>RM</th><th>Ações</th></tr>
                         </thead>
                         <tbody>
                             <tr th:each="professor : ${professores}">
