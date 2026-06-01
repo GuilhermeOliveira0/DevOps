@@ -97,6 +97,21 @@ class UsuarioServiceTest {
     }
 
     @Test
+    void saveNewUserRejectsNameWithNumbers() {
+        Usuario usuario = new Usuario();
+        usuario.setNomeUsuario("Usuario 123");
+        usuario.setEmailUsuario("user@test.com");
+        usuario.setSenhaUsuario("senhaAberta123");
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> usuarioService.save(usuario));
+
+        assertEquals("O nome do usuario deve conter apenas letras e espacos.", exception.getMessage());
+        verify(usuarioRepository, never()).save(any());
+    }
+
+    @Test
     void deleteByIdRemovesPasswordResetTokensBeforeDeletingUser() {
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(352);

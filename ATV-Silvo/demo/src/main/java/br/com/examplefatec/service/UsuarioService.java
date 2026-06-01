@@ -1,8 +1,6 @@
 package br.com.examplefatec.service;
 
 import java.util.List;
-import java.util.Locale;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +17,7 @@ import br.com.examplefatec.repository.UsuarioRepository;
 public class UsuarioService {
 
     private static final int MAX_EMAIL_LENGTH = 40;
+    private static final int MAX_NOME_LENGTH = 40;
 
     private final UsuarioRepository usuarioRepository;
 
@@ -68,11 +67,11 @@ public class UsuarioService {
      */
     private void normalizarDados(Usuario usuario) {
         if (usuario.getNomeUsuario() != null) {
-            usuario.setNomeUsuario(usuario.getNomeUsuario().trim());
+            usuario.setNomeUsuario(ValidationSupport.trim(usuario.getNomeUsuario()));
         }
 
         if (usuario.getEmailUsuario() != null) {
-            usuario.setEmailUsuario(usuario.getEmailUsuario().trim().toLowerCase(Locale.ROOT));
+            usuario.setEmailUsuario(ValidationSupport.lowerEmail(usuario.getEmailUsuario()));
         }
 
         if (usuario.getRole() != null) {
@@ -88,9 +87,15 @@ public class UsuarioService {
             throw new IllegalArgumentException("Informe um email valido.");
         }
 
+        ValidationSupport.requireText(usuario.getNomeUsuario(), "Informe o nome do usuario.");
+        ValidationSupport.maxLength(usuario.getNomeUsuario(), MAX_NOME_LENGTH, "O nome do usuario deve ter no maximo 40 caracteres.");
+        ValidationSupport.lettersAndSpaces(usuario.getNomeUsuario(), "O nome do usuario deve conter apenas letras e espacos.");
+
         if (usuario.getEmailUsuario().length() > MAX_EMAIL_LENGTH) {
             throw new IllegalArgumentException("O email deve ter no maximo 40 caracteres.");
         }
+
+        ValidationSupport.email(usuario.getEmailUsuario(), "Informe um email valido.");
 
         boolean emailJaExiste = usuario.getIdUsuario() == null
                 ? usuarioRepository.existsByEmailUsuario(usuario.getEmailUsuario())

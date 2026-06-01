@@ -3,6 +3,7 @@ package br.com.examplefatec.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.examplefatec.entity.Curso;
 import br.com.examplefatec.service.CursoService;
+import jakarta.validation.Valid;
 
 /**
  * Controller responsavel pelas telas e acoes de cursos.
@@ -28,8 +30,17 @@ public class CursoController {
      * Este metodo altera dados no banco.
      */
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Curso curso) {
-        cursoService.save(curso);
+    public String salvar(@Valid @ModelAttribute Curso curso, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "curso/formularioCurso";
+        }
+
+        try {
+            cursoService.save(curso);
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("errorMessage", exception.getMessage());
+            return "curso/formularioCurso";
+        }
         return "redirect:/cursos/listar";
     }
 

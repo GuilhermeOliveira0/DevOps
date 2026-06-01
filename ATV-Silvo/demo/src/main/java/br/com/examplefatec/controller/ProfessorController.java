@@ -3,6 +3,7 @@ package br.com.examplefatec.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.examplefatec.entity.Professor;
 import br.com.examplefatec.service.ProfessorService;
+import jakarta.validation.Valid;
 
 /**
  * Controller responsavel pelas telas e acoes de professores.
@@ -28,8 +30,17 @@ public class ProfessorController {
      * Este metodo altera dados no banco.
      */
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Professor professor) {
-        professorService.save(professor);
+    public String salvar(@Valid @ModelAttribute Professor professor, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "professor/formularioProfessor";
+        }
+
+        try {
+            professorService.save(professor);
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("errorMessage", exception.getMessage());
+            return "professor/formularioProfessor";
+        }
         return "redirect:/professores/listar";
     }
 

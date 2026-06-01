@@ -37,17 +37,20 @@
                         <div class="form-grid">
                             <div class="field field-full">
                                 <label for="nome">Nome</label>
-                                <input type="text" id="nome" th:field="*{nomeUsuario}" maxlength="40" required>
+                                <input type="text" id="nome" th:field="*{nomeUsuario}" maxlength="40" pattern="[A-Za-zÀ-ÿ ]+" required>
+                                <span class="field-hint" th:if="${#fields.hasErrors('nomeUsuario')}" th:errors="*{nomeUsuario}">Erro no nome</span>
                                 <span class="field-hint">Nome exibido nas telas administrativas e de controle de acesso.</span>
                             </div>
                             <div class="field field-full">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" th:field="*{emailUsuario}" maxlength="40" required>
+                                <span class="field-hint" th:if="${#fields.hasErrors('emailUsuario')}" th:errors="*{emailUsuario}">Erro no email</span>
                                 <span class="field-hint">Endereço usado como login no sistema.</span>
                             </div>
                             <div class="field" th:classappend="${canManageRole} ? '' : ' field-full'">
                                 <label for="senha">Senha</label>
                                 <input type="password" id="senha" th:field="*{senhaUsuario}" maxlength="150" th:attr="required=${usuario.idUsuario == null ? true : null}">
+                                <span class="field-hint" th:if="${#fields.hasErrors('senhaUsuario')}" th:errors="*{senhaUsuario}">Erro na senha</span>
                                 <span class="field-hint" th:text="${usuario.idUsuario != null} ? 'Deixe em branco para manter a senha atual.' : 'Senha protegida com criptografia antes de ser salva.'">Senha protegida com criptografia antes de ser salva.</span>
                             </div>
                             <div class="field" th:if="${canManageRole}">

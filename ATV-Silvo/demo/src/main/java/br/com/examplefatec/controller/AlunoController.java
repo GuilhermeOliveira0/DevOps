@@ -3,6 +3,7 @@ package br.com.examplefatec.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import br.com.examplefatec.entity.Aluno;
 import br.com.examplefatec.entity.Curso;
 import br.com.examplefatec.service.AlunoService;
 import br.com.examplefatec.service.CursoService;
+import jakarta.validation.Valid;
 
 /**
  * Controller responsavel pelas telas e acoes de alunos.
@@ -34,9 +36,15 @@ public class AlunoController {
      * Normaliza CPF/telefone, resolve o curso selecionado e altera dados no banco.
      */
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Aluno aluno) {
-        aluno.setCpfAluno(onlyDigits(aluno.getCpfAluno()));
-        aluno.setTelefoneAluno(onlyDigits(aluno.getTelefoneAluno()));
+    public String salvar(@Valid @ModelAttribute Aluno aluno, BindingResult bindingResult, Model model) {
+        if (aluno.getCurso() == null || aluno.getCurso().getIdCurso() == null || aluno.getCurso().getIdCurso() <= 0) {
+            bindingResult.rejectValue("curso.idCurso", "curso.required", "Selecione um curso.");
+        }
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("cursos", cursoService.findAll());
+            return "aluno/formularioAluno";
+        }
 
         // O formulario envia apenas o id do curso; aqui buscamos a entidade real antes de salvar.
         if (aluno.getCurso() != null && aluno.getCurso().getIdCurso() != null && aluno.getCurso().getIdCurso() > 0) {
@@ -46,7 +54,13 @@ public class AlunoController {
             aluno.setCurso(null);
         }
 
-        alunoService.save(aluno);
+        try {
+            alunoService.save(aluno);
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("errorMessage", exception.getMessage());
+            model.addAttribute("cursos", cursoService.findAll());
+            return "aluno/formularioAluno";
+        }
         return "redirect:/alunos/listar";
     }
 
@@ -101,13 +115,4 @@ public class AlunoController {
         return "aluno/formularioAluno";
     }
 
-    /**
-     * Mantem apenas numeros em campos como CPF e telefone antes da persistencia.
-     */
-    private String onlyDigits(String value) {
-        if (value == null) {
-            return null;
-        }
-        return value.replaceAll("\\D", "");
-    }
 }

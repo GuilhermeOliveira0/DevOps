@@ -3,6 +3,7 @@ package br.com.examplefatec.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import br.com.examplefatec.entity.Professor;
 import br.com.examplefatec.service.CursoService;
 import br.com.examplefatec.service.DisciplinaService;
 import br.com.examplefatec.service.ProfessorService;
+import jakarta.validation.Valid;
 
 /**
  * Controller responsavel pelas telas e acoes de disciplinas.
@@ -38,7 +40,20 @@ public class DisciplinaController {
      * Antes de gravar, troca os ids recebidos no formulario pelas entidades Curso e Professor.
      */
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Disciplina disciplina) {
+    public String salvar(@Valid @ModelAttribute Disciplina disciplina, BindingResult bindingResult, Model model) {
+        if (disciplina.getCurso() == null || disciplina.getCurso().getIdCurso() == null || disciplina.getCurso().getIdCurso() <= 0) {
+            bindingResult.rejectValue("curso.idCurso", "curso.required", "Selecione um curso.");
+        }
+
+        if (disciplina.getProfessor() == null || disciplina.getProfessor().getIdProfessor() == null || disciplina.getProfessor().getIdProfessor() <= 0) {
+            bindingResult.rejectValue("professor.idProfessor", "professor.required", "Selecione um professor.");
+        }
+
+        if (bindingResult.hasErrors()) {
+            carregarRelacionamentos(model);
+            return "disciplina/formularioDisciplina";
+        }
+
         // O formulario envia referencias parciais; o JPA precisa das entidades gerenciadas.
         if (disciplina.getCurso() != null && disciplina.getCurso().getIdCurso() != null) {
             Curso cursoSelecionado = cursoService.findById(disciplina.getCurso().getIdCurso());
@@ -50,7 +65,13 @@ public class DisciplinaController {
             disciplina.setProfessor(professorSelecionado);
         }
 
-        disciplinaService.save(disciplina);
+        try {
+            disciplinaService.save(disciplina);
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("errorMessage", exception.getMessage());
+            carregarRelacionamentos(model);
+            return "disciplina/formularioDisciplina";
+        }
         return "redirect:/disciplinas/listar";
     }
 
@@ -72,8 +93,7 @@ public class DisciplinaController {
         disciplina.setCurso(new Curso());
         disciplina.setProfessor(new Professor());
         model.addAttribute("disciplina", disciplina);
-        model.addAttribute("cursos", cursoService.findAll());
-        model.addAttribute("professores", professorService.findAll());
+        carregarRelacionamentos(model);
         return "disciplina/formularioDisciplina";
     }
 
@@ -91,8 +111,7 @@ public class DisciplinaController {
             disciplina.setProfessor(new Professor());
         }
         model.addAttribute("disciplina", disciplina);
-        model.addAttribute("cursos", cursoService.findAll());
-        model.addAttribute("professores", professorService.findAll());
+        carregarRelacionamentos(model);
         return "disciplina/formularioDisciplina";
     }
 
@@ -104,5 +123,10 @@ public class DisciplinaController {
     public String excluir(@PathVariable int id) {
         disciplinaService.deleteById(id);
         return "redirect:/disciplinas/listar";
+    }
+
+    private void carregarRelacionamentos(Model model) {
+        model.addAttribute("cursos", cursoService.findAll());
+        model.addAttribute("professores", professorService.findAll());
     }
 }

@@ -1,61 +1,20 @@
 # FatecADS - Sistema Academico
 
-Sistema academico simples desenvolvido com Spring Boot e Thymeleaf para gerenciar usuarios, alunos, cursos, professores e disciplinas. O projeto tambem possui login com Spring Security e fluxo de recuperacao de senha por e-mail.
+Sistema academico feito com Spring Boot, Thymeleaf, Spring Security e JPA.
+Ele permite gerenciar usuarios, alunos, cursos, professores e disciplinas, alem de ter login e recuperacao de senha por e-mail.
 
-## Tecnologias usadas
+## Guia Rapido
 
-- Java 17
-- Spring Boot 4
-- Spring Security
-- Thymeleaf
-- Spring Data JPA / Hibernate
-- Maven Wrapper
-- PostgreSQL no perfil padrao `postgres`
-- H2 no perfil `h2` para rodar localmente sem configurar PostgreSQL
-- Envio de e-mail com Spring Mail e SMTP configurado por variaveis de ambiente
-
-## Como o sistema funciona
-
-O usuario acessa a aplicacao pelo navegador, faz login e entra na home interna. A home mostra os modulos principais do sistema:
-
-- Alunos
-- Cursos
-- Professores
-- Disciplinas
-- Usuarios
-
-Cada modulo possui telas Thymeleaf para listar, criar, editar e excluir registros. A seguranca fica centralizada no Spring Security:
-
-- Rotas publicas: pagina inicial, login, cadastro de usuario, recuperacao e redefinicao de senha.
-- Rotas autenticadas: home, alunos, cursos, professores, disciplinas e listagem de usuarios.
-- Rotas de ADMIN: edicao e exclusao de usuarios.
-
-## Funcionalidades principais
-
-- Login com e-mail e senha.
-- Cadastro publico de usuarios com role padrao `ROLE_USER`.
-- Home com navegacao para os modulos.
-- Cadastro, listagem, edicao e exclusao de alunos.
-- Cadastro, listagem, edicao e exclusao de cursos.
-- Cadastro, listagem, edicao e exclusao de professores.
-- Cadastro, listagem, edicao e exclusao de disciplinas.
-- Listagem de usuarios para usuario logado.
-- Edicao e exclusao de usuarios somente para ADMIN.
-- Recuperacao de senha com token seguro e envio de e-mail.
-
-## Como rodar localmente
-
-Entre na pasta do projeto Spring:
+Entre na pasta do projeto:
 
 ```powershell
 cd C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo
 ```
 
-Para rodar com H2 local, sem PostgreSQL:
+Para ligar o sistema localmente:
 
 ```powershell
-$env:SPRING_PROFILES_ACTIVE="h2"
-.\mvnw.cmd spring-boot:run
+.\run-local.ps1
 ```
 
 Depois acesse:
@@ -64,68 +23,269 @@ Depois acesse:
 http://localhost:8082
 ```
 
-Para rodar com PostgreSQL, mantenha o perfil padrao ou configure:
-
-```powershell
-$env:SPRING_PROFILES_ACTIVE="postgres"
-$env:DB_URL="jdbc:postgresql://localhost:5432/fatecads_db"
-$env:DB_USERNAME="postgres"
-$env:DB_PASSWORD="sua_senha_do_banco"
-.\mvnw.cmd spring-boot:run
-```
-
-## Configuracao de e-mail real
-
-O envio de recuperacao de senha usa SMTP. Para Gmail, gere uma senha de app na conta Google e configure por variaveis de ambiente. Nao salve a senha real no Git.
-
-```powershell
-$env:SMTP_HOST="smtp.gmail.com"
-$env:SMTP_PORT="587"
-$env:SMTP_USERNAME="seu-email@gmail.com"
-$env:SMTP_PASSWORD="sua-senha-de-app"
-$env:SMTP_AUTH="true"
-$env:SMTP_STARTTLS="true"
-$env:APP_MAIL_FROM="seu-email@gmail.com"
-$env:APP_BASE_URL="http://localhost:8082"
-.\mvnw.cmd spring-boot:run
-```
-
-## Estrutura de pastas
-
-- `src/main/java/br/com/examplefatec/controller`: controllers MVC que recebem requisicoes e retornam views.
-- `src/main/java/br/com/examplefatec/service`: regras de negocio e orquestracao entre controller e repository.
-- `src/main/java/br/com/examplefatec/repository`: interfaces JPA para acesso ao banco.
-- `src/main/java/br/com/examplefatec/entity`: entities JPA que representam tabelas e relacionamentos.
-- `src/main/java/br/com/examplefatec/Security`: configuracao de seguranca, login e adaptadores do Spring Security.
-- `src/main/java/br/com/examplefatec/dto`: objetos de formulario usados nas telas.
-- `src/main/resources/templates`: paginas Thymeleaf.
-- `src/main/resources/static/css`: CSS da interface.
-- `src/test`: testes automatizados.
-
-## Como testar
-
-Rode os testes automatizados:
+Para parar o sistema em outro PowerShell:
 
 ```powershell
 cd C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo
-.\mvnw.cmd test
+.\stop-local.ps1
 ```
 
-Verificacao manual recomendada:
+Tambem da para parar no proprio terminal do sistema com `Ctrl+C`. Se aparecer:
+
+```text
+Deseja finalizar o arquivo em lotes (S/N)?
+```
+
+digite `S` e aperte Enter.
+
+## Importante Sobre O Terminal
+
+Quando voce roda:
+
+```powershell
+.\run-local.ps1
+```
+
+o terminal fica aberto e parece que esta rodando "infinito". Isso e normal.
+Enquanto o terminal estiver assim, o Spring Boot esta ligado e o site funciona no navegador.
+
+Se o terminal voltar para:
+
+```powershell
+PS C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo>
+```
+
+significa que o sistema parou ou falhou ao iniciar.
+
+## O Que O Sistema Faz
+
+O sistema possui estes modulos:
+
+- Home
+- Usuarios
+- Alunos
+- Cursos
+- Professores
+- Disciplinas
+- Esqueci minha senha
+
+Fluxo basico:
 
 1. Abrir `http://localhost:8082`.
 2. Criar um usuario em `/usuarios/criar`.
-3. Fazer login com o usuario criado.
+3. Fazer login com e-mail e senha.
+4. Acessar a home em `/home`.
+5. Cadastrar alunos, cursos, professores e disciplinas.
+6. Usar "Esqueci minha senha" se precisar redefinir a senha.
+
+## Tecnologias Usadas
+
+- Java 17
+- Spring Boot 4
+- Spring Security
+- Thymeleaf
+- Spring Data JPA
+- Hibernate
+- Maven Wrapper
+- PostgreSQL
+- H2 para testes/perfil local
+- Spring Mail para envio de e-mail
+
+## Banco De Dados
+
+Por padrao o projeto usa o perfil `postgres`.
+
+As principais propriedades ficam em:
+
+```text
+demo/src/main/resources/application.properties
+demo/src/main/resources/application-postgres.properties
+demo/src/main/resources/application-h2.properties
+```
+
+O projeto usa:
+
+```properties
+spring.jpa.hibernate.ddl-auto=update
+server.port=8082
+```
+
+Isso facilita o uso academico porque o Hibernate atualiza as tabelas automaticamente.
+
+## Scripts Locais
+
+Existem dois scripts locais para facilitar:
+
+```text
+demo/run-local.ps1
+demo/stop-local.ps1
+```
+
+`run-local.ps1`:
+
+- configura o SMTP localmente;
+- para qualquer processo antigo na porta `8082`;
+- inicia o Spring Boot;
+- deixa o terminal ocupado enquanto o sistema estiver ligado.
+
+`stop-local.ps1`:
+
+- procura processo rodando na porta `8082`;
+- encerra esse processo;
+- confirma que a porta ficou livre.
+
+Esses scripts ficam no `.gitignore`, porque podem conter configuracoes locais e dados sensiveis.
+
+## Login E Permissoes
+
+O login usa e-mail como usuario.
+
+Regras principais:
+
+- Novo usuario cadastrado pelo sistema recebe `ROLE_USER`.
+- Usuario logado consegue acessar home e listagens.
+- `/usuarios/listar` funciona para usuario logado.
+- Editar e excluir usuarios fica reservado para `ROLE_ADMIN`.
+
+Para transformar um usuario em admin, altere no banco o campo de role para:
+
+```text
+ROLE_ADMIN
+```
+
+## Validador Dos Campos
+
+Os cadastros possuem validacoes para evitar dados errados e erro 500.
+
+Exemplos:
+
+- Nome aceita letras, espacos e acentos.
+- CPF deve ter 11 numeros.
+- Telefone deve ter 10 ou 11 numeros.
+- E-mail precisa ter formato valido.
+- Carga horaria deve ser maior que zero.
+- RA, RM e sigla aceitam letras e numeros.
+- Campos respeitam os limites do banco.
+
+Se algum campo estiver errado, o sistema volta para o formulario e mostra a mensagem de erro.
+
+## Recuperacao De Senha
+
+O fluxo "Esqueci minha senha" usa e-mail real.
+
+Resumo:
+
+1. Usuario clica em "Esqueci minha senha".
+2. Informa o e-mail cadastrado.
+3. Sistema envia link de redefinicao.
+4. Usuario abre o link.
+5. Digita nova senha e confirmacao.
+6. Sistema salva a nova senha com BCrypt.
+7. Link usado deixa de funcionar.
+
+Leia tambem:
+
+```text
+README-ESQUECI-SENHA.md
+```
+
+## Como Rodar Testes
+
+Na pasta `demo`, rode:
+
+```powershell
+.\mvnw.cmd test
+```
+
+Esse comando compila o projeto e executa os testes automatizados.
+
+## Teste Manual Recomendado
+
+Depois de ligar com `.\run-local.ps1`, teste:
+
+1. Abrir `http://localhost:8082`.
+2. Criar usuario em `/usuarios/criar`.
+3. Fazer login.
 4. Abrir `/home`.
-5. Abrir listagens de alunos, cursos, professores, disciplinas e usuarios.
-6. Criar, editar e excluir registros de teste.
-7. Testar o fluxo "Esqueci minha senha" com SMTP configurado.
+5. Abrir `/alunos/listar`.
+6. Abrir `/cursos/listar`.
+7. Abrir `/professores/listar`.
+8. Abrir `/disciplinas/listar`.
+9. Abrir `/usuarios/listar`.
+10. Criar registros de teste em cada modulo.
+11. Tentar salvar campo invalido e confirmar que aparece mensagem.
+12. Testar "Esqueci minha senha".
 
-## Observacoes importantes
+## Problemas Comuns
 
-- A senha de usuario e salva com BCrypt.
-- A role padrao de novo usuario e `ROLE_USER`.
-- Para criar um administrador, altere a role do usuario para `ROLE_ADMIN` no banco de dados.
-- O arquivo `target/` e gerado pelo Maven e nao faz parte da entrega final.
-- Senhas reais de banco, Gmail ou SMTP devem ficar apenas em variaveis de ambiente.
-- O projeto mantem `ddl-auto=update` para simplicidade academica; em producao, o ideal seria usar migrations versionadas.
+### Porta 8082 ja esta em uso
+
+Erro comum:
+
+```text
+Web server failed to start. Port 8082 was already in use.
+```
+
+Solucao:
+
+```powershell
+cd C:\Users\Guilherme\Documents\Projetos-FATEC\DevOps\ATV-Silvo\demo
+.\stop-local.ps1
+.\run-local.ps1
+```
+
+### O terminal fica rodando e nao volta
+
+Isso e normal. O sistema esta ligado.
+
+Para parar:
+
+```powershell
+.\stop-local.ps1
+```
+
+### E-mail de recuperacao nao chegou
+
+Confira:
+
+- sistema foi iniciado com `.\run-local.ps1`;
+- e-mail digitado existe no cadastro;
+- Gmail pode mandar para spam;
+- senha de app do Gmail deve estar correta;
+- porta `587`, auth e starttls precisam estar ativos.
+
+### Erro ao executar script PowerShell
+
+Se aparecer erro de permissao de script, rode no mesmo PowerShell:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+Depois rode novamente:
+
+```powershell
+.\run-local.ps1
+```
+
+## Estrutura Principal
+
+```text
+demo/src/main/java/br/com/examplefatec/controller
+demo/src/main/java/br/com/examplefatec/service
+demo/src/main/java/br/com/examplefatec/repository
+demo/src/main/java/br/com/examplefatec/entity
+demo/src/main/java/br/com/examplefatec/Security
+demo/src/main/java/br/com/examplefatec/dto
+demo/src/main/resources/templates
+demo/src/main/resources/static/css
+demo/src/test
+```
+
+## Cuidados
+
+- Nao colocar senha real no Git.
+- Nao colocar senha de app do Gmail no README.
+- Nao commitar `run-local.ps1` se ele tiver dados pessoais.
+- Senhas de usuario sao salvas com BCrypt.
+- Token de recuperacao e salvo no banco apenas como hash.

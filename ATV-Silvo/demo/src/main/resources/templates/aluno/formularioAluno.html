@@ -95,43 +95,51 @@
               </div>
             </div>
 
+            <p class="auth-alert" th:if="${errorMessage}" th:text="${errorMessage}">Nao foi possivel salvar o aluno.</p>
+
             <form th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
               <input type="hidden" th:field="*{idAluno}">
 
               <div class="form-grid">
                 <div class="field field-full">
                   <label for="nome">Nome</label>
-                  <input type="text" id="nome" th:field="*{nomeAluno}" required>
+                  <input type="text" id="nome" th:field="*{nomeAluno}" maxlength="40" pattern="[A-Za-zÀ-ÿ ]+" required>
+                  <span class="field-hint" th:if="${#fields.hasErrors('nomeAluno')}" th:errors="*{nomeAluno}">Erro no nome</span>
                   <span class="field-hint">identificação principal exibida nas listagens do modulo.</span>
                 </div>
 
                 <div class="field">
                   <label for="email">Email</label>
-                  <input type="email" id="email" th:field="*{emailAluno}" required>
+                  <input type="email" id="email" th:field="*{emailAluno}" maxlength="100" required>
+                  <span class="field-hint" th:if="${#fields.hasErrors('emailAluno')}" th:errors="*{emailAluno}">Erro no email</span>
                   <span class="field-hint">Canal de contato digital do aluno.</span>
                 </div>
 
                 <div class="field">
                   <label for="telefone">Telefone</label>
-                  <input type="text" id="telefone" th:field="*{telefoneAluno}" maxlength="15" required>
+                  <input type="text" id="telefone" th:field="*{telefoneAluno}" maxlength="11" inputmode="numeric" pattern="[0-9]{10,11}" required>
+                  <span class="field-hint" th:if="${#fields.hasErrors('telefoneAluno')}" th:errors="*{telefoneAluno}">Erro no telefone</span>
                   <span class="field-hint">Numero usado para atendimento e confirmações.</span>
                 </div>
 
                 <div class="field field-full">
                   <label for="endereco">Endereco</label>
-                  <input type="text" id="endereco" th:field="*{enderecoAluno}" required>
+                  <input type="text" id="endereco" th:field="*{enderecoAluno}" maxlength="50" required>
+                  <span class="field-hint" th:if="${#fields.hasErrors('enderecoAluno')}" th:errors="*{enderecoAluno}">Erro no endereco</span>
                   <span class="field-hint">Localizacao cadastrada para referencia administrativa.</span>
                 </div>
 
                 <div class="field">
                   <label for="cpf">CPF</label>
-                  <input type="text" id="cpf" th:field="*{cpfAluno}" maxlength="14" required>
+                  <input type="text" id="cpf" th:field="*{cpfAluno}" maxlength="11" inputmode="numeric" pattern="[0-9]{11}" required>
+                  <span class="field-hint" th:if="${#fields.hasErrors('cpfAluno')}" th:errors="*{cpfAluno}">Erro no CPF</span>
                   <span class="field-hint">Documento de identificação civil do aluno.</span>
                 </div>
 
                 <div class="field">
                   <label for="ra">RA</label>
-                  <input type="text" id="ra" th:field="*{raAluno}" required>
+                  <input type="text" id="ra" th:field="*{raAluno}" maxlength="20" pattern="[A-Za-z0-9]+" required>
+                  <span class="field-hint" th:if="${#fields.hasErrors('raAluno')}" th:errors="*{raAluno}">Erro no RA</span>
                   <span class="field-hint">Registro acadêmico utilizado nas consultas internas.</span>
                 </div>
 
@@ -147,6 +155,7 @@
                       Curso
                     </option>
                   </select>
+                  <span class="field-hint" th:if="${#fields.hasErrors('curso.idCurso')}" th:errors="*{curso.idCurso}">Erro no curso</span>
                   <span class="field-hint">Curso ao qual o aluno esta matriculado.</span>
                 </div>
               </div>

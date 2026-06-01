@@ -53,13 +53,15 @@
                         </div>
                     </div>
 
+                    <p class="auth-alert" th:if="${errorMessage}" th:text="${errorMessage}">Nao foi possivel salvar o professor.</p>
+
                     <form th:action="@{/professores/salvar}" th:object="${professor}" method="post">
                         <input type="hidden" th:field="*{idProfessor}">
                         <div class="form-grid">
-                            <div class="field field-full"><label for="nome">Nome</label><input type="text" id="nome" th:field="*{nomeProfessor}" required><span class="field-hint">Nome completo exibido nas telas operacionais do sistema.</span></div>
-                            <div class="field"><label for="telefone">Telefone</label><input type="text" id="telefone" th:field="*{telefoneProfessor}" required><span class="field-hint">Contato principal do docente para comunicações institucionais.</span></div>
-                            <div class="field"><label for="graduacao">Graduação</label><input type="text" id="graduacao" th:field="*{graduacaoProfessor}" required><span class="field-hint">Formação ou titulação acadêmica do professor.</span></div>
-                            <div class="field field-full"><label for="rm">RM</label><input type="text" id="rm" th:field="*{rmProfessor}" required><span class="field-hint">Identificador interno usado para administração do cadastro.</span></div>
+                            <div class="field field-full"><label for="nome">Nome</label><input type="text" id="nome" th:field="*{nomeProfessor}" maxlength="40" pattern="[A-Za-zÀ-ÿ ]+" required><span class="field-hint" th:if="${#fields.hasErrors('nomeProfessor')}" th:errors="*{nomeProfessor}">Erro no nome</span><span class="field-hint">Nome completo exibido nas telas operacionais do sistema.</span></div>
+                            <div class="field"><label for="telefone">Telefone</label><input type="text" id="telefone" th:field="*{telefoneProfessor}" maxlength="11" inputmode="numeric" pattern="[0-9]{10,11}" required><span class="field-hint" th:if="${#fields.hasErrors('telefoneProfessor')}" th:errors="*{telefoneProfessor}">Erro no telefone</span><span class="field-hint">Contato principal do docente para comunicações institucionais.</span></div>
+                            <div class="field"><label for="graduacao">Graduação</label><input type="text" id="graduacao" th:field="*{graduacaoProfessor}" maxlength="50" pattern="[A-Za-zÀ-ÿ ]+" required><span class="field-hint" th:if="${#fields.hasErrors('graduacaoProfessor')}" th:errors="*{graduacaoProfessor}">Erro na graduacao</span><span class="field-hint">Formação ou titulação acadêmica do professor.</span></div>
+                            <div class="field field-full"><label for="rm">RM</label><input type="text" id="rm" th:field="*{rmProfessor}" maxlength="20" pattern="[A-Za-z0-9]+" required><span class="field-hint" th:if="${#fields.hasErrors('rmProfessor')}" th:errors="*{rmProfessor}">Erro no RM</span><span class="field-hint">Identificador interno usado para administração do cadastro.</span></div>
                         </div>
                         <div class="form-actions">
                             <button class="button" type="submit">Salvar professor</button>

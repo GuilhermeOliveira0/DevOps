@@ -10,6 +10,7 @@ data/
 *.lock.db
 *.mv.db
 run-local.ps1
+stop-local.ps1
 chrome-shot*.png
 landing-shot*.png
 

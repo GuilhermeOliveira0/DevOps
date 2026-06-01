@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.examplefatec.entity.Usuario;
 import br.com.examplefatec.service.UsuarioService;
+import jakarta.validation.Valid;
 
 /**
  * Controller responsavel pelo cadastro, listagem e administracao de usuarios.
@@ -66,12 +68,21 @@ public class UsuarioController {
      * Novos cadastros publicos sempre recebem ROLE_USER antes de gravar.
      */
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Usuario usuario, Authentication authentication, Model model) {
+    public String salvar(
+            @Valid @ModelAttribute Usuario usuario,
+            BindingResult bindingResult,
+            Authentication authentication,
+            Model model) {
         boolean novoCadastro = usuario.getIdUsuario() == null;
         boolean admin = isAdmin(authentication);
 
         if (!novoCadastro && !admin) {
             return "redirect:/home";
+        }
+
+        if (bindingResult.hasErrors()) {
+            configurarFormulario(model, authentication, novoCadastro);
+            return "usuario/formularioUsuario";
         }
 
         if (!admin) {

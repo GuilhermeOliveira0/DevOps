@@ -53,12 +53,14 @@
                         </div>
                     </div>
 
+                    <p class="auth-alert" th:if="${errorMessage}" th:text="${errorMessage}">Nao foi possivel salvar o curso.</p>
+
                     <form th:action="@{/cursos/salvar}" th:object="${curso}" method="post">
                         <input type="hidden" th:field="*{idCurso}">
                         <div class="form-grid">
-                            <div class="field field-full"><label for="nome">Nome do curso</label><input type="text" id="nome" th:field="*{nomeCurso}" required><span class="field-hint">Título utilizado para identificação do curso nas listagens e operações.</span></div>
-                            <div class="field"><label for="periodo">Período</label><input type="text" id="periodo" th:field="*{periodoCurso}" required><span class="field-hint">Informe o turno ou período acadêmico correspondente.</span></div>
-                            <div class="field"><label for="cargaHoraria">Carga horária</label><input type="number" id="cargaHoraria" th:field="*{cargaHorariaCurso}" min="1" required><span class="field-hint">Valor numerico que representa a carga horaria total do curso.</span></div>
+                            <div class="field field-full"><label for="nome">Nome do curso</label><input type="text" id="nome" th:field="*{nomeCurso}" maxlength="40" pattern="[A-Za-zÀ-ÿ ]+" required><span class="field-hint" th:if="${#fields.hasErrors('nomeCurso')}" th:errors="*{nomeCurso}">Erro no nome</span><span class="field-hint">Título utilizado para identificação do curso nas listagens e operações.</span></div>
+                            <div class="field"><label for="periodo">Período</label><input type="text" id="periodo" th:field="*{periodoCurso}" maxlength="40" required><span class="field-hint" th:if="${#fields.hasErrors('periodoCurso')}" th:errors="*{periodoCurso}">Erro no periodo</span><span class="field-hint">Informe o turno ou período acadêmico correspondente.</span></div>
+                            <div class="field"><label for="cargaHoraria">Carga horária</label><input type="number" id="cargaHoraria" th:field="*{cargaHorariaCurso}" min="1" required><span class="field-hint" th:if="${#fields.hasErrors('cargaHorariaCurso')}" th:errors="*{cargaHorariaCurso}">Erro na carga horaria</span><span class="field-hint">Valor numerico que representa a carga horaria total do curso.</span></div>
                         </div>
                         <div class="form-actions">
                             <button class="button" type="submit">Salvar curso</button>
