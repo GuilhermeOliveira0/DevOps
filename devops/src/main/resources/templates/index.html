@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FatecADS - Sistema Acadêmico</title>
+
+    <style>
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #004aad, #007bff);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container{
+            background-color: white;
+            padding: 50px 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        h2{
+            color: #666;
+            margin-bottom: 35px;
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        form{
+            margin-bottom: 15px;
+        }
+
+        button{
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+
+        .btn-cadastro{
+            background-color: #28a745;
+        }
+
+        .btn-cadastro:hover{
+            background-color: #1e7e34;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>FatecADS</h1>
+        <h2>Sistema Acadêmico</h2>
+
+        <form action="/login" method="get">
+            <button type="submit">
+                Acesso ao Sistema
+            </button>
+        </form>
+
+        <form action="/usuarios/criar" method="get">
+            <button type="submit" class="btn-cadastro">
+                Cadastre-se
+            </button>
+        </form>
+
+    </div>
+
+</body>
+</html>

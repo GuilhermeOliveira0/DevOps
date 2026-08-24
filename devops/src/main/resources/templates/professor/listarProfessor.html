@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Disciplina</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        h3 a {
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        h3 a:hover {
+            background-color: #218838;
+        }
+
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            width: 70%;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        td a {
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+        }
+
+        td a:first-child {
+            background-color: #ffc107;
+        }
+
+        td a:first-child:hover {
+            background-color: #e0a800;
+        }
+
+        td a:last-child {
+            background-color: #dc3545;
+        }
+
+        td a:last-child:hover {
+            background-color: #c82333;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Lista de Professor</h1>
+
+    <h3>
+        <a href="/professores/criar">Criar novo professor</a>
+    </h3>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Graduação</th>
+            <th>RM</th>
+            <th>Curso</th>
+            <th>Professor</th>
+            <th colspan="2">Ações</th>
+        </tr>
+
+        <tr th:each="professor : ${professores}">
+            <td th:text="${professor.idProfessor}">*</td>
+            <td th:text="${professor.nomeProfessor}">*</td>
+            <td th:text="${professor.telefoneProfessor}">*</td>
+            <td th:text="${professor.graduacaoProfessor}">*</td>
+            <td th:text="${professor.rmProfessor}">*</td>
+            <td>
+                <a th:href="@{/professores/editar/{id}(id=${professor.idProfessor})}">Editar</a>
+                <a th:href="@{/professores/excluir/{id}(id=${professor.idProfessor})}">Excluir</a>
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>

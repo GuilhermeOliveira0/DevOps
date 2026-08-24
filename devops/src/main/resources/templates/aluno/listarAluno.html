@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Alunos</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 30px;
+}
+
+h1{
+    text-align: center;
+    color: #333;
+}
+
+.criar{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.criar a{
+    text-decoration: none;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.criar a:hover{
+    background-color: #218838;
+}
+
+table{
+    margin: auto;
+    border-collapse: collapse;
+    width: 90%;
+    background-color: white;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+th, td{
+    padding: 10px;
+    text-align: center;
+}
+
+th{
+    background-color: #007bff;
+    color: white;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+td a{
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+}
+
+.editar{
+    background-color: #ffc107;
+}
+
+.editar:hover{
+    background-color: #e0a800;
+}
+
+.excluir{
+    background-color: #dc3545;
+}
+
+.excluir:hover{
+    background-color: #c82333;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Lista de Alunos</h1>
+
+<div class="criar">
+    <a href="/alunos/criar">Criar novo aluno</a>
+</div>
+
+<table border="1">
+
+<tr>
+<th>Id</th>
+<th>Nome</th>
+<th>Email</th>
+<th>Telefone</th>
+<th>Endereço</th>
+<th>CPF</th>
+<th>RA</th>
+<th>Curso</th>
+<th colspan="2">Ações</th>
+</tr>
+
+<tr th:each="aluno : ${alunos}">
+<td th:text="${aluno.idAluno}">*</td>
+<td th:text="${aluno.nomeAluno}">*</td>
+<td th:text="${aluno.emailAluno}">*</td>
+<td th:text="${aluno.telefoneAluno}">*</td>
+<td th:text="${aluno.enderecoAluno}">*</td>
+<td th:text="${aluno.cpfAluno}">*</td>
+<td th:text="${aluno.raAluno}">*</td>
+<td th:text="${aluno.curso.nomeCurso}">*</td>
+<td>
+<a th:href="@{/alunos/editar/{id}(id=${aluno.idAluno})}" class="editar">Editar</a>
+<a th:href="@{/alunos/excluir/{id}(id=${aluno.idAluno})}" class="excluir">Excluir</a>
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

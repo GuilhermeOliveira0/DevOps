@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Professor</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .botao {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background-color: #0056b3;
+        }
+
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #555;
+        }
+
+        .voltar:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Cadastro de Professor</h1>
+
+        <form th:action="@{/professores/salvar}" method="post" th:object="${professor}">
+
+            <input type="hidden" th:field="*{idProfessor}">
+
+            <label>Nome:</label>
+            <input type="text" th:field="*{nomeProfessor}" required>
+
+            <label>Telefone:</label>
+            <input type="number" th:field="*{telefoneProfessor}" required>
+
+            <label>Graduação:</label>
+            <input type="text" th:field="*{graduacaoProfessor}" required>
+
+            <label>RM: </label>
+            <input type="text" th:field="*{rmProfessor}" required>
+
+            <input type="submit" value="Salvar" class="botao">
+
+        </form>
+
+        <a href="/professores/listar" class="voltar">Voltar para lista</a>
+
+    </div>
+
+</body>
+
+</html>

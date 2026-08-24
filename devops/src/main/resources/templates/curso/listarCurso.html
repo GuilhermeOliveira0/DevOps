@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cursos</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1{
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        h3{
+            text-align: center;
+        }
+
+        h3 a{
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        h3 a:hover{
+            background-color: #218838;
+        }
+
+        table{
+            margin: 30px auto;
+            border-collapse: collapse;
+            width: 70%;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td{
+            padding: 10px;
+            text-align: center;
+        }
+
+        th{
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+
+        td a{
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+        }
+
+        td a:first-child{
+            background-color: #ffc107;
+        }
+
+        td a:first-child:hover{
+            background-color: #e0a800;
+        }
+
+        td a:last-child{
+            background-color: #dc3545;
+        }
+
+        td a:last-child:hover{
+            background-color: #c82333;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>Lista de Cursos</h1>
+
+    <h3>
+        <a href="/cursos/criar">Criar novo curso</a>
+    </h3>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Periodo</th>
+            <th>Carga Horaria</th>
+            <th colspan="2">Ações</th>
+        </tr>
+
+        <tr th:each="curso : ${cursos}">
+            <td th:text="${curso.idCurso}">*</td>
+            <td th:text="${curso.nomeCurso}">*</td>
+            <td th:text="${curso.periodoCurso}">*</td>
+            <td th:text="${curso.cargaHorariaCurso}">*</td>
+            <td>
+                <a th:href="@{/cursos/editar/{id}(id=${curso.idCurso})}">Editar</a>
+                <a th:href="@{/cursos/excluir/{id}(id=${curso.idCurso})}">Excluir</a>
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+</html>
