@@ -27,10 +27,12 @@ public class Usuario {
     @Column(nullable = false, length = 80)
     private String nomeUsuario;
 
-    @Column(nullable = false, length = 80)
+    // unique: rede de seguranca no banco. A checagem na service da a mensagem
+    // amigavel; esta aqui impede o duplicado mesmo por fora da aplicacao.
+    @Column(nullable = false, length = 80, unique = true)
     private String emailUsuario;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String loginUsuario;
 
     @Column(nullable = false, length = 150)

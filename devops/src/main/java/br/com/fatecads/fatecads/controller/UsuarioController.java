@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fatecads.fatecads.entity.Usuario;
 import br.com.fatecads.fatecads.service.UsuarioService;
@@ -24,9 +25,16 @@ public class UsuarioController {
 
     // Método para salvar um aluno
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Usuario usuario) {
-        usuarioService.save(usuario);
-        return "/login";
+    public String salvar(@ModelAttribute Usuario usuario, Model model) {
+        try {
+            usuarioService.save(usuario);
+        } catch (IllegalArgumentException e) {
+            // Volta para o formulario com o que foi digitado e o motivo da recusa
+            model.addAttribute("erro", e.getMessage());
+            model.addAttribute("usuario", usuario);
+            return "usuario/formularioUsuario";
+        }
+        return "redirect:/login";
     }   
 
     // Método para listar todos os alunos
@@ -53,8 +61,14 @@ public class UsuarioController {
     
     // Método para editar um aluno pelo ID
     @GetMapping("/editar/{id}")
-    public String editarForm(@PathVariable Integer id, Model model) {
+    public String editarForm(@PathVariable Integer id, Model model, RedirectAttributes redirect) {
         Usuario usuario = usuarioService.findById(id);
+        if (usuario == null) {
+            redirect.addFlashAttribute("erro", "Usuário " + id + " não encontrado.");
+            return "redirect:/usuarios/listar";
+        }
+        // A senha nunca volta preenchida: o campo em branco significa "manter a atual"
+        usuario.setSenhaUsuario(null);
         model.addAttribute("usuario", usuario);
         return "usuario/formularioUsuario";
     }

@@ -1,6 +1,7 @@
 package br.com.fatecads.fatecads.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -35,8 +36,9 @@ public class Pedido {
     @JoinColumn(name = "idAluno_fk")
     private Aluno aluno;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemDoPedido> itens;
+    // orphanRemoval deixa o item ser apagado só de sair desta lista
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemDoPedido> itens = new ArrayList<>();
 
     // Médoto para calcular o total
     public Double calcularTotal(){
@@ -44,10 +46,10 @@ public class Pedido {
 
         if (itens != null) {
             for (ItemDoPedido item : itens) {
-                total += item.getSubtotal();
+                total += item.calcularSubtotal();
             }
         }
-        return total;
+        return Math.round(total * 100.0) / 100.0;
     }
 
     public void atualizarTotal() {

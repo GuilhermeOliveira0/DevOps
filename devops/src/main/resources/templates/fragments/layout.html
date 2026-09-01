@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<!--
+  Pedacos reaproveitados por todas as telas internas.
+  Assim a barra lateral e o estilo moram em um lugar so: mexeu aqui,
+  mudou em todas as paginas.
+-->
+
+<head th:fragment="cabecalho(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- token para o fetch da edicao no proprio quadro -->
+    <meta name="_csrf" th:content="${_csrf != null ? _csrf.token : ''}">
+    <meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : 'X-CSRF-TOKEN'}">
+    <title th:text="${titulo} + ' | FatecADS'">FatecADS</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+
+<!-- barra lateral fixa: acompanha a tela inteira, em qualquer pagina -->
+<aside class="lateral" th:fragment="lateral(ativo)">
+
+    <div class="marca">
+        <div class="nome">FatecADS</div>
+        <div class="sub">Sistema Acadêmico</div>
+    </div>
+
+    <nav>
+        <a th:href="@{/home}" th:classappend="${ativo} == 'inicio' ? 'ativo'">
+            Início
+        </a>
+        <a th:href="@{/alunos/listar}" th:classappend="${ativo} == 'alunos' ? 'ativo'">
+            Alunos
+        </a>
+        <a th:href="@{/cursos/listar}" th:classappend="${ativo} == 'cursos' ? 'ativo'">
+            Cursos
+        </a>
+        <a th:href="@{/professores/listar}" th:classappend="${ativo} == 'professores' ? 'ativo'">
+            Professores
+        </a>
+        <a th:href="@{/disciplinas/listar}" th:classappend="${ativo} == 'disciplinas' ? 'ativo'">
+            Disciplinas
+        </a>
+        <a th:href="@{/produtos/listar}" th:classappend="${ativo} == 'produtos' ? 'ativo'">
+            Produtos
+        </a>
+        <a th:href="@{/pedidos/listar}" th:classappend="${ativo} == 'pedidos' ? 'ativo'">
+            Pedidos
+        </a>
+        <a th:href="@{/usuarios/listar}" th:classappend="${ativo} == 'usuarios' ? 'ativo'">
+            Usuários
+        </a>
+    </nav>
+
+    <div class="rodape">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Sair</button>
+        </form>
+    </div>
+
+</aside>
+
+</body>
+</html>

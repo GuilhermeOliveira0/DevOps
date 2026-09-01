@@ -3,6 +3,7 @@ package br.com.fatecads.fatecads.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.fatecads.fatecads.entity.Curso;
@@ -19,7 +20,7 @@ public class CursoService {
     }
 
     public List<Curso> findAll() {
-        return cursoRepository.findAll();
+        return cursoRepository.findAll(Sort.by("idCurso"));
     }
 
     public void deleteById(Integer id){

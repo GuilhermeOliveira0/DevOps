@@ -23,10 +23,11 @@ public class Professor {
     @Column(nullable = false, length = 40)
     private String nomeProfessor;
 
-    @Column(nullable = false, length = 40)  
-    private Integer telefoneProfessor;
+    // Telefone e texto, nao numero: 11 digitos estouram o Integer e zero a esquerda some
+    @Column(nullable = false, length = 20)
+    private String telefoneProfessor;
 
-    @Column(nullable = false, length = 11)
+    @Column(nullable = false, length = 50)
     private String graduacaoProfessor;
 
     @Column(nullable = false, length = 50)

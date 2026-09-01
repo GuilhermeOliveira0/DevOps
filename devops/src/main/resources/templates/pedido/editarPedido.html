@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Pedidos')}"></head>
+<body>
+
+<div th:replace="~{fragments/layout :: lateral('pedidos')}"></div>
+
+<main class="conteudo">
+
+    <div class="topo">
+        <a th:href="@{/pedidos/listar}" class="voltar" title="Voltar para a lista">&#8592;</a>
+        <h1>Pedido nº <span th:text="${pedido.idPedido}">0</span></h1>
+    </div>
+
+    <div class="mensagem" th:if="${mensagem}" th:text="${mensagem}"></div>
+    <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+
+    <div class="cartao">
+
+        <p class="dica-tabela">
+            <strong>Aluno:</strong>
+            <span th:text="${pedido.aluno != null} ? ${pedido.aluno.nomeAluno} : '-'">-</span>
+            &nbsp;&nbsp;·&nbsp;&nbsp;
+            <strong>Data:</strong>
+            <span th:text="${pedido.dataPedido != null} ? ${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy')} : '-'">-</span>
+        </p>
+
+        <h2>Itens do pedido</h2>
+
+        <!--
+          A quantidade de cada item ja lancado fica em campo aberto.
+          O id do item viaja no hidden ao lado, na mesma ordem, e o
+          controller casa as duas listas para regravar os subtotais.
+        -->
+        <form th:action="@{/pedidos/{id}/quantidades(id=${pedido.idPedido})}" method="post">
+
+            <div class="tabela-caixa">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço unitário</th>
+                            <th>Subtotal</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${pedido.itens}">
+                            <td>
+                                <img class="miniatura"
+                                     th:if="${item.produto != null and item.produto.temFoto}"
+                                     th:src="@{/produtos/foto/{id}(id=${item.produto.idProduto})}"
+                                     th:alt="${item.produto.descricaoProduto}">
+                                <span th:text="${item.produto != null} ? ${item.produto.descricaoProduto} : '-'">-</span>
+                            </td>
+                            <td>
+                                <input type="hidden" name="idItem" th:value="${item.idItem}">
+                                <input type="number" name="quantidade" min="1" step="1" required
+                                       style="width:100px"
+                                       th:value="${item.quantidade}">
+                            </td>
+                            <td th:text="'R$ ' + ${#numbers.formatDecimal(item.preco != null ? item.preco : 0.0, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</td>
+                            <td th:text="'R$ ' + ${#numbers.formatDecimal(item.subtotal != null ? item.subtotal : 0.0, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</td>
+                            <td>
+                                <a class="excluir"
+                                   th:href="@{/pedidos/{id}/itens/{idItem}/excluir(id=${pedido.idPedido},idItem=${item.idItem})}">Remover</a>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(pedido.itens)}">
+                            <td colspan="5" class="vazio">Nenhum produto adicionado ao pedido</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="text-align:right;font-size:17px;font-weight:650;margin:16px 0 0">
+                Total do pedido:
+                R$ <span th:text="${#numbers.formatDecimal(pedido.totalPedido != null ? pedido.totalPedido : 0.0, 1, 'POINT', 2, 'COMMA')}">0,00</span>
+            </p>
+
+            <button type="submit" class="botao" style="margin-top:14px"
+                    th:unless="${#lists.isEmpty(pedido.itens)}">Salvar quantidades</button>
+
+        </form>
+
+    </div>
+
+    <div class="cartao">
+
+        <h2>Adicionar produto ao pedido</h2>
+
+        <div class="vazio" th:if="${#lists.isEmpty(produtos)}"
+             style="text-align:left;padding:0">
+            Nenhum produto cadastrado. Cadastre um produto antes de lançar itens.
+        </div>
+
+        <form th:action="@{/pedidos/{id}/itens(id=${pedido.idPedido})}" method="post"
+              th:unless="${#lists.isEmpty(produtos)}"
+              style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
+
+            <div style="flex:1;min-width:240px">
+                <label>Produto</label>
+                <select name="idProduto" required>
+                    <option value="">Selecione o produto</option>
+                    <option th:each="produto : ${produtos}"
+                            th:value="${produto.idProduto}"
+                            th:text="${produto.descricaoProduto} + ' - R$ ' + ${#numbers.formatDecimal(produto.valorProduto != null ? produto.valorProduto : 0.0, 1, 'POINT', 2, 'COMMA')}"></option>
+                </select>
+            </div>
+
+            <div style="width:120px">
+                <label>Quantidade</label>
+                <input type="number" name="quantidade" min="1" step="1" value="1" required>
+            </div>
+
+            <button type="submit" class="botao">Adicionar</button>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

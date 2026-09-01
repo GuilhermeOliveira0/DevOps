@@ -2,6 +2,8 @@ package br.com.fatecads.fatecads.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,23 @@ public class Produto {
     @Column(nullable = false, length = 30)
     private String marcaProduto;
 
+    // A imagem fica gravada no proprio Postgres, em uma coluna bytea
+    @JsonIgnore
+    @Column(columnDefinition = "bytea")
+    private byte[] fotoProduto;
+
+    @Column(length = 100)
+    private String tipoFotoProduto;
+
+    @Column(length = 150)
+    private String nomeFotoProduto;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "produto")
     private List<ItemDoPedido> itens;
+
+    // Usado pelas telas para decidir se mostra a miniatura ou o aviso de "sem imagem"
+    public boolean isTemFoto() {
+        return fotoProduto != null && fotoProduto.length > 0;
+    }
 }

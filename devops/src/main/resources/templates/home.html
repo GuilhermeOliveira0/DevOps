@@ -1,67 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema FatecADS</title>
-
-    <style>
-
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #004aad, #007bff);
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container{
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        h1{
-            color: #333;
-            margin-bottom: 30px;
-        }
-
-        a{
-            display: block;
-            text-decoration: none;
-            background-color: #007bff;
-            color: white;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        a:hover{
-            background-color: #0056b3;
-        }
-
-    </style>
-
-</head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Início')}"></head>
 <body>
 
-    <div class="container">
+<div th:replace="~{fragments/layout :: lateral('inicio')}"></div>
 
-        <h1>Bem vindo ao Sistema FatecADS!</h1>
+<main class="conteudo">
 
-        <a href="/alunos/listar">Gerenciar Alunos</a>
-        <a href="/cursos/listar">Gerenciar Cursos</a>
-        <a href="/professores/listar">Gerenciar Professores</a>
-        <a href="/disciplinas/listar">Gerenciar Disciplinas</a>
-        <a href="/usuarios/listar">Gerenciar Usuarios</a>
+    <div class="topo">
+        <h1>Bem-vindo ao Sistema FatecADS</h1>
+    </div>
+
+    <p class="dica-tabela">Escolha uma área no menu ao lado ou use um dos atalhos abaixo.</p>
+
+    <div class="atalhos">
+
+        <a class="atalho" th:href="@{/alunos/listar}">
+            <span class="titulo">Alunos</span>
+            <span class="desc">Cadastro e matrícula dos alunos</span>
+        </a>
+
+        <a class="atalho" th:href="@{/cursos/listar}">
+            <span class="titulo">Cursos</span>
+            <span class="desc">Cursos oferecidos e carga horária</span>
+        </a>
+
+        <a class="atalho" th:href="@{/professores/listar}">
+            <span class="titulo">Professores</span>
+            <span class="desc">Corpo docente e titulação</span>
+        </a>
+
+        <a class="atalho" th:href="@{/disciplinas/listar}">
+            <span class="titulo">Disciplinas</span>
+            <span class="desc">Disciplinas por curso e professor</span>
+        </a>
+
+        <a class="atalho" th:href="@{/produtos/listar}">
+            <span class="titulo">Produtos</span>
+            <span class="desc">Catálogo com foto e valor</span>
+        </a>
+
+        <a class="atalho" th:href="@{/pedidos/listar}">
+            <span class="titulo">Pedidos</span>
+            <span class="desc">Pedidos dos alunos e seus itens</span>
+        </a>
+
+        <a class="atalho" th:href="@{/usuarios/listar}">
+            <span class="titulo">Usuários</span>
+            <span class="desc">Quem tem acesso ao sistema</span>
+        </a>
 
     </div>
+
+</main>
 
 </body>
 </html>

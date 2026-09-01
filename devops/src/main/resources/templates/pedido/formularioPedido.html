@@ -1,64 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Pedidos</title>
-</head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Pedidos')}"></head>
 <body>
-    <h1 style="text-align: center;">Formulário de Pedidos</h1>
- 
-    <datalist id="listaAlunos">
-        <option th:each="aluno : ${alunos}"
-                th:value="${aluno.idAluno + ' - ' + aluno.nomeAluno'}">
-        </option>
-    </datalist>
- 
-    <datalist id ="listaProdutos">
-        <option th:each="produto : ${produto}"
-                th:value="${produto.idProduto + ' - ' + produto.descricaoProduto}"
-                th:attr="data-preco=${produto.valorProduto}">
-                </option>
-        </datalist>
- 
-        <h1>Cadastro de Pedidos</h1>
-        <a href="@{/home}">Votar</a>
- 
-        <p>I. Identificação do Aluno</p>
-        <label for="aluno">Aluno:</label>
-        <br/>
-        <input list="listaAlunos" id="aluno" type="text" placeholder=" Digite o nome do aluno">
-        <br/> <br/>
-        <p>II. Identificação do Produto</p>
-        <label for="quantidade">Quantidade:</label>
-        <input type="number" id="quantidade" placeholder="0" min="1"> 
-        <br/>
-        <button type="button" onclik="adicionarItem()">
 
-            <span> +</span> Adicionar 
+<div th:replace="~{fragments/layout :: lateral('pedidos')}"></div>
 
-        </button>
-        <table>
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço Unitário</th>
-                    <th>Subtotal</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+<main class="conteudo">
 
-            <tbody id="Tabela-itens">
-    <td id="empty-row=5"> nenhum produto adicionado ao pedido </td> 
-            </tr>    
-        </tbody>   
-        
-    
-</table>
-<span> Total do pedido</span>
-<span> R$</span><span id="totalPedido">0,00</span>
-<br> </br>
-            </tbody>
+    <div class="topo">
+        <a th:href="@{/pedidos/listar}" class="voltar" title="Voltar para a lista">&#8592;</a>
+        <h1>Novo pedido</h1>
+    </div>
+
+    <div class="cartao formulario">
+
+        <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+
+        <div class="erro" th:if="${#lists.isEmpty(alunos)}">
+            Não há alunos cadastrados. Cadastre um aluno antes de abrir um pedido.
+        </div>
+
+        <form th:action="@{/pedidos/abrir}" method="post" th:unless="${#lists.isEmpty(alunos)}">
+
+            <label>Aluno</label>
+            <select name="idAluno" required>
+                <option value="">Selecione o aluno</option>
+                <option th:each="aluno : ${alunos}"
+                        th:value="${aluno.idAluno}"
+                        th:text="${aluno.idAluno} + ' - ' + ${aluno.nomeAluno}"></option>
+            </select>
+
+            <p class="ajuda">O pedido é aberto vazio; os produtos são lançados na tela seguinte.</p>
+
+            <button type="submit" class="botao botao-largo">Abrir pedido</button>
+
+        </form>
+
+    </div>
+
+</main>
+
 </body>
 </html>

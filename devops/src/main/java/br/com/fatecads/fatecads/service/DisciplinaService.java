@@ -3,6 +3,7 @@ package br.com.fatecads.fatecads.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.fatecads.fatecads.entity.Disciplina;
@@ -22,7 +23,7 @@ public class DisciplinaService {
 
     // Método para listar todos os alunos
     public List<Disciplina> findAll(){
-        return disciplinaRepository.findAll();
+        return disciplinaRepository.findAll(Sort.by("idDisciplina"));
     }
 
     public void deleteById(Integer id){

@@ -33,3 +33,5 @@ build/
 .vscode/
 
 /whatsapp-service/node_modules/
+# Credenciais da sessao do WhatsApp (Baileys) - nunca versionar
+/whatsapp-service/auth/

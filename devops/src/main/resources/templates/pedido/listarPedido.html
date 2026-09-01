@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Pedidos')}"></head>
+<body>
+
+<div th:replace="~{fragments/layout :: lateral('pedidos')}"></div>
+
+<main class="conteudo">
+
+    <div class="topo">
+        <a th:href="@{/home}" class="voltar" title="Voltar para o início">&#8592;</a>
+        <h1>Pedidos</h1>
+        <div class="acoes-topo">
+            <a th:href="@{/pedidos/criar}" class="botao">+ Novo pedido</a>
+        </div>
+    </div>
+
+    <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+    <div class="mensagem" th:if="${mensagem}" th:text="${mensagem}"></div>
+
+    <div class="tabela-caixa">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Data</th>
+                    <th>Aluno</th>
+                    <th>Itens</th>
+                    <th>Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pedido : ${pedidos}">
+                    <td th:text="${pedido.idPedido}">*</td>
+                    <td th:text="${pedido.dataPedido != null} ? ${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy')} : '-'">*</td>
+                    <td th:text="${pedido.aluno != null} ? ${pedido.aluno.nomeAluno} : 'Sem aluno'">*</td>
+                    <td th:text="${pedido.itens != null} ? ${#lists.size(pedido.itens)} : 0">*</td>
+                    <td th:text="'R$ ' + ${#numbers.formatDecimal(pedido.totalPedido != null ? pedido.totalPedido : 0.0, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</td>
+                    <td>
+                        <a class="editar" th:href="@{/pedidos/editar/{id}(id=${pedido.idPedido})}">Editar</a>
+                        <a class="excluir" th:href="@{/pedidos/excluir/{id}(id=${pedido.idPedido})}">Excluir</a>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(pedidos)}">
+                    <td colspan="6" class="vazio">Nenhum pedido cadastrado</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+</body>
+</html>

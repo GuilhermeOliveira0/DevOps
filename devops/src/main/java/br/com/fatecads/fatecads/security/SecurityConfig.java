@@ -23,6 +23,7 @@ public class SecurityConfig {
     "/css/**",
     "/images/**",
     "/usuarios/**",
+    "/js/**",
     "/recuperacao/**")
                                                 .permitAll()
                                                 .anyRequest().authenticated())

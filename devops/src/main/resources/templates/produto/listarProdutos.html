@@ -1,34 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Produtos</title>
-</head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Produtos')}"></head>
 <body>
-    <h1 style="text-align: center;">Lista de Produtos</h1>
-    <h2 style="text-align: center;">
-        <a th:href="@{/produtos/criar}">Adicionar Novo Produto</a>
-    </h2>
 
-    <table>
-        <tr>
-            <th>Descrição</th>
-            <th>Valor</th>
-            <th>Unidade</th>
-            <th>Marca</th>
-            <th colspan="2">Ações</th>
-        </tr>
-        <tr th:each="produto : ${produto}">
-            <td th:text="${produto.descricaoProduto}"></td>
-            <td th:text="${produto.valorProduto}"></td>
-            <td th:text="${produto.unidadeProduto}"></td>
-            <td th:text="${produto.marcaProduto}"></td>
-            <td>
-                <a th:href="@{/produtos/editar/{id}(id=${produto.idProduto})}">Editar</a>
-                <a th:href="@{/produtos/excluir/{id}(id=${produto.idProduto})}">Excluir</a>
-            </td>
-        </tr>
-    </table>
+<div th:replace="~{fragments/layout :: lateral('produtos')}"></div>
+
+<main class="conteudo">
+
+    <div class="topo">
+        <a th:href="@{/home}" class="voltar" title="Voltar para o início">&#8592;</a>
+        <h1>Produtos</h1>
+        <div class="acoes-topo">
+            <a th:href="@{/produtos/criar}" class="botao">+ Novo produto</a>
+        </div>
+    </div>
+
+    <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+
+    <p class="dica-tabela">
+        Dê <strong>duplo clique</strong> no valor para editar direto na lista, sem abrir o formulário.
+        Enter grava, Esc cancela.
+    </p>
+
+    <div class="tabela-caixa">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Foto</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Unidade</th>
+                    <th>Marca</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="produto : ${produtos}">
+                    <td th:text="${produto.idProduto}">*</td>
+                    <td>
+                        <img class="miniatura" th:if="${produto.temFoto}"
+                             th:src="@{/produtos/foto/{id}(id=${produto.idProduto})}"
+                             th:alt="${produto.descricaoProduto}">
+                        <span class="sem-foto" th:unless="${produto.temFoto}">sem foto</span>
+                    </td>
+                    <td th:text="${produto.descricaoProduto}">*</td>
+
+                    <!-- celula editavel: o duplo clique troca o texto por um campo -->
+                    <td class="editavel"
+                        th:data-url="@{/produtos/{id}/valor(id=${produto.idProduto})}"
+                        data-campo="valorProduto"
+                        th:data-valor="${produto.valorProduto}"
+                        th:text="'R$ ' + ${#numbers.formatDecimal(produto.valorProduto != null ? produto.valorProduto : 0.0, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</td>
+
+                    <td th:text="${produto.unidadeProduto}">*</td>
+                    <td th:text="${produto.marcaProduto}">*</td>
+                    <td>
+                        <a class="editar" th:href="@{/produtos/editar/{id}(id=${produto.idProduto})}">Editar</a>
+                        <a class="excluir" th:href="@{/produtos/excluir/{id}(id=${produto.idProduto})}">Excluir</a>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(produtos)}">
+                    <td colspan="7" class="vazio">Nenhum produto cadastrado</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<script th:src="@{/js/edicao-inline.js}"></script>
+
 </body>
 </html>

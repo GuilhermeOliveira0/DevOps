@@ -1,32 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Produtos')}"></head>
 <body>
-    <h1 style="text-align: center;">Cadastro de Produtos</h1>
-    <form th:action="@{/produtos/salvar}" method="post" th:object="${produto}">
-        <input type="hidden" name="idProduto" th:field="*idProduto">
 
-        <label for="descricaoProduto">Descrição do Produto</label>
-        <input type="text" name="descricaoProduto" id="descricaoProduto">
-        <br><br>
+<div th:replace="~{fragments/layout :: lateral('produtos')}"></div>
 
-        <label for="valorProduto">Valor do Produto</label>
-        <input type="text" name="valorProduto" id="valorProduto">
-        <br><br>
+<main class="conteudo">
 
-        <label for="unidadeProduto">Unidade</label>
-        <input type="text" name="unidadeProduto" id="unidadeProduto">
-        <br><br>
+    <div class="topo">
+        <a th:href="@{/produtos/listar}" class="voltar" title="Voltar para a lista">&#8592;</a>
+        <h1 th:text="${produto.idProduto} == null ? 'Novo produto' : 'Editar produto'">Novo produto</h1>
+    </div>
 
-        <label for="marcaProduto">Marca</label>
-        <input type="text" name="marcaProduto" id="marcaProduto">
-        <br><br>
+    <div class="cartao formulario">
 
-        <input type="submit" value="Salvar Produto" >
-    </form>
+        <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+
+        <!-- enctype multipart e obrigatorio para o arquivo chegar no servidor -->
+        <form th:action="@{/produtos/salvar}" method="post" th:object="${produto}"
+              enctype="multipart/form-data">
+
+            <input type="hidden" th:field="*{idProduto}">
+
+            <label>Descrição do produto</label>
+            <input type="text" th:field="*{descricaoProduto}" maxlength="40" required>
+
+            <label>Valor</label>
+            <input type="number" th:field="*{valorProduto}" step="0.01" min="0" required>
+
+            <label>Unidade</label>
+            <input type="text" th:field="*{unidadeProduto}" maxlength="10" required>
+
+            <label>Marca</label>
+            <input type="text" th:field="*{marcaProduto}" maxlength="30" required>
+
+            <label>Foto do produto</label>
+
+            <div class="previa">
+                <img th:if="${produto.temFoto}"
+                     th:src="@{/produtos/foto/{id}(id=${produto.idProduto})}"
+                     alt="Foto atual do produto">
+                <span class="sem-foto" th:unless="${produto.temFoto}">Nenhuma imagem cadastrada</span>
+            </div>
+
+            <input type="file" name="arquivoFoto"
+                   accept="image/png,image/jpeg,image/gif,image/webp">
+            <p class="ajuda">JPG, PNG, GIF ou WEBP, até 5 MB. Deixe em branco para manter a imagem atual.</p>
+
+            <label class="remover-foto" th:if="${produto.temFoto}">
+                <input type="checkbox" name="removerFoto" value="true"> Remover a imagem atual
+            </label>
+
+            <button type="submit" class="botao botao-largo">Salvar</button>
+
+        </form>
+
+    </div>
+
+</main>
+
 </body>
 </html>
