@@ -36,7 +36,10 @@
                     <td th:text="${usuario.nomeUsuario}">*</td>
                     <td th:text="${usuario.emailUsuario}">*</td>
                     <td th:text="${usuario.loginUsuario}">*</td>
-                    <td th:text="${usuario.role}">*</td>
+                    <td>
+                        <span th:if="${usuario.role == 'ROLE_CLIENTE'}">Usuário normal</span>
+                        <span th:if="${usuario.role == 'ROLE_USER'}">Administrador</span>
+                    </td>
                     <td>
                         <a class="editar" th:href="@{/usuarios/editar/{id}(id=${usuario.idUsuario})}">Editar</a>
                         <a class="excluir" th:href="@{/usuarios/excluir/{id}(id=${usuario.idUsuario})}">Excluir</a>

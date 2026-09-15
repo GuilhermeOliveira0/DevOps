@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Loja')}"></head>
+<body>
+
+<div th:replace="~{fragments/loja-layout :: menu(${carrinho})}"></div>
+
+<main class="conteudo-loja">
+
+    <div class="topo-loja-pagina">
+        <div>
+            <h1>Produtos</h1>
+            <p>Escolha seus produtos e adicione ao carrinho.</p>
+        </div>
+        <a class="botao" th:href="@{/loja/carrinho}">
+            Ver carrinho (<span th:text="${carrinho.quantidadeTotal}">0</span>)
+        </a>
+    </div>
+
+    <div class="mensagem" th:if="${mensagem}" th:text="${mensagem}"></div>
+    <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+
+    <div class="grade-produtos">
+
+        <article class="produto-loja" th:each="produto : ${produtos}">
+            <div class="foto-produto-loja">
+                <img th:if="${produto.temFoto}"
+                     th:src="@{/produtos/foto/{id}(id=${produto.idProduto})}"
+                     th:alt="${produto.descricaoProduto}">
+                <span th:unless="${produto.temFoto}">Sem foto</span>
+            </div>
+
+            <div class="dados-produto-loja">
+                <p class="marca-produto" th:text="${produto.marcaProduto}">Marca</p>
+                <h2 th:text="${produto.descricaoProduto}">Produto</h2>
+                <p class="unidade-produto" th:text="'Unidade: ' + ${produto.unidadeProduto}">Unidade</p>
+                <p class="preco-produto"
+                   th:text="'R$ ' + ${#numbers.formatDecimal(produto.valorProduto != null ? produto.valorProduto : 0.0, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</p>
+
+                <form class="formulario-carrinho" th:action="@{/loja/carrinho/adicionar}" method="post">
+                    <input type="hidden" name="idProduto" th:value="${produto.idProduto}">
+                    <input type="number" name="quantidade" value="1" min="1" step="1"
+                           aria-label="Quantidade" required>
+                    <button class="botao" type="submit">Adicionar</button>
+                </form>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="cartao vazio" th:if="${#lists.isEmpty(produtos)}">
+        Nenhum produto disponível no momento.
+    </div>
+
+</main>
+
+</body>
+</html>

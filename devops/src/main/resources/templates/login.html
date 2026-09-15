@@ -23,6 +23,10 @@
             Você saiu do sistema.
         </div>
 
+        <div class="mensagem" th:if="${param.cadastro}">
+            Conta criada. Agora você já pode entrar.
+        </div>
+
         <form method="post" th:action="@{/login}">
 
             <label for="username">Usuário</label>

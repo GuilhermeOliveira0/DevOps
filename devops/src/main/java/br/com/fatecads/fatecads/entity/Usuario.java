@@ -20,6 +20,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Usuario {
 
+    public static final String PAPEL_ADMINISTRADOR = "ROLE_USER";
+    public static final String PAPEL_USUARIO_NORMAL = "ROLE_CLIENTE";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idUsuario;
@@ -46,5 +49,6 @@ public class Usuario {
 
     private LocalDateTime expiracaoCodigo;
 
-    private String role = "ROLE_USER";
+    // Novas contas sao compradores. O administrador pode trocar esse papel.
+    private String role = PAPEL_USUARIO_NORMAL;
 }

@@ -24,6 +24,7 @@ public class UsuarioService {
     // Método para salvar um aluno
     public Usuario save(Usuario usuario) {
         validarDuplicidade(usuario);
+        validarPapel(usuario);
 
         boolean edicao = usuario.getIdUsuario() != null;
         boolean senhaInformada = usuario.getSenhaUsuario() != null
@@ -42,6 +43,17 @@ public class UsuarioService {
         }
 
         return usuarioRepository.save(usuario);
+    }
+
+    // Impede que um valor desconhecido seja gravado no campo de papel.
+    private void validarPapel(Usuario usuario) {
+        String papel = usuario.getRole();
+        boolean papelValido = Usuario.PAPEL_ADMINISTRADOR.equals(papel)
+                || Usuario.PAPEL_USUARIO_NORMAL.equals(papel);
+
+        if (!papelValido) {
+            usuario.setRole(Usuario.PAPEL_USUARIO_NORMAL);
+        }
     }
 
     /*

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Menu usado somente nas paginas do usuario comprador. -->
+<body>
+
+<header class="menu-loja" th:fragment="menu(carrinho)">
+    <a class="marca-loja" th:href="@{/loja}">FatecADS Loja</a>
+
+    <nav>
+        <a th:href="@{/loja}">Produtos</a>
+        <a th:href="@{/loja/carrinho}">
+            Carrinho
+            <span class="contador-carrinho" th:text="${carrinho.quantidadeTotal}">0</span>
+        </a>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Sair</button>
+        </form>
+    </nav>
+</header>
+
+</body>
+</html>

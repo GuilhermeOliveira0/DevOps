@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -18,15 +19,20 @@ public class SecurityConfig {
                                 
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers(
-    "/login",
-    "/fatecads",
-    "/css/**",
-    "/images/**",
-    "/usuarios/**",
-    "/js/**",
-    "/recuperacao/**")
-                                                .permitAll()
-                                                .anyRequest().authenticated())
+                                                                "/login",
+                                                                "/fatecads",
+                                                                "/css/**",
+                                                                "/images/**",
+                                                                "/js/**",
+                                                                "/recuperacao/**")
+                                                        .permitAll()
+                                                .requestMatchers(HttpMethod.GET, "/usuarios/criar").permitAll()
+                                                .requestMatchers(HttpMethod.POST, "/usuarios/salvar").permitAll()
+                                                .requestMatchers("/home").authenticated()
+                                                .requestMatchers("/loja/**", "/produtos/foto/**")
+                                                        .hasAnyRole("CLIENTE", "USER")
+                                                // ROLE_USER e o administrador do sistema.
+                                                .anyRequest().hasRole("USER"))
                                 .formLogin(form -> form
                                                 .loginPage("/login")
                                                 .defaultSuccessUrl("/home", true)

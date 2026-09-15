@@ -3,16 +3,23 @@
 <head th:replace="~{fragments/layout :: cabecalho('Usuários')}"></head>
 <body>
 
-<div th:replace="~{fragments/layout :: lateral('usuarios')}"></div>
+<div th:unless="${criandoUsuario}">
+    <div th:replace="~{fragments/layout :: lateral('usuarios')}"></div>
+</div>
 
-<main class="conteudo">
+<main th:class="${criandoUsuario} ? 'centralizado' : 'conteudo'">
 
-    <div class="topo">
+    <div th:class="${criandoUsuario} ? 'painel-central formulario' : ''">
+
+    <div class="topo" th:unless="${criandoUsuario}">
         <a th:href="@{/usuarios/listar}" class="voltar" title="Voltar para a lista">&#8592;</a>
         <h1 th:text="${usuario.idUsuario} == null ? 'Novo usuário' : 'Editar usuário'">Novo usuário</h1>
     </div>
 
-    <div class="cartao formulario">
+    <h1 th:if="${criandoUsuario}">Criar conta</h1>
+    <p class="sub" th:if="${criandoUsuario}">Cadastre-se para acessar a loja</p>
+
+    <div th:class="${criandoUsuario} ? '' : 'cartao formulario'">
 
         <div class="erro" th:if="${erro}" th:text="${erro}"></div>
 
@@ -36,9 +43,23 @@
                 Deixe em branco para manter a senha atual.
             </p>
 
+            <div th:unless="${cadastroPublico}">
+                <label>Papel</label>
+                <select th:field="*{role}" required>
+                    <option value="ROLE_CLIENTE">Usuário normal (comprador)</option>
+                    <option value="ROLE_USER">Administrador</option>
+                </select>
+            </div>
+
             <button type="submit" class="botao botao-largo">Salvar</button>
 
         </form>
+
+    </div>
+
+    <a th:if="${cadastroPublico}" th:href="@{/login}" class="link-secundario">Já tem conta? Entrar</a>
+    <a th:if="${criandoUsuario and !cadastroPublico}" th:href="@{/usuarios/listar}"
+       class="link-secundario">&#8592; Voltar para usuários</a>
 
     </div>
 

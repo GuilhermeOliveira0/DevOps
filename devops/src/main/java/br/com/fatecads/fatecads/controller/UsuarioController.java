@@ -2,6 +2,7 @@ package br.com.fatecads.fatecads.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,16 +26,33 @@ public class UsuarioController {
 
     // Método para salvar um aluno
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Usuario usuario, Model model) {
+    public String salvar(@ModelAttribute Usuario usuario, Model model,
+                         Authentication autenticacao) {
+        boolean administrador = ehAdministrador(autenticacao);
+        boolean criandoUsuario = usuario.getIdUsuario() == null;
+
+        // Quem esta criando a propria conta sempre recebe o papel de comprador.
+        // O id tambem e apagado para impedir a edicao de outro usuario pelo POST.
+        if (!administrador) {
+            usuario.setIdUsuario(null);
+            usuario.setRole(Usuario.PAPEL_USUARIO_NORMAL);
+        }
+
         try {
             usuarioService.save(usuario);
         } catch (IllegalArgumentException e) {
             // Volta para o formulario com o que foi digitado e o motivo da recusa
             model.addAttribute("erro", e.getMessage());
             model.addAttribute("usuario", usuario);
+            model.addAttribute("cadastroPublico", !administrador);
+            model.addAttribute("criandoUsuario", criandoUsuario);
             return "usuario/formularioUsuario";
         }
-        return "redirect:/login";
+
+        if (administrador) {
+            return "redirect:/usuarios/listar";
+        }
+        return "redirect:/login?cadastro";
     }   
 
     // Método para listar todos os alunos
@@ -47,8 +65,10 @@ public class UsuarioController {
 
     // Método para criar um novo aluno e abrir um novo formulário
     @GetMapping("/criar")
-    public String criarForm(Model model) {
+    public String criarForm(Model model, Authentication autenticacao) {
         model.addAttribute("usuario", new Usuario());
+        model.addAttribute("cadastroPublico", !ehAdministrador(autenticacao));
+        model.addAttribute("criandoUsuario", true);
         return "usuario/formularioUsuario";
     }
 
@@ -70,7 +90,18 @@ public class UsuarioController {
         // A senha nunca volta preenchida: o campo em branco significa "manter a atual"
         usuario.setSenhaUsuario(null);
         model.addAttribute("usuario", usuario);
+        model.addAttribute("cadastroPublico", false);
+        model.addAttribute("criandoUsuario", false);
         return "usuario/formularioUsuario";
+    }
+
+    private boolean ehAdministrador(Authentication autenticacao) {
+        if (autenticacao == null || !autenticacao.isAuthenticated()) {
+            return false;
+        }
+
+        return autenticacao.getAuthorities().stream().anyMatch(autoridade ->
+                Usuario.PAPEL_ADMINISTRADOR.equals(autoridade.getAuthority()));
     }
     
 }

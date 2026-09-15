@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: cabecalho('Carrinho')}"></head>
+<body>
+
+<div th:replace="~{fragments/loja-layout :: menu(${carrinho})}"></div>
+
+<main class="conteudo-loja">
+
+    <div class="topo-loja-pagina">
+        <div>
+            <h1>Meu carrinho</h1>
+            <p>Confira os produtos que você escolheu.</p>
+        </div>
+    </div>
+
+    <div class="mensagem" th:if="${mensagem}" th:text="${mensagem}"></div>
+    <div class="erro" th:if="${erro}" th:text="${erro}"></div>
+
+    <div class="tabela-caixa" th:unless="${#lists.isEmpty(carrinho.itens)}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                    <th>Subtotal</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${carrinho.itens}">
+                    <td>
+                        <img class="miniatura" th:if="${item.temFoto}"
+                             th:src="@{/produtos/foto/{id}(id=${item.idProduto})}"
+                             th:alt="${item.descricaoProduto}">
+                        <span th:text="${item.descricaoProduto}">Produto</span>
+                    </td>
+                    <td th:text="'R$ ' + ${#numbers.formatDecimal(item.valorUnitario != null ? item.valorUnitario : 0.0, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</td>
+                    <td>
+                        <form class="formulario-quantidade" th:action="@{/loja/carrinho/quantidade}" method="post">
+                            <input type="hidden" name="idProduto" th:value="${item.idProduto}">
+                            <input type="number" name="quantidade" min="1" step="1" required
+                                   th:value="${item.quantidade}">
+                            <button class="botao" type="submit">Atualizar</button>
+                        </form>
+                    </td>
+                    <td th:text="'R$ ' + ${#numbers.formatDecimal(item.calcularSubtotal(), 1, 'POINT', 2, 'COMMA')}">R$ 0,00</td>
+                    <td>
+                        <a class="excluir"
+                           th:href="@{/loja/carrinho/remover/{id}(id=${item.idProduto})}">Remover</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="resumo-carrinho" th:unless="${#lists.isEmpty(carrinho.itens)}">
+        <span>Total</span>
+        <strong th:text="'R$ ' + ${#numbers.formatDecimal(carrinho.valorTotal, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</strong>
+    </div>
+
+    <div class="cartao vazio" th:if="${#lists.isEmpty(carrinho.itens)}">
+        Seu carrinho está vazio.
+    </div>
+
+    <a class="botao" th:href="@{/loja}">&#8592; Continuar comprando</a>
+
+</main>
+
+</body>
+</html>
