@@ -72,8 +72,9 @@ public class ProdutoService {
      * ficam intocados.
      */
     public Produto atualizarValor(Integer id, Double novoValor) {
-        if (novoValor == null || novoValor < 0) {
-            throw new IllegalArgumentException("O valor precisa ser zero ou maior.");
+        // Mesma regra do cadastro (@Positive em Produto.valorProduto)
+        if (novoValor == null || novoValor <= 0) {
+            throw new IllegalArgumentException("O valor precisa ser maior que zero.");
         }
 
         Produto produto = findById(id);

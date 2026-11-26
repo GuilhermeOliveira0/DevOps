@@ -22,17 +22,22 @@
 
             <input type="hidden" th:field="*{idProduto}">
 
+            <!-- Tema 6: as mensagens abaixo vem da validacao feita no servidor -->
             <label>Descrição do produto</label>
             <input type="text" th:field="*{descricaoProduto}" maxlength="40" required>
+            <p class="erro-campo" th:if="${#fields.hasErrors('descricaoProduto')}" th:errors="*{descricaoProduto}"></p>
 
             <label>Valor</label>
-            <input type="number" th:field="*{valorProduto}" step="0.01" min="0" required>
+            <input type="number" th:field="*{valorProduto}" step="0.01" min="0.01" required>
+            <p class="erro-campo" th:if="${#fields.hasErrors('valorProduto')}" th:errors="*{valorProduto}"></p>
 
             <label>Unidade</label>
             <input type="text" th:field="*{unidadeProduto}" maxlength="10" required>
+            <p class="erro-campo" th:if="${#fields.hasErrors('unidadeProduto')}" th:errors="*{unidadeProduto}"></p>
 
             <label>Marca</label>
             <input type="text" th:field="*{marcaProduto}" maxlength="30" required>
+            <p class="erro-campo" th:if="${#fields.hasErrors('marcaProduto')}" th:errors="*{marcaProduto}"></p>
 
             <label>Foto do produto</label>
 
