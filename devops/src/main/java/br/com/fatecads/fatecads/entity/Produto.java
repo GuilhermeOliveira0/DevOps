@@ -10,6 +10,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,14 +30,27 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idProduto;
 
+    /*
+     * Regras de validacao do cadastro (Tema 6).
+     * O Spring confere estas anotacoes quando o controller recebe @Valid,
+     * entao a regra vale mesmo que alguem burle o "required" do HTML.
+     */
+    @NotBlank(message = "Informe a descrição do produto.")
+    @Size(max = 40, message = "A descrição pode ter no máximo 40 caracteres.")
     @Column(nullable = false, length = 40)
     private String descricaoProduto;
 
+    @NotNull(message = "Informe o valor do produto.")
+    @Positive(message = "O valor precisa ser maior que zero.")
     private Double valorProduto;
 
+    @NotBlank(message = "Informe a unidade do produto.")
+    @Size(max = 10, message = "A unidade pode ter no máximo 10 caracteres.")
     @Column(nullable = false, length = 10)
     private String unidadeProduto;
 
+    @NotBlank(message = "Informe a marca do produto.")
+    @Size(max = 30, message = "A marca pode ter no máximo 30 caracteres.")
     @Column(nullable = false, length = 30)
     private String marcaProduto;
 

@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fatecads.fatecads.entity.Produto;
 import br.com.fatecads.fatecads.service.ProdutoService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/produtos")
@@ -48,10 +50,19 @@ public class ProdutoController {
     
     // Método para salvar o produto no banco de dados, junto com a imagem
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Produto produto,
+    public String salvar(@Valid @ModelAttribute("produto") Produto produto,
+                         BindingResult validacao,
                          @RequestParam(value = "arquivoFoto", required = false) MultipartFile arquivoFoto,
                          @RequestParam(value = "removerFoto", defaultValue = "false") boolean removerFoto,
                          RedirectAttributes redirect) {
+
+        // Tema 6: se alguma regra da entidade falhou, nada vai para o banco.
+        // Volta para o formulario com as mensagens de erro de cada campo.
+        if (validacao.hasErrors()) {
+            manterFotoGravada(produto);
+            return "produto/formularioProduto";
+        }
+
         try {
             produtoService.save(produto, arquivoFoto, removerFoto);
         } catch (IOException e) {
@@ -62,7 +73,19 @@ public class ProdutoController {
         }
         return "redirect:/produtos/listar";
     }
-    
+
+    // Na edicao com erro, a previa da foto continua aparecendo no formulario
+    private void manterFotoGravada(Produto produto) {
+        if (produto.getIdProduto() == null) {
+            return;
+        }
+        Produto gravado = produtoService.findById(produto.getIdProduto());
+        if (gravado != null) {
+            produto.setFotoProduto(gravado.getFotoProduto());
+            produto.setTipoFotoProduto(gravado.getTipoFotoProduto());
+        }
+    }
+
     // Método para abrir o formulário de edição de produtos
     @GetMapping("/editar/{id}")
     public String editarForm(@PathVariable Integer id, Model model, RedirectAttributes redirect) {

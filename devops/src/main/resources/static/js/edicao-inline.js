@@ -32,7 +32,7 @@
     var campo = document.createElement("input");
     campo.type = "number";
     campo.step = "0.01";
-    campo.min = "0";
+    campo.min = "0.01";
     campo.value = valorOriginal;
 
     celula.textContent = "";
@@ -57,7 +57,7 @@
 
       var novo = campo.value;
 
-      if (novo === "" || isNaN(parseFloat(novo)) || parseFloat(novo) < 0) {
+      if (novo === "" || isNaN(parseFloat(novo)) || parseFloat(novo) <= 0) {
         fechar(textoOriginal);
         pisca(celula, "falhou");
         return;
